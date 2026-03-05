@@ -1,0 +1,3743 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="My Good Life">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2a5c45">
+<link rel="manifest" href="manifest.json">
+<title>Antrenman — My Good Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #ebebed; --surface: #ffffff; --card: #f5f5f7; --border: #dcdce0; --border2: #c8c8ce;
+  --green: #2a5c45; --green-mid: #3d7a5e; --green-light: #e8f2ed;
+  --orange: #c05a25; --orange-light: #fdf0e8;
+  --blue: #1e5a8a; --blue-light: #e6f0f8;
+  --purple: #5a3a8a; --purple-light: #ede8f5;
+  --red: #c03030; --red-light: #fdeaea;
+  --text: #1a1a1e; --muted: #6b6b75; --subtle: #a8a8b0;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'DM Sans',sans-serif; background:var(--bg); color:var(--text); font-size:14px; line-height:1.6; }
+::-webkit-scrollbar { width:4px; }
+::-webkit-scrollbar-track { background:var(--bg); }
+::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+/* BACK BUTTON */
+.back-btn {
+  position: absolute; top: 14px; left: 14px; z-index: 10;
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; border-radius: 10px; padding: 7px 14px; font-size: 12px;
+  cursor: pointer; font-family: 'DM Sans', sans-serif; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 5px;
+  -webkit-tap-highlight-color: transparent;
+}
+.back-btn:active { background: rgba(255,255,255,0.25); }
+/* HERO */
+.hero { background:var(--green); padding:56px 52px 48px; position:relative; overflow:hidden; }
+.hero::before { content:''; position:absolute; top:-80px; right:-80px; width:380px; height:380px; border-radius:50%; background:rgba(255,255,255,0.04); pointer-events:none; }
+.hero-eyebrow { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.55); margin-bottom:14px; }
+.hero h1 { font-family:'Bebas Neue',sans-serif; font-size:68px; line-height:0.92; color:#fff; letter-spacing:1px; }
+.hero h1 span { color:#a8e6c0; }
+.hero-desc { margin-top:14px; font-size:13px; color:rgba(255,255,255,0.6); font-weight:300; max-width:540px; line-height:1.7; }
+.hero-tags { display:flex; gap:7px; flex-wrap:wrap; margin-top:18px; }
+.htag { font-size:10px; padding:3px 11px; border:1px solid rgba(255,255,255,0.2); border-radius:20px; color:rgba(255,255,255,0.5); }
+.htag.hi { border-color:rgba(168,230,192,0.5); color:#a8e6c0; }
+/* STATS */
+.stats { display:grid; grid-template-columns:repeat(6,1fr); background:var(--green-mid); }
+@media(max-width:700px){ .stats { grid-template-columns:repeat(3,1fr); } }
+.stat { padding:16px 22px; border-right:1px solid rgba(255,255,255,0.12); }
+.stat:last-child { border-right:none; }
+.stat-l { font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-bottom:3px; }
+.stat-v { font-family:'Bebas Neue',sans-serif; font-size:22px; color:#fff; letter-spacing:1px; }
+.stat-v small { font-family:'DM Sans',sans-serif; font-size:10px; color:rgba(255,255,255,0.35); }
+/* WRAP */
+.wrap { max-width:1020px; margin:0 auto; padding:0 24px 80px; }
+/* SECTION */
+.sec { margin-top:52px; }
+.sec-head { display:flex; align-items:baseline; gap:12px; margin-bottom:4px; }
+.sec-title { font-family:'Bebas Neue',sans-serif; font-size:34px; letter-spacing:1px; color:var(--green); }
+.sec-pill { font-size:9px; letter-spacing:1.5px; text-transform:uppercase; padding:3px 10px; border-radius:20px; border:1px solid var(--border2); color:var(--muted); }
+.sec-sub { font-size:12.5px; color:var(--muted); margin-bottom:18px; font-weight:300; }
+/* ALERT */
+.alert { background:var(--red-light); border:1px solid rgba(192,48,48,0.2); border-left:3px solid var(--red); border-radius:0 10px 10px 0; padding:13px 18px; font-size:12.5px; color:#8a2020; line-height:1.6; margin-top:28px; }
+.alert strong { color:var(--red); }
+/* NOTE */
+.note-box { background:var(--green-light); border:1px solid rgba(42,92,69,0.18); border-radius:10px; padding:12px 16px; font-size:12.5px; color:var(--green); line-height:1.6; margin-bottom:18px; }
+/* EQUIPMENT BOX */
+.equip-box { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 24px; margin-top:18px; }
+.equip-title { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--green); letter-spacing:1px; margin-bottom:14px; }
+.equip-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+@media(max-width:580px){ .equip-grid { grid-template-columns:1fr; } }
+.equip-item { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:12px 14px; }
+.equip-icon { font-size:18px; margin-bottom:5px; }
+.equip-name { font-size:12px; font-weight:600; color:var(--text); }
+.equip-detail { font-size:11px; color:var(--muted); margin-top:2px; line-height:1.4; }
+.equip-badge { display:inline-block; font-size:9px; padding:2px 7px; border-radius:3px; margin-top:4px; font-weight:500; }
+.eb-have { background:var(--green-light); color:var(--green); }
+.eb-buy { background:var(--orange-light); color:var(--orange); }
+.equip-note { margin-top:12px; font-size:11.5px; color:var(--muted); border-top:1px solid var(--border); padding-top:10px; line-height:1.6; }
+/* WEEK STRIP */
+.week-strip { display:grid; grid-template-columns:repeat(7,1fr); gap:6px; margin-bottom:10px; }
+@media(max-width:600px){ .week-strip { grid-template-columns:repeat(4,1fr); } }
+.wday { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:13px 8px; text-align:center; cursor:pointer; transition:all 0.18s; }
+.wday:hover { border-color:var(--border2); box-shadow:0 2px 8px rgba(0,0,0,0.06); }
+.wday.active { background:var(--green-light); border-color:var(--green-mid); }
+.wday.rest { opacity:.5; cursor:default; background:var(--card); }
+.wday.rest:hover { border-color:var(--border); box-shadow:none; }
+.wday-name { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+.wday-label { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:.5px; margin-top:4px; color:var(--text); }
+.wday.active .wday-label { color:var(--green); }
+.wday-sub { font-size:9px; color:var(--subtle); margin-top:2px; }
+.freq-note { background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:12px 16px; display:flex; gap:16px; flex-wrap:wrap; margin-top:8px; }
+.fn-item { font-size:12px; color:var(--muted); display:flex; align-items:center; gap:6px; }
+.fn-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+/* TABS */
+.wtabs { display:flex; gap:6px; margin-bottom:20px; flex-wrap:wrap; }
+.wtab { font-size:12px; padding:8px 18px; border-radius:8px; border:1px solid var(--border); background:var(--surface); color:var(--muted); cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:500; transition:all .18s; }
+.wtab:hover { border-color:var(--border2); color:var(--text); }
+.wtab.on { background:var(--green); color:#fff; border-color:var(--green); }
+.wtab-pane { display:none; }
+.wtab-pane.on { display:block; }
+/* WORKOUT HEADER */
+.wo-head { background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:20px 26px; margin-bottom:14px; display:flex; align-items:center; gap:18px; }
+.wo-icon { font-size:30px; flex-shrink:0; }
+.wo-info { flex:1; }
+.wo-day { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+.wo-title { font-family:'Bebas Neue',sans-serif; font-size:26px; letter-spacing:1px; color:var(--text); margin-top:1px; }
+.wo-desc { font-size:12px; color:var(--muted); margin-top:2px; font-weight:300; }
+.wo-stats { display:flex; gap:18px; flex-shrink:0; flex-wrap:wrap; }
+.wo-stat { text-align:right; }
+.wo-stat-l { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+.wo-stat-v { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--green); letter-spacing:1px; }
+/* WARMUP */
+.warmup { background:var(--orange-light); border:1px solid rgba(192,90,37,0.18); border-radius:10px; padding:10px 16px; font-size:12px; color:var(--orange); margin-bottom:12px; }
+/* GUIDE BOX */
+.guide-box { border-radius:12px; padding:16px 18px; margin:12px 0; }
+.guide-title { font-family:'Bebas Neue',sans-serif; font-size:16px; letter-spacing:1px; margin-bottom:10px; }
+.guide-steps { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.guide-steps li { font-size:12.5px; display:flex; gap:10px; line-height:1.5; }
+.guide-phase { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:11px; }
+@media(max-width:500px){ .guide-phase { grid-template-columns:1fr; } }
+.gp { background:rgba(255,255,255,0.7); border-radius:8px; padding:9px 11px; border:1px solid rgba(0,0,0,0.06); }
+.gp-label { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); }
+.gp-val { font-size:12.5px; font-weight:500; margin-top:3px; }
+/* STEP NUMBER */
+.sn { width:18px; height:18px; border-radius:50%; font-size:9px; font-weight:600; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
+.sn-green { background:var(--green-light); color:var(--green); }
+.sn-blue { background:var(--blue-light); color:var(--blue); }
+.sn-orange { background:var(--orange-light); color:var(--orange); }
+.sn-purple { background:var(--purple-light); color:var(--purple); }
+/* EXERCISE CARD */
+.ex-card { background:var(--surface); border:1px solid var(--border); border-radius:12px; margin-bottom:8px; overflow:hidden; transition:border-color .18s,box-shadow .18s; }
+.ex-card:hover { border-color:var(--border2); box-shadow:0 2px 10px rgba(0,0,0,0.06); }
+.ex-card.open { border-color:var(--green-mid); }
+.ex-header { display:flex; align-items:center; gap:13px; padding:14px 18px; cursor:pointer; user-select:none; }
+.ex-num { font-family:'Bebas Neue',sans-serif; font-size:17px; color:var(--subtle); width:22px; flex-shrink:0; }
+.ex-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.ex-info { flex:1; }
+.ex-name { font-size:13.5px; font-weight:600; color:var(--text); }
+.ex-muscles { font-size:11px; color:var(--muted); margin-top:1px; }
+.ex-meta { display:flex; align-items:center; gap:10px; flex-shrink:0; }
+.ex-sets { font-family:'Bebas Neue',sans-serif; font-size:19px; color:var(--green); letter-spacing:1px; white-space:nowrap; }
+.ex-chev { color:var(--subtle); font-size:14px; transition:transform .2s; }
+.ex-card.open .ex-chev { transform:rotate(180deg); }
+.ex-body { display:none; border-top:1px solid var(--border); padding:18px 20px; }
+.ex-card.open .ex-body { display:block; }
+/* MAIN INFO GRID */
+.ex-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+@media(max-width:580px){ .ex-grid { grid-template-columns:1fr; } }
+.ex-section { background:var(--card); border:1px solid var(--border); border-radius:9px; padding:13px 15px; }
+.ex-section-title { font-size:9px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:9px; }
+.ex-steps-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
+.ex-steps-list li { font-size:12.5px; color:#5a5a62; display:flex; gap:9px; line-height:1.5; }
+.ex-mistakes-list { list-style:none; display:flex; flex-direction:column; gap:5px; }
+.ex-mistakes-list li { font-size:12px; color:#8a3030; display:flex; gap:7px; line-height:1.5; }
+.ex-mistakes-list li::before { content:'⚠'; font-size:10px; flex-shrink:0; margin-top:2px; }
+/* ALT / HOME SECTIONS */
+.ex-sub-section { margin-top:12px; }
+.ex-sub-title { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:8px; border-top:1px solid var(--border); padding-top:12px; }
+/* ALT CARD */
+.alt-card { background:var(--card); border:1px solid var(--border); border-radius:9px; margin-bottom:8px; overflow:hidden; }
+.alt-card.last { margin-bottom:0; }
+.alt-header { display:flex; align-items:center; gap:10px; padding:10px 14px; cursor:pointer; user-select:none; }
+.alt-label { font-size:9px; letter-spacing:1px; text-transform:uppercase; padding:2px 8px; border-radius:3px; font-weight:500; flex-shrink:0; }
+.alt-label.salon { background:var(--blue-light); color:var(--blue); }
+.alt-label.home { background:var(--green-light); color:var(--green); }
+.alt-name { font-size:12.5px; font-weight:600; color:var(--text); flex:1; }
+.alt-muscles { font-size:10.5px; color:var(--muted); }
+.alt-chev { color:var(--subtle); font-size:12px; transition:transform .2s; flex-shrink:0; }
+.alt-card.open .alt-chev { transform:rotate(180deg); }
+.alt-body { display:none; border-top:1px solid var(--border); padding:12px 14px; }
+.alt-card.open .alt-body { display:block; }
+.alt-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px; }
+@media(max-width:500px){ .alt-grid { grid-template-columns:1fr; } }
+.alt-sec { background:var(--surface); border:1px solid var(--border); border-radius:7px; padding:10px 12px; }
+.alt-sec-title { font-size:9px; letter-spacing:1px; text-transform:uppercase; color:var(--muted); margin-bottom:7px; }
+/* HOME EQUIP TAG */
+.home-equip { display:inline-flex; align-items:center; gap:5px; font-size:11px; color:var(--green); background:var(--green-light); border:1px solid rgba(42,92,69,0.2); border-radius:20px; padding:3px 10px; margin-bottom:10px; }
+/* YT LINK */
+.yt-link { display:inline-flex; align-items:center; gap:6px; margin-top:10px; font-size:11px; color:#c03030; text-decoration:none; padding:4px 12px; border:1px solid rgba(192,48,48,0.2); border-radius:20px; background:var(--red-light); transition:all .18s; }
+.yt-link:hover { background:#fdd; border-color:rgba(192,48,48,0.4); }
+/* DIVIDER */
+.div { height:1px; background:var(--border); margin:44px 0; }
+/* RPE */
+.rpe-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin:12px 0; }
+@media(max-width:500px){ .rpe-grid { grid-template-columns:1fr; } }
+.rpe-card { border-radius:10px; padding:13px 15px; border:1px solid; }
+.rpe-card.light { background:var(--blue-light); border-color:rgba(30,90,138,0.2); }
+.rpe-card.good { background:var(--green-light); border-color:rgba(42,92,69,0.25); }
+.rpe-card.heavy { background:var(--red-light); border-color:rgba(192,48,48,0.2); }
+.rpe-label { font-size:9px; letter-spacing:1px; text-transform:uppercase; margin-bottom:5px; }
+.rpe-card.light .rpe-label { color:var(--blue); }
+.rpe-card.good .rpe-label { color:var(--green); }
+.rpe-card.heavy .rpe-label { color:var(--red); }
+.rpe-feel { font-size:12.5px; font-weight:500; color:var(--text); }
+.rpe-action { font-size:11px; color:var(--muted); margin-top:3px; }
+/* PROG TABLE */
+.prog-table { width:100%; border-collapse:collapse; font-size:12.5px; background:var(--surface); border:1px solid var(--border); border-radius:12px; overflow:hidden; margin-top:8px; }
+.prog-table th { background:var(--card); color:var(--muted); padding:9px 15px; text-align:left; font-size:9px; letter-spacing:1.5px; text-transform:uppercase; font-weight:400; border-bottom:1px solid var(--border); }
+.prog-table td { padding:11px 15px; border-bottom:1px solid rgba(220,220,224,.6); vertical-align:top; line-height:1.5; color:var(--text); }
+.prog-table tr:last-child td { border-bottom:none; }
+.prog-table tr:hover td { background:var(--card); }
+.phase-badge { display:inline-block; padding:2px 8px; border-radius:4px; font-size:10px; font-weight:600; white-space:nowrap; }
+.ph1 { background:var(--blue-light); color:var(--blue); }
+.ph2 { background:var(--green-light); color:var(--green); }
+.ph3 { background:var(--orange-light); color:var(--orange); }
+.ph4 { background:var(--purple-light); color:var(--purple); }
+/* CHECKLIST */
+.checklist { background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px 18px; margin-top:12px; }
+.checklist-title { font-size:10px; letter-spacing:1.5px; text-transform:uppercase; color:var(--muted); margin-bottom:11px; }
+.check-item { display:flex; align-items:flex-start; gap:9px; margin-bottom:8px; cursor:pointer; user-select:none; }
+.check-box { width:17px; height:17px; border:1.5px solid var(--border2); border-radius:4px; flex-shrink:0; margin-top:1px; display:flex; align-items:center; justify-content:center; font-size:10px; color:var(--green); transition:all .15s; }
+.check-item.checked .check-box { background:var(--green-light); border-color:var(--green); }
+.check-label { font-size:12.5px; color:var(--muted); }
+.check-item.checked .check-label { color:var(--green); text-decoration:line-through; }
+/* DIABETES */
+.diab-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:12px; }
+@media(max-width:580px){ .diab-grid { grid-template-columns:1fr; } }
+.diab-card { background:var(--surface); border:1px solid var(--border); border-radius:11px; padding:13px 15px; }
+.diab-icon { font-size:18px; margin-bottom:6px; }
+.diab-title { font-size:12px; font-weight:600; color:var(--text); margin-bottom:3px; }
+.diab-desc { font-size:11.5px; color:var(--muted); line-height:1.5; }
+/* SOURCES */
+.sources { margin-top:16px; padding:13px 17px; background:var(--card); border:1px solid var(--border); border-radius:9px; font-size:11px; color:var(--muted); line-height:1.8; }
+.sources strong { color:var(--border2); }
+/* FOOTER */
+footer { text-align:center; padding:26px; font-size:11px; color:var(--subtle); border-top:1px solid var(--border); line-height:1.7; background:var(--surface); }
+.print-btn { display:inline-block; margin-top:8px; font-size:11px; padding:6px 18px; border:1px solid var(--border2); border-radius:20px; cursor:pointer; background:var(--surface); color:var(--muted); font-family:'DM Sans',sans-serif; transition:all .2s; }
+.print-btn:hover { background:var(--green); color:#fff; border-color:var(--green); }
+@media(max-width:600px){
+  .hero { padding:52px 20px 36px; }
+  .hero h1 { font-size:48px; }
+  .wo-head { flex-direction:column; align-items:flex-start; gap:8px; padding:14px 16px; }
+  .wo-stats { flex-direction:row; }
+}
+@media print {
+  body { background:white; }
+  .wtabs, .print-btn, .back-btn { display:none; }
+  .wtab-pane { display:block!important; }
+  .ex-body, .alt-body { display:block!important; }
+}
+</style>
+</head>
+<body>
+<!-- HERO -->
+<div class="hero">
+  <a class="back-btn" href="index.html">← Ana Sayfa</a>
+  <div class="hero-eyebrow">Kişisel Spor Programı · Faz 1 Başlangıç</div>
+  <h1>GİZEM'İN<br><span>ANTRENMAN</span><br>PROGRAMI</h1>
+  <p class="hero-desc">Barbell yok · Makine + Dumbbell + Kablo · Her hareket adım adım · Salon alternatifi + Ev versiyonu · 4 gün · Alt + Üst vücut 2× frekans</p>
+  <div class="hero-tags">
+    <span class="htag">Başlangıç seviyesi</span>
+    <span class="htag hi">4 gün / hafta</span>
+    <span class="htag">Barbell free</span>
+    <span class="htag hi">Evde de yapılabilir</span>
+    <span class="htag">Tip 2 diyabet uyumlu</span>
+    <span class="htag">ACSM / NSCA kaynaklı</span>
+  </div>
+</div>
+<!-- STATS -->
+<div class="stats">
+  <div class="stat"><div class="stat-l">Günlük Süre</div><div class="stat-v">45–55 <small>dk</small></div></div>
+  <div class="stat"><div class="stat-l">Haftalık Gün</div><div class="stat-v">4 <small>gün</small></div></div>
+  <div class="stat"><div class="stat-l">Faz 1 Süresi</div><div class="stat-v">4 <small>hafta</small></div></div>
+  <div class="stat"><div class="stat-l">Alt Vücut</div><div class="stat-v">2× <small>/hafta</small></div></div>
+  <div class="stat"><div class="stat-l">Üst Vücut</div><div class="stat-v">2× <small>/hafta</small></div></div>
+  <div class="stat"><div class="stat-l">Program</div><div class="stat-v">12 <small>hafta</small></div></div>
+</div>
+<div class="wrap">
+<div class="alert">
+  <strong>⚠ Önce Doktoruna Danış:</strong> Tip 2 diyabet tanısı olan biri olarak orta-yüksek yoğunlukta egzersize başlamadan önce endokrinologuna haber ver. Antrenman öncesi kan şekerini ölç — 100 mg/dL altındaysa küçük bir şey ye, 250 mg/dL üzerindeyse o gün egzersiz yapma. Her antrenmanda yanında meyve veya glikoz tableti bulundur.
+</div>
+<!-- EKİPMAN REHBERİ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">Ekipman Rehberi</div>
+    <span class="sec-pill">Salon + Ev</span>
+  </div>
+  <p class="sec-sub">Elindekilerle neler yapabileceğini gör · Her hareketin altında ev versiyonu var</p>
+  <div class="equip-box">
+    <div class="equip-title">Ekipman Durumu</div>
+    <div class="equip-grid">
+      <div class="equip-item">
+        <div class="equip-icon">🏃</div>
+        <div class="equip-name">Walke W-fit Koşu Bandı</div>
+        <div class="equip-detail">Tüm treadmill egzersizleri evde yapılabilir. Eğim varsa %5–8, yoksa hız +1–1.5 km/h artır.</div>
+        <span class="equip-badge eb-have">✓ Mevcut</span>
+      </div>
+      <div class="equip-item">
+        <div class="equip-icon">🪄</div>
+        <div class="equip-name">Delta Squat Barı</div>
+        <div class="equip-detail">Shoulder press, goblet squat, RDL, hip hinge için. Ağırlıksız ama form öğrenmek + vücut ağırlığı egzersizleri için değerli.</div>
+        <span class="equip-badge eb-have">✓ Mevcut</span>
+      </div>
+      <div class="equip-item">
+        <div class="equip-icon">⭕</div>
+        <div class="equip-name">Delta 35cm Pilates Çemberi</div>
+        <div class="equip-detail">Adductor squeeze, göğüs press, glute bridge aktivasyonu için. İzometrik egzersizlerde harika direnç sağlar.</div>
+        <span class="equip-badge eb-have">✓ Mevcut</span>
+      </div>
+      <div class="equip-item">
+        <div class="equip-icon">🟡</div>
+        <div class="equip-name">Decathlon Loop Bant Seti (3'lü)</div>
+        <div class="equip-detail">8 kg (sarı) · 14 kg (kırmızı) · 22 kg (yeşil). Üst vücut, alt vücut, cardio. Kapı ankrajı olmadan yatak/mobilya da kullanılabilir.</div>
+        <span class="equip-badge eb-buy">Satın alınacak ~₺400–500</span>
+      </div>
+    </div>
+    <div class="equip-note">
+      💡 <strong>Dumbbell olmadan:</strong> İlk 4–8 hafta vücut ağırlığı + bant seti ile büyük ölçüde çalışabilirsin. Özellikle üst vücut ve izolasyon hareketleri için dumbbell eklendiğinde (3–5 kg / 7–8 kg / 10–12 kg 3 çift veya ayarlanabilir set) ev deneyimi salona %85 yaklaşır.<br><br>
+      🔗 Decathlon bant seti: <strong>decathlon.com.tr → "Kumaş Direnç Bandı 3'lü Paket"</strong> — 8, 14, 22 kg direnç · İlerledikçe +2 kademeli genişletilebilir.
+    </div>
+  </div>
+</div>
+<!-- HAFTALIK PLAN -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">Haftalık Plan</div>
+    <span class="sec-pill">Faz 1 · Hafta 1–4</span>
+  </div>
+  <p class="sec-sub">Her kas grubu haftada 2 kez çalışıyor — bilimsel olarak en verimli frekans</p>
+  <div class="week-strip">
+    <div class="wday active" onclick="switchDay('pzt')">
+      <div class="wday-name">Pzt</div>
+      <div class="wday-label">Alt Vücut</div>
+      <div class="wday-sub">Glut · Bacak</div>
+    </div>
+    <div class="wday rest">
+      <div class="wday-name">Sal</div>
+      <div class="wday-label">Dinlenme</div>
+      <div class="wday-sub">Yürüyüş</div>
+    </div>
+    <div class="wday" onclick="switchDay('car')">
+      <div class="wday-name">Çar</div>
+      <div class="wday-label">Üst Vücut</div>
+      <div class="wday-sub">Sırt · Omuz</div>
+    </div>
+    <div class="wday" onclick="switchDay('per')">
+      <div class="wday-name">Per</div>
+      <div class="wday-label">Tüm Vücut</div>
+      <div class="wday-sub">Alt + Üst</div>
+    </div>
+    <div class="wday" onclick="switchDay('cum')">
+      <div class="wday-name">Cum</div>
+      <div class="wday-label">Cardio+Core</div>
+      <div class="wday-sub">Battle Rope</div>
+    </div>
+    <div class="wday rest">
+      <div class="wday-name">Cmt</div>
+      <div class="wday-label">Aktif Din.</div>
+      <div class="wday-sub">30dk yürüyüş</div>
+    </div>
+    <div class="wday rest">
+      <div class="wday-name">Paz</div>
+      <div class="wday-label">Tam Din.</div>
+      <div class="wday-sub">Kaslar büyür</div>
+    </div>
+  </div>
+  <div class="freq-note">
+    <div class="fn-item"><div class="fn-dot" style="background:#2a5c45"></div>Alt vücut: Pazartesi (odak) + Perşembe = <strong>2×/hafta</strong></div>
+    <div class="fn-item"><div class="fn-dot" style="background:#1e5a8a"></div>Üst vücut: Çarşamba (odak) + Perşembe = <strong>2×/hafta</strong></div>
+    <div class="fn-item"><div class="fn-dot" style="background:#c05a25"></div>Cuma: Cardio + Core — yağ yakımı + karın gücü</div>
+  </div>
+</div>
+<!-- EGZERSİZLER -->
+<div class="sec">
+  <div class="sec-head"><div class="sec-title">Egzersizler</div></div>
+  <p class="sec-sub">Her harekete tıkla → nasıl yapılır, hatalar · Salon alternatifleri + 🏠 evde yap bölümleri açılır kart olarak her hareketin altında</p>
+  <div class="wtabs">
+    <button class="wtab on" onclick="switchTab('pzt',this)">💪 Pazartesi — Alt Vücut</button>
+    <button class="wtab" onclick="switchTab('car',this)">🏋️ Çarşamba — Üst Vücut</button>
+    <button class="wtab" onclick="switchTab('per',this)">⚡ Perşembe — Tüm Vücut</button>
+    <button class="wtab" onclick="switchTab('cum',this)">🔥 Cuma — Cardio + Core</button>
+  </div>
+  
+<div id="pzt" class="wtab-pane on">
+  <div class="wo-head">
+    <div class="wo-icon">🍑</div>
+    <div class="wo-info">
+      <div class="wo-day">Pazartesi</div>
+      <div class="wo-title">Alt Vücut — Glut, Hamstring & Quad</div>
+      <div class="wo-desc">Haftalık alt vücut odak günü. Vücudun en büyük kas grubu.</div>
+    </div>
+    <div class="wo-stats">
+      <div class="wo-stat"><div class="wo-stat-l">Süre</div><div class="wo-stat-v">50 dk</div></div>
+      <div class="wo-stat"><div class="wo-stat-l">Hareket</div><div class="wo-stat-v">7 hareket</div></div>
+    </div>
+  </div>
+  <div class="warmup">⚡ <strong>Isınma (5 dk):</strong> Treadmill %5 eğim hafif yürüyüş 5 dk · Sonra: 10 bodyweight squat + 10 glute bridge</div>
+  
+<div class="guide-box" style="background:#e8f2ed;border:1px solid rgba(42,92,69,0.2)">
+  <div class="guide-title" style="color:#2a5c45">🎯 HİP THRUST BAŞLANGIÇ REHBERİ</div>
+  <ol class="guide-steps">
+    <li><span class="sn sn-green" style="background:#e8f2ed;color:#2a5c45;border:1px solid rgba(42,92,69,0.2)">1</span><span style="color:#2a5c45cc">Sırtüstü yat. Dizleri bükerek ayak tabanlarını yere bas — topuklar kalçandan ~30 cm uzakta.</span></li>
+<li><span class="sn sn-green" style="background:#e8f2ed;color:#2a5c45;border:1px solid rgba(42,92,69,0.2)">2</span><span style="color:#2a5c45cc">Hafta 1–2: Vücut ağırlığı yeterli. Dumbbell gerekmez.</span></li>
+<li><span class="sn sn-green" style="background:#e8f2ed;color:#2a5c45;border:1px solid rgba(42,92,69,0.2)">3</span><span style="color:#2a5c45cc">Derin nefes al, karnını sık. Topuklardan iterek kalçaları kaldır — omuz–kalça–diz düz çizgi.</span></li>
+<li><span class="sn sn-green" style="background:#e8f2ed;color:#2a5c45;border:1px solid rgba(42,92,69,0.2)">4</span><span style="color:#2a5c45cc">Zirvedeyken glut'ları 2 saniye sık. Beli aşırı büküp yaylanma.</span></li>
+<li><span class="sn sn-green" style="background:#e8f2ed;color:#2a5c45;border:1px solid rgba(42,92,69,0.2)">5</span><span style="color:#2a5c45cc">Yavaşça in. Kalça yere değmeden tekrar kaldır.</span></li>
+  </ol>
+  <div class="guide-phase"><div class="gp"><div class="gp-label">Hafta 1–2</div><div class="gp-val" style="color:#2a5c45">Vücut ağırlığı · 3×15</div></div><div class="gp"><div class="gp-label">Hafta 3–4</div><div class="gp-val" style="color:#2a5c45">5–10 kg dumbbell · 4×12</div></div><div class="gp"><div class="gp-label">Hafta 5+</div><div class="gp-val" style="color:#2a5c45">Bench'e sırt daya · Artır</div></div></div>
+</div>
+  
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">01</div>
+    <div class="ex-dot" style="background:#2a5c45"></div>
+    <div class="ex-info">
+      <div class="ex-name">Leg Press Makinesi</div>
+      <div class="ex-muscles">Quadriceps · Glut · Hamstring · En güvenli başlangıç hareketi</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">4 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Makineye otur, sırt tamamen yaslanmış. Yan tutamaçları tut.</span></li>
+<li><span class="sn sn-green">2</span><span>Ayakları omuz genişliğinde platforma yerleştir. Parmak uçları hafifçe dışa.</span></li>
+<li><span class="sn sn-green">3</span><span>Kilidi serbest bırak. Nefes al, karnı sık.</span></li>
+<li><span class="sn sn-green">4</span><span>Dizleri 90° bükerek platformu indir. Kontrollü.</span></li>
+<li><span class="sn sn-green">5</span><span>Topuklardan it — platformu kaldır. Dizleri tam kilitleme.</span></li>
+<li><span class="sn sn-green">6</span><span>Bitince kilidi kapat.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dizleri içe toplamak — diz parmak ucu hizasında kalmalı</li>
+<li>Kalçayı sırtlıktan kaldırmak — sürekli yaslanmış olmalı</li>
+<li>Çok ağır başlamak — 20–30 kg ile başla</li>
+<li>Dizleri tam kilitlemek — hafif bükük bırak</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=leg+press+machine+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Hack Squat Makinesi</div>
+      <div class="alt-muscles">Quad · Glut · Salon alternatifi</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Makinenin platformuna çık, sırtı yasla, omuzları yastıklara yerleştir.</span></li>
+<li><span class="sn sn-blue">2</span><span>Ayaklar omuz genişliğinde, parmak uçları dışa.</span></li>
+<li><span class="sn sn-blue">3</span><span>Kilidi serbest bırak. Nefes al, karnı sık.</span></li>
+<li><span class="sn sn-blue">4</span><span>Dizleri yavaşça bükerek aşağı in — 90° hedef.</span></li>
+<li><span class="sn sn-blue">5</span><span>Topuklardan iterek başlangıca dön. Dizleri kilitleme.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Topukların kalkması — topuk platforma sabit</li>
+<li>Çok derin inmek — 90° yeterli, alt sırta yük binmez</li>
+<li>Dizleri içe toplamak — diz parmak yönünde kalmalı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=hack+squat+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Goblet Squat (Dumbbell)</div>
+      <div class="alt-muscles">Quad · Glut · Core · Dumbbell olduğunda</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Dumbbell'ı iki elinle dikey tutarak göğüs hizasında tut.</span></li>
+<li><span class="sn sn-blue">2</span><span>Ayaklar omuz genişliğinde, parmak uçları hafifçe dışa.</span></li>
+<li><span class="sn sn-blue">3</span><span>Sırt düz, göğüs açık. Dizleri bükerek çömel — uyluklar yere paralel.</span></li>
+<li><span class="sn sn-blue">4</span><span>Topuklardan it, kalk. Core sıkı.</span></li>
+<li><span class="sn sn-blue">5</span><span>Hareket boyunca dumbbell'ı göğse yakın tut.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlamak — göğüs açık, sırt düz</li>
+<li>Topukların kalkması — topuk yerde sabit</li>
+<li>Dizlerin içe toplanması — diz parmak yönünde</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=goblet+squat+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Loop Bant Squat</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (kırmızı/yeşil)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Loop bandı iki ayağının altına al, uçlarını omuzlara getir veya her iki elinle yanlardan tut.</span></li>
+<li><span class="sn sn-green">2</span><span>Ayaklar omuz genişliğinde, parmak uçları hafifçe dışa.</span></li>
+<li><span class="sn sn-green">3</span><span>Sırt düz, göğüs açık. Karnı sık.</span></li>
+<li><span class="sn sn-green">4</span><span>Dizleri bükerek çömel — uyluklar yere paralel olana kadar in.</span></li>
+<li><span class="sn sn-green">5</span><span>Topuklardan iterek başlangıca dön. Bant gerilimini hisset.</span></li>
+<li><span class="sn sn-green">6</span><span>Squat barını da kullanabilirsin — bandı squat barın ucuna bağla, omuzlara al.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bandın kayması — başlamadan önce güvenli konumda olduğunu kontrol et</li>
+<li>Topukların kalkması — gerekirse topuklara küçük bir kitap koy</li>
+<li>Dizlerin içe toplanması — hafif bant direnç ile çalış</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+squat+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">02</div>
+    <div class="ex-dot" style="background:#2a5c45"></div>
+    <div class="ex-info">
+      <div class="ex-name">Dumbbell Hip Thrust (Yerde)</div>
+      <div class="ex-muscles">Gluteus Maximus · Hamstring · Kalçanın en etkili hareketi</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">4 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sırtüstü yat. Dumbbell'ı kalça kemiğinin üstüne koy, elinle tut.</span></li>
+<li><span class="sn sn-green">2</span><span>Ayaklar kalçadan ~30 cm uzakta, topuklar yerde.</span></li>
+<li><span class="sn sn-green">3</span><span>Nefes al, karnı sık. Topuklardan iterek kalçayı kaldır.</span></li>
+<li><span class="sn sn-green">4</span><span>Zirvedeyken 2 sn glut'ları sık. Sırt düz.</span></li>
+<li><span class="sn sn-green">5</span><span>Yavaş in, kalça yere değmeden tekrar yap.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Beli aşırı bükmek — sırt düz çizgide kalmalı</li>
+<li>Parmak uçlarından itmek — topuktan it</li>
+<li>Zirvedeyken glut sıkmamak — kasın çalışmadığı anlamına gelir</li>
+<li>Çok hızlı yapmak — yavaş ve kontrollü, hisset</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+hip+thrust+floor+beginner+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Glute Bridge Makinesi</div>
+      <div class="alt-muscles">Glut · Makine versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Makineye sırtüstü yat, belirtilen şekilde konumlan.</span></li>
+<li><span class="sn sn-blue">2</span><span>Yastığı kalça kemiği üzerine ayarla.</span></li>
+<li><span class="sn sn-blue">3</span><span>Nefes al, topuklardan iterek kalçayı kaldır.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 2 sn sık, yavaşça in.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Yastık pozisyonunu ayarlamamak — bel üstünde olmamalı, kalça kemiğinde</li>
+<li>Sırtı sırtlıktan kaldırmak — sabit tut</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=glute+bridge+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Leg Press Yüksek Ayak (Glut Odaklı)</div>
+      <div class="alt-muscles">Glut · Hamstring · Leg press makinesinde glut versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Leg press makinesine otur. Ayakları platformun üst kısmına, omuzdan geniş yerleştir.</span></li>
+<li><span class="sn sn-blue">2</span><span>Topukları platforma bas, parmak uçları dışa.</span></li>
+<li><span class="sn sn-blue">3</span><span>Dizleri bükerek indir — kucak hizası geçecek.</span></li>
+<li><span class="sn sn-blue">4</span><span>Topuklardan iterek kalk — kalça kasıldığını hissedeceksin.</span></li>
+<li><span class="sn sn-blue">5</span><span>Normal leg press'e göre daha derin iniş, daha fazla glut aktivasyonu.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Ayakları çok aşağıya koymak — yüksek pozisyon glut'u çalıştırır</li>
+<li>Kalçayı sırtlıktan kaldırmak — sabit tut</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=high+foot+leg+press+glute+focus" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Glute Bridge + Pilates Çemberi</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Pilates çemberi (35 cm) · Opsiyonel: loop bant</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sırtüstü yat. Dizleri bükerek ayak tabanlarını yere bas.</span></li>
+<li><span class="sn sn-green">2</span><span>Pilates çemberini diz arasına sıkıştır — bu glut medius'u da aktive eder.</span></li>
+<li><span class="sn sn-green">3</span><span>Kollarını yanlara koy veya göğüs üstünde kavuştur.</span></li>
+<li><span class="sn sn-green">4</span><span>Nefes al, karnı sık. Topuklardan iterek kalçayı kaldır.</span></li>
+<li><span class="sn sn-green">5</span><span>Zirvedeyken çemberi hafifçe sık ve 2 sn glut'ları kasılı tut.</span></li>
+<li><span class="sn sn-green">6</span><span>Yavaşça in, kalça yere değmeden tekrar.</span></li>
+<li><span class="sn sn-green">7</span><span>İlerleme: Loop bandı dizlerin üstüne ekle, çembere ek direnç.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Çemberi düşürmek — dizlere hafif baskı yaparak tut</li>
+<li>Beli fazla bükmek — düz çizgi yeterli</li>
+<li>Hızlı yapmak — yavaş, kasılmayı hisset</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=glute+bridge+pilates+ring+resistance+band" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">03</div>
+    <div class="ex-dot" style="background:#1e5a8a"></div>
+    <div class="ex-info">
+      <div class="ex-name">Leg Curl Makinesi</div>
+      <div class="ex-muscles">Hamstring (arka uyluk) · Kas dengesi için kritik</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Makineye otur veya uzan. Bacak yastığını topuk hizasına ayarla.</span></li>
+<li><span class="sn sn-green">2</span><span>Gövdeyi sabit tut. Nefes al.</span></li>
+<li><span class="sn sn-green">3</span><span>Topukları kalçaya doğru çek — tam aralığı kullan.</span></li>
+<li><span class="sn sn-green">4</span><span>Zirvedeyken 1 sn tut. Yavaşça başlangıca dön.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçayı kaldırıp sallanmak — gövde sabit kalmalı</li>
+<li>Çok hızlı iniş — kasın gerilmesini kontrollü hisset</li>
+<li>Yarı aralık — tam range of motion önemli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=leg+curl+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Seated Leg Curl (Oturur Versiyon)</div>
+      <div class="alt-muscles">Hamstring · Oturan makine versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Oturur makinede yastığı bacak üstüne, başlangıç pozisyonuna ayarla.</span></li>
+<li><span class="sn sn-blue">2</span><span>Sırt yaslanmış, tutamaçları tut.</span></li>
+<li><span class="sn sn-blue">3</span><span>Topukları kalçaya doğru çek — tam aralık.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 1 sn tut, kontrollü uzat.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçayı sırtlıktan kaldırmak — sabit tut</li>
+<li>Yarım hareket yapmak — tam aralık önemli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=seated+leg+curl+machine+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Dumbbell Leg Curl (Yerde)</div>
+      <div class="alt-muscles">Hamstring · Dumbbell olduğunda</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Yüzüstü yere uzan, eller çene altında.</span></li>
+<li><span class="sn sn-blue">2</span><span>Dumbbell'ı iki ayağının arasına sıkıştır (ayak bileklerinin iç tarafı).</span></li>
+<li><span class="sn sn-blue">3</span><span>Dizleri bükerek dumbbell'ı kalçaya doğru kaldır.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 1 sn tut, yavaşça in.</span></li>
+<li><span class="sn sn-blue">5</span><span>Başlangıçta hafif dumbbell kullan — 2–4 kg bile yeterli.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dumbbell'ın düşmesi — sıkıca tut</li>
+<li>Kalçayı kaldırmak — karın yerde sabit</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=lying+dumbbell+leg+curl+floor+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Loop Bant Prone Leg Curl</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (kırmızı/yeşil) · Yatak ayağı veya ağır mobilya</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Loop bandı sabit bir mobilyanın (yatak ayağı, kanepe bacağı) altından geçir.</span></li>
+<li><span class="sn sn-green">2</span><span>Yüzüstü uzanarak bandı iki ayak bileğine geçir — gerilim olsun.</span></li>
+<li><span class="sn sn-green">3</span><span>Eller çene altında veya yanında. Karnı sık.</span></li>
+<li><span class="sn sn-green">4</span><span>Dizleri bükerek topukları kalçaya doğru çek — bant gerilecek.</span></li>
+<li><span class="sn sn-green">5</span><span>Zirvedeyken 1 sn tut, yavaşça uzat.</span></li>
+<li><span class="sn sn-green">6</span><span>Bandın sabit noktadan çıkmadığını başlamadan kontrol et.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçayı kaldırmak — karın yerde sabit</li>
+<li>Bandın çok gevşek olması — gerilim hissedilmeli</li>
+<li>Çok hızlı iniş — inişte de hamstring çalışır</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+lying+leg+curl+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">04</div>
+    <div class="ex-dot" style="background:#c05a25"></div>
+    <div class="ex-info">
+      <div class="ex-name">Adductor Makinesi (İç Kalça)</div>
+      <div class="ex-muscles">Adductor Magnus · İç uyluk · Bacakları birleştir</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 15</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Makineye otur, bacakları yastıklara yerleştir — dışarıya açık.</span></li>
+<li><span class="sn sn-green">2</span><span>Sırt yaslanmış, karnı sık.</span></li>
+<li><span class="sn sn-green">3</span><span>Bacakları birleştir (içe kapat) — iç uylukta yanma hissedeceksin.</span></li>
+<li><span class="sn sn-green">4</span><span>Yavaşça başlangıca dön.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Zıplayarak kapamak — yavaş ve kontrollü</li>
+<li>Beli öne eğmek — gövde dik, sırt yaslanmış</li>
+<li>Aşırı geniş açılış — makineyi limite kadar açma</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=adductor+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Sumo Squat (Dumbbell)</div>
+      <div class="alt-muscles">Adductor · Glut · İç uyluk odaklı squat</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Dumbbell'ı iki elinle dikey tut, önde sarkıt.</span></li>
+<li><span class="sn sn-blue">2</span><span>Ayaklar normalden geniş, parmak uçları belirgin dışa (45°).</span></li>
+<li><span class="sn sn-blue">3</span><span>Sırt düz, göğüs açık. Dizleri bükerek çömel.</span></li>
+<li><span class="sn sn-blue">4</span><span>Dizler parmak ucu yönünde açık kalsın — içe kapanmasın.</span></li>
+<li><span class="sn sn-blue">5</span><span>Topuklardan it, kalk. İç uyluk çalışmalı.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dizlerin içe toplanması — sumo'nun en kritik hatası</li>
+<li>Gövdenin çok öne eğilmesi — sırt dik</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=sumo+squat+dumbbell+inner+thigh+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Cable Hip Adduction</div>
+      <div class="alt-muscles">Adductor · Kablo makinesiyle izole</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Kablo makinesinde pulley'i en alta al, ayak bileği tutacağını tak.</span></li>
+<li><span class="sn sn-blue">2</span><span>Çalışacak bacağı kablo tarafında konumla. Makineye yan dur.</span></li>
+<li><span class="sn sn-blue">3</span><span>Dış bacağı çaprazdan iç tarafa doğru süpür — sanki bir çizgiyi adımla geçiyorsun.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 1 sn tut, kontrollü geri bırak.</span></li>
+<li><span class="sn sn-blue">5</span><span>Denge için makinenin bir yerine tutun.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Gövdeyi döndürmek — kalça sabit, sadece bacak hareket</li>
+<li>Denge kaybı — önce hafif ağırlıkla dene</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=cable+hip+adduction+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Pilates Çemberi Adductor Squeeze</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Pilates çemberi (35 cm)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Yere sırtüstü uzan. Dizleri bükerek ayak tabanlarını yere bas.</span></li>
+<li><span class="sn sn-green">2</span><span>Pilates çemberini iki diz arasına yerleştir.</span></li>
+<li><span class="sn sn-green">3</span><span>Nefes al. Dizleri birbirine doğru sıkıştır — çembere baskı uygula.</span></li>
+<li><span class="sn sn-green">4</span><span>Zirvedeyken 2–3 sn tut. İç uylukta yanma hissedeceksin.</span></li>
+<li><span class="sn sn-green">5</span><span>Yavaşça gevşet, tamamen bırakma.</span></li>
+<li><span class="sn sn-green">6</span><span>Oturarak da yapılabilir: sandalyede dik otur, çemberi diz arası sıkıştır.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Nefes tutmak — sıkarken nefes ver, gevşerken al</li>
+<li>Kalçayı kaldırmak — kaslar sadece dizleri sıkıştırıyor</li>
+<li>Çok hızlı — yavaş sıkıştır, kasılmayı hisset</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=pilates+ring+inner+thigh+squeeze+exercise" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">05</div>
+    <div class="ex-dot" style="background:#5a3a8a"></div>
+    <div class="ex-info">
+      <div class="ex-name">Abductor Makinesi (Dış Kalça)</div>
+      <div class="ex-muscles">Gluteus Medius · Kalça yanı · Bacakları dışa aç</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 15</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Aynı makine, farklı pozisyon. Yastıklar bu sefer bacakların içinde.</span></li>
+<li><span class="sn sn-green">2</span><span>Başlangıçta bacaklar kapalı. Sırt yaslanmış, karnı sık.</span></li>
+<li><span class="sn sn-green">3</span><span>Bacakları dışarıya aç — kalça yanında yanma hissedeceksin.</span></li>
+<li><span class="sn sn-green">4</span><span>Kontrollü geri kapat.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçayı kaldırarak açmak — kalça makineye sabit</li>
+<li>Fırlatarak açmak — yavaş çalış, kas gerilmesi riski</li>
+<li>Adductor ile karıştırmak — yastık pozisyonunu kontrol et</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=abductor+machine+proper+form+glutes" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Bant Clamshell</div>
+      <div class="alt-muscles">Glut Medius · Dış kalça · Bant ile</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Yana yat. Loop bandı dizlerin hemen üstüne tak.</span></li>
+<li><span class="sn sn-blue">2</span><span>Dizleri 45° bükerek kalçaların üstüne yığ — sanki oturacaksın.</span></li>
+<li><span class="sn sn-blue">3</span><span>Ayakları üst üste sabit tut. Nefes al.</span></li>
+<li><span class="sn sn-blue">4</span><span>Üstteki dizi tavana doğru aç — midye kabuğu gibi.</span></li>
+<li><span class="sn sn-blue">5</span><span>Kalça dönmeden maksimum açılış yap. 1 sn tut.</span></li>
+<li><span class="sn sn-blue">6</span><span>Yavaşça kapat. Tekrar. Tarafı değiştir.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçanın geriye dönmesi — kalça sabit, sadece diz açılıyor</li>
+<li>Bandın düşmesi — diz üstünde sabit tutmalı</li>
+<li>Ayakların ayrılması — üst üste sabit kalmalı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=clamshell+exercise+resistance+band+glute+medius" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Side-Lying Hip Abduction</div>
+      <div class="alt-muscles">Glut Medius · Ekipmansız temel versiyon</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Yana uzan, vücut düz çizgide.</span></li>
+<li><span class="sn sn-blue">2</span><span>Alt kol başın altında veya yerde, üst el kalçada.</span></li>
+<li><span class="sn sn-blue">3</span><span>Üstteki bacağı düz tutarak tavana doğru kaldır — 45° hedef.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 1 sn tut, yavaşça in. Bacak yere değmeden tekrar.</span></li>
+<li><span class="sn sn-blue">5</span><span>Bant eklemek için loop bandı dizler üstüne tak.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bacağı önde kaldırmak — tam yana kaldır</li>
+<li>Gövdeyi sallamak — sabit tut</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=side+lying+hip+abduction+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Loop Bant Clamshell</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (sarı/kırmızı)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Yana yat. Loop bandı diz üstlerine tak.</span></li>
+<li><span class="sn sn-green">2</span><span>Dizleri ~45° bükerek kalçanın üstüne çek — sanki sandalyede oturacaksın.</span></li>
+<li><span class="sn sn-green">3</span><span>Ayak tabanlarını üst üste tut — bu sabit kalacak.</span></li>
+<li><span class="sn sn-green">4</span><span>Üstteki dizi yavaşça tavana doğru aç. Kalça dönmesin.</span></li>
+<li><span class="sn sn-green">5</span><span>Zirvedeyken 2 sn tut — dış kalçada yanma hissedeceksin.</span></li>
+<li><span class="sn sn-green">6</span><span>Yavaşça kapat. 15 tekrar, tarafı değiştir.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçanın arkaya dönmesi — en sık hata, kalça sabit</li>
+<li>Ayakların ayrılması — taban üst üste kalsın</li>
+<li>Hızlı yapmak — yavaş ve kontrollü</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+clamshell+glute+medius+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">06</div>
+    <div class="ex-dot" style="background:#1e5a8a"></div>
+    <div class="ex-info">
+      <div class="ex-name">Leg Extension Makinesi</div>
+      <div class="ex-muscles">Quadriceps (ön uyluk) · Diz gücü · Kalkıp oturma</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 15</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Makineye otur. Yastık ayak bileği hizasına gelsin.</span></li>
+<li><span class="sn sn-green">2</span><span>Sırt yaslanmış, tutamaçları tut. Nefes al.</span></li>
+<li><span class="sn sn-green">3</span><span>Bacakları öne uzat — tam düzleştir. 1 sn tut.</span></li>
+<li><span class="sn sn-green">4</span><span>Yavaşça başlangıca dön.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçanın sırtlıktan kalkması — gövde sabit</li>
+<li>Sallayarak yapmak — yavaş ve kontrollü</li>
+<li>Diz sorunu varsa hekim onayı al</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=leg+extension+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Wall Sit (Duvar Squat)</div>
+      <div class="alt-muscles">Quadriceps · İzometrik quad egzersizi</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Duvara sırtını daya. Ayaklar duvardan ~60 cm uzakta.</span></li>
+<li><span class="sn sn-blue">2</span><span>Sırtı duvara sürerek aşağı in — uyluklar yere paralel.</span></li>
+<li><span class="sn sn-blue">3</span><span>Bu pozisyonda kal — 30–45 saniye hedef.</span></li>
+<li><span class="sn sn-blue">4</span><span>Diz açısı 90° — dizler ayak parmakları hizasında.</span></li>
+<li><span class="sn sn-blue">5</span><span>Nefes almaya devam et. Dize değil, uyluk önüne bak.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dizlerin öne çıkması — ayakları biraz daha öne al</li>
+<li>Sırtın duvardan ayrılması — tam temas</li>
+<li>Çok aşağıya inmek — 90° yeterli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=wall+sit+proper+form+quad+exercise" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Step Up (Kutu / Merdiven)</div>
+      <div class="alt-muscles">Quadriceps · Glut · Fonksiyonel kuvvet</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Sağlam bir kutu, platform veya merdiven basamağı kullan.</span></li>
+<li><span class="sn sn-blue">2</span><span>Sağ ayağı platforma koy. Sırt düz, gövde dik.</span></li>
+<li><span class="sn sn-blue">3</span><span>Sağ topuktan iterek sol bacağı yukarı çek.</span></li>
+<li><span class="sn sn-blue">4</span><span>Sol ayağı kontrollü geri in, ardından sağ.</span></li>
+<li><span class="sn sn-blue">5</span><span>Tüm tekrarları sağdan bitir, tarafı değiştir.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Öne eğilmek — gövde dik</li>
+<li>İten bacaktan değil, çıktığın bacaktan itmek — platform üstündeki bacak çalışmalı</li>
+<li>Hızlı inmek — kontrollü in</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=step+up+exercise+proper+form+quad" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Sandalyede Bant Leg Extension</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (sarı/kırmızı) · Sandalye · Yatak ayağı</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sandalyeye otur, sırt düz, ayaklar yerde.</span></li>
+<li><span class="sn sn-green">2</span><span>Loop bandı bir ayak bileğine geçir, diğer ucunu sandalyenin ön bacağına veya sabit bir mobilyaya bağla.</span></li>
+<li><span class="sn sn-green">3</span><span>Bacağı yavaşça öne uzat — tam düzleştir.</span></li>
+<li><span class="sn sn-green">4</span><span>Zirvedeyken 1 sn tut. Yavaşça geri in.</span></li>
+<li><span class="sn sn-green">5</span><span>Tüm tekrarları bitir, diğer bacağa geç.</span></li>
+<li><span class="sn sn-green">6</span><span>Alternatif: Wall sit (ekipmansız) — 30–45 sn 3 set.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bandın gevşek olması — biraz direnç hissedilmeli</li>
+<li>Kalçanın sandalyeden kalkması — otur, sabit kal</li>
+<li>Hızlı indirmek — kontrollü</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=seated+resistance+band+leg+extension+chair" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">07</div>
+    <div class="ex-dot" style="background:#888890"></div>
+    <div class="ex-info">
+      <div class="ex-name">Calf Raise (Baldır)</div>
+      <div class="ex-muscles">Gastrocnemius · Soleus · Kan dolaşımı · Diyabet için faydalı</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 20</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Makineye gir veya ayakta dur. Topuklar serbest.</span></li>
+<li><span class="sn sn-green">2</span><span>Parmak uçlarına kalk — mümkün olduğunca yüksel.</span></li>
+<li><span class="sn sn-green">3</span><span>Zirvedeyken 1 sn tut, baldır kasıldı mı?</span></li>
+<li><span class="sn sn-green">4</span><span>Topuk yere değene kadar tam in. Aralığı küçültme.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Tam aralık kullanmamak — topuk tam inip tam çıkmalı</li>
+<li>Sekerek yapmak — yavaş ve kontrollü</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=standing+calf+raise+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Smith Machine Calf Raise</div>
+      <div class="alt-muscles">Gastrocnemius · Smith barı ile</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Smith machine barını omuzlara al, hafif ağırlık.</span></li>
+<li><span class="sn sn-blue">2</span><span>Parmak uçları bir platform veya plaka üzerinde duruyor olabilir (topuklar serbest).</span></li>
+<li><span class="sn sn-blue">3</span><span>Topukları mümkün olduğunca aşağı indir.</span></li>
+<li><span class="sn sn-blue">4</span><span>Parmak uçlarına çıkarak kalk — zirvedeyken 1 sn tut.</span></li>
+<li><span class="sn sn-blue">5</span><span>Yavaşça tam in.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Platform kullanmamak — tam aralık için topuğun aşağı inmesi lazım</li>
+<li>Bar çok ağır olursa denge kaybı — hafif başla</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=smith+machine+calf+raise+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Seated Calf Raise Makinesi</div>
+      <div class="alt-muscles">Soleus (derin baldır) · Oturur versiyon</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Makineye otur, yastığı dizlerin üstüne yerleştir.</span></li>
+<li><span class="sn sn-blue">2</span><span>Ayakların parmak uçları platformda, topuklar serbest.</span></li>
+<li><span class="sn sn-blue">3</span><span>Topukları aşağı indir — tam aralık.</span></li>
+<li><span class="sn sn-blue">4</span><span>Parmak uçlarına yükselerek kalk. 1 sn tut.</span></li>
+<li><span class="sn sn-blue">5</span><span>Yavaşça in. Oturur versiyon soleus'u daha iyi izole eder.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Yarım hareket yapmak — tam aralık önemli</li>
+<li>Dizleri kaldırarak itmek — sadece baldır çalışmalı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=seated+calf+raise+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Merdiven / Basamak Calf Raise</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Merdiven basamağı veya kalın bir kitap yığını</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Merdiven basamağının kenarında dur — parmak uçları platformda, topuklar serbest (havada).</span></li>
+<li><span class="sn sn-green">2</span><span>Denge için duvara veya trabzana hafifçe tutun.</span></li>
+<li><span class="sn sn-green">3</span><span>Topukları mümkün olduğunca aşağı indir — baldırda gerilme hissedeceksin.</span></li>
+<li><span class="sn sn-green">4</span><span>Parmak uçlarına yükselerek kalk — zirvedeyken 1 sn sık.</span></li>
+<li><span class="sn sn-green">5</span><span>Yavaşça tam in. 20 tekrar.</span></li>
+<li><span class="sn sn-green">6</span><span>İlerleme: Tek bacakla yap veya sırt çantana su şişesi koy.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Yarım aralık — topuk tam aşağı, topuk tam yukarı</li>
+<li>Denge tutmak için çok fazla tutunmak — sadece hafif destek</li>
+<li>Tek adımda düz zeminde yapmak — aralık kısıtlı olur</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=stair+calf+raise+proper+form+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+</div>
+  
+<div id="car" class="wtab-pane">
+  <div class="wo-head">
+    <div class="wo-icon">💪</div>
+    <div class="wo-info">
+      <div class="wo-day">Çarşamba</div>
+      <div class="wo-title">Üst Vücut — Sırt, Omuz & Kol</div>
+      <div class="wo-desc">Kablo makineleri ağırlıklı — en güvenli ve yönlendirici ekipmanlar.</div>
+    </div>
+    <div class="wo-stats">
+      <div class="wo-stat"><div class="wo-stat-l">Süre</div><div class="wo-stat-v">50 dk</div></div>
+      <div class="wo-stat"><div class="wo-stat-l">Hareket</div><div class="wo-stat-v">6 hareket</div></div>
+    </div>
+  </div>
+  <div class="warmup">⚡ <strong>Isınma (5 dk):</strong> Elliptical veya bisiklet 5 dk · Sonra: 10 arm circle + 10 band pull-apart</div>
+  
+<div class="guide-box" style="background:#e6f0f8;border:1px solid rgba(30,90,138,0.18)">
+  <div class="guide-title" style="color:#1e5a8a">🔵 KABLO MAKİNESİ — 3 ADIMDA KULLANIM</div>
+  <ol class="guide-steps">
+    <li><span class="sn sn-green" style="background:#e6f0f8;color:#1e5a8a;border:1px solid rgba(30,90,138,0.18)">1</span><span style="color:#1e5a8acc">Ağırlık seç: Yan taraftaki yığına pin'i (metal çubuk) tak. En üst = en hafif. Başlangıç: 5–10 kg.</span></li>
+<li><span class="sn sn-green" style="background:#e6f0f8;color:#1e5a8a;border:1px solid rgba(30,90,138,0.18)">2</span><span style="color:#1e5a8acc">Tutacak tak: Kancaya tutacağı (rope / bar / D-handle) döndürerek tak. Güvenli.</span></li>
+<li><span class="sn sn-green" style="background:#e6f0f8;color:#1e5a8a;border:1px solid rgba(30,90,138,0.18)">3</span><span style="color:#1e5a8acc">Yükseklik ayarla: Kol kaydırarak pulley yükseltilip alçaltılır. Her egzersiz için doğru yükseklik aşağıda.</span></li>
+  </ol>
+  
+</div>
+  
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">01</div>
+    <div class="ex-dot" style="background:#2a5c45"></div>
+    <div class="ex-info">
+      <div class="ex-name">Lat Pulldown (Geniş Tutuş)</div>
+      <div class="ex-muscles">Latissimus Dorsi · Biceps · Dik duruş için temel hareket · Pulley üstte</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">4 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Pulley en üstte. Geniş bar tak. Otur, dizleri yastığın altına kilitle.</span></li>
+<li><span class="sn sn-green">2</span><span>Barı omuzdan geniş, üstten tut. Hafifçe (~15°) arkaya yaslan.</span></li>
+<li><span class="sn sn-green">3</span><span>Göğsü "kabartır" gibi aç. Barı çeneye doğru çek — dirsekler yana ve aşağı.</span></li>
+<li><span class="sn sn-green">4</span><span>Yavaşça tam uzatmaya dön. Sırtın gerileceğini hissedeceksin.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Aşırı geriye yatmak — hafif yaslanma yeterli</li>
+<li>Kollarla çekmek — sırtı hissedemiyorsan ağırlığı azalt</li>
+<li>Boyun altına çekmek — çene hizasına kadar</li>
+<li>Hızlı bırakmak — kontrollü uzat</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=lat+pulldown+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Assisted Pull-Up Makinesi</div>
+      <div class="alt-muscles">Latissimus · Biceps · Vücut ağırlığıyla</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Makineye bin, dizleri veya ayakları yastığa yerleştir.</span></li>
+<li><span class="sn sn-blue">2</span><span>Yardım ağırlığını ayarla — ne kadar fazlaysa o kadar kolay.</span></li>
+<li><span class="sn sn-blue">3</span><span>Barı omuzdan geniş tut. Sırtı "kabartarak" aşağı çek.</span></li>
+<li><span class="sn sn-blue">4</span><span>Çene bar hizasına gelene kadar çık.</span></li>
+<li><span class="sn sn-blue">5</span><span>Yavaşça tam in. Sırtın gerildiğini hisset.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kollarla çekmek — sırtı kullan</li>
+<li>Çok fazla yardım ağırlığı — zorlanmak gerekiyor</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=assisted+pull+up+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Single Arm Cable Pulldown</div>
+      <div class="alt-muscles">Latissimus · Tek kol · Daha iyi izolasyon</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Pulley üstte, tek tutaçlı D-handle tak.</span></li>
+<li><span class="sn sn-blue">2</span><span>Makineye yan otur veya diz çök.</span></li>
+<li><span class="sn sn-blue">3</span><span>Tek elinle tutacağı kavra, dirsek gövde yanından geçerek aşağı çek.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 1 sn tut, yavaşça uzat.</span></li>
+<li><span class="sn sn-blue">5</span><span>Tüm tekrarları bitir, diğer kola geç.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Gövdeyi çevirerek momentum kullanmak — gövde sabit</li>
+<li>Tam uzatmamak — tam aralık kullan</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=single+arm+lat+pulldown+cable+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Bant Lat Pulldown (Kapı / Yatak)</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (yeşil/mavi) · Kapı veya yatak başlığı</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Bant tutturma: Bandı kapının üst kısmına (kapı ankrajı ile) veya yatak başlığının üst köşesine sıkıca bağla.</span></li>
+<li><span class="sn sn-green">2</span><span>Bandın önünde diz çök veya otur — bant üstte gerilim hissedilmeli.</span></li>
+<li><span class="sn sn-green">3</span><span>Her iki elinle bandı kavra, kolları tam uzat.</span></li>
+<li><span class="sn sn-green">4</span><span>Göğsü kabartarak dirsekleri aşağı çek — lat pulldown hareketini taklit et.</span></li>
+<li><span class="sn sn-green">5</span><span>Zirvedeyken 1 sn tut, yavaşça uzat.</span></li>
+<li><span class="sn sn-green">6</span><span>Bant ne kadar aşağıda olursa direnç o kadar artar — pozisyonu ayarla.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bandın güvensiz bağlanması — başlamadan test et</li>
+<li>Kollarla çekmek — sırt kaslarını hisset</li>
+<li>Çok yakında oturmak — bant dik açıda gerilmeli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+lat+pulldown+at+home+door" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">02</div>
+    <div class="ex-dot" style="background:#2a5c45"></div>
+    <div class="ex-info">
+      <div class="ex-name">Seated Cable Row</div>
+      <div class="ex-muscles">Orta Sırt · Rhomboids · Biceps · Pulley alçakta · Duruşu düzeltir</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Pulley alçakta. V-bar tak. Otur, ayakları platforma bas.</span></li>
+<li><span class="sn sn-green">2</span><span>Dizler hafif bükülü. Sırt düz.</span></li>
+<li><span class="sn sn-green">3</span><span>Tutacağı göbeğe doğru çek — dirsekler gövde yanından geçsin.</span></li>
+<li><span class="sn sn-green">4</span><span>Kürek kemiklerini birleştir. Kontrollü uzat.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlayarak sallanmak — gövde sabit</li>
+<li>Kürek kemiklerini sıkıştırmamak — sırtın çalışması için şart</li>
+<li>Aşırı geriye yaslanmak — bele yük biner</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=seated+cable+row+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Low Row Makinesi</div>
+      <div class="alt-muscles">Orta Sırt · Rhomboids · Makine versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Makineye otur, göğüs yastığına daya.</span></li>
+<li><span class="sn sn-blue">2</span><span>Tutamaçları omuz genişliğinde kavra.</span></li>
+<li><span class="sn sn-blue">3</span><span>Tutamaçları göğse doğru çek — kürek kemiklerini birleştir.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 1 sn tut. Yavaşça uzat.</span></li>
+<li><span class="sn sn-blue">5</span><span>Göğüs yastığından ayrılma.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Göğüs yastığından kalkmak — gövde sabit</li>
+<li>Kürek kemiklerini sıkıştırmamak — kasılmayı hisset</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=low+row+machine+chest+supported+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Dumbbell Bent-Over Row</div>
+      <div class="alt-muscles">Orta Sırt · Latissimus · Dumbbell versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>İki dumbbell tut. Ayaklar omuz genişliğinde, dizler hafif bükülü.</span></li>
+<li><span class="sn sn-blue">2</span><span>Öne eğil (~45°), sırt düz. Dumbbell'lar sarkık.</span></li>
+<li><span class="sn sn-blue">3</span><span>İki kolu aynı anda göbeğe doğru çek — kürek kemiklerini birleştir.</span></li>
+<li><span class="sn sn-blue">4</span><span>Yavaşça uzat. Tekrar.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlayarak çekmek — sırt düz kalmalı</li>
+<li>Momentum kullanmak — kontrollü çek</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+bent+over+row+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Bant Seated Row (Yerde)</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (yeşil/mavi) · Yatak ayağı veya kapı</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Yere otur, bacakları uzat. Bandı ayak tabanlarının etrafına dola veya sabit bir noktaya bağla.</span></li>
+<li><span class="sn sn-green">2</span><span>Bant gerilim hissettirmeli — oturma pozisyonunu ayarla.</span></li>
+<li><span class="sn sn-green">3</span><span>Sırt düz, dizler hafif bükülü.</span></li>
+<li><span class="sn sn-green">4</span><span>Her iki elinle bandı tut, göbeğe doğru çek — dirsekler gövde yanından.</span></li>
+<li><span class="sn sn-green">5</span><span>Kürek kemiklerini birleştir. Zirvedeyken 1 sn tut.</span></li>
+<li><span class="sn sn-green">6</span><span>Yavaşça uzat. 12 tekrar.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlayarak öne eğilmek — sırt düz kal</li>
+<li>Sadece kollarla çekmek — kürek kemiklerini birleştir</li>
+<li>Bandın ayaktan kayması — sıkıca sar</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+seated+row+floor+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">03</div>
+    <div class="ex-dot" style="background:#c05a25"></div>
+    <div class="ex-info">
+      <div class="ex-name">Dumbbell Shoulder Press (Oturur)</div>
+      <div class="ex-muscles">Deltoid · Triceps · Üst vücudu genişletir</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sırtlı bankta otur. İki dumbbell'ı omuz hizasında tut, avuç içi öne.</span></li>
+<li><span class="sn sn-green">2</span><span>Karnı sık, sırt yaslanmış. İki kolu aynı anda yukarı it.</span></li>
+<li><span class="sn sn-green">3</span><span>Tam uzatma (dirsekleri kilitleme). Yavaşça omuz hizasına in.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Beli büküp yaylanarak itmek — sırt düz</li>
+<li>Dumbbell'ı çok aşağı indirmek — omuz hizası yeterli</li>
+<li>Asimetrik kaldırmak — iki el aynı anda</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+shoulder+press+seated+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Machine Shoulder Press</div>
+      <div class="alt-muscles">Deltoid · Triceps · Makine versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Koltukta otur, sırt yaslanmış. Yüksekliği ayarla — tutamaçlar omuz hizasında.</span></li>
+<li><span class="sn sn-blue">2</span><span>Tutamaçları kavra, karnı sık.</span></li>
+<li><span class="sn sn-blue">3</span><span>Yukarı it — tam uzatma (kilitleme hariç).</span></li>
+<li><span class="sn sn-blue">4</span><span>Yavaşça omuz hizasına in.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Beli sırtlıktan kaldırmak — sabit tut</li>
+<li>Çok hızlı indirmek — kontrollü</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=shoulder+press+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Arnold Press (Dumbbell)</div>
+      <div class="alt-muscles">Deltoid (tüm başlar) · Daha kapsamlı omuz</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Avuç içleri sana bakar şekilde, dumbbell'ları çene hizasında tut.</span></li>
+<li><span class="sn sn-blue">2</span><span>İterken kolları döndür — zirveye geldiğinde avuç içleri öne bakıyor.</span></li>
+<li><span class="sn sn-blue">3</span><span>Tam uzat. İnerken hareketi ters yap — aşağıda tekrar avuç içi sana.</span></li>
+<li><span class="sn sn-blue">4</span><span>Hareketli ve koordineli — ağırlığı düşük tut başlangıçta.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Rotasyonu doğru yapmamak — önce hafif ağırlıkla öğren</li>
+<li>Çok hızlı döndürmek — kontrollü rotasyon</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=arnold+press+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Squat Bar / Bant Shoulder Press</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Squat bar veya loop bant (kırmızı/yeşil)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Squat bar ile: Barı omuzlara al (trapez kasına yasla). Ayaklar omuz genişliğinde.</span></li>
+<li><span class="sn sn-green">2</span><span>Sırt düz, karnı sık. Barı yukarı it — kolları tam uzat.</span></li>
+<li><span class="sn sn-green">3</span><span>Yavaşça omuz hizasına in. Bel bükülerek yaylanma.</span></li>
+<li><span class="sn sn-green">4</span><span>Bant ile (alternatif): Bandı iki ayağın altına bas, her iki elinle tutarak omuz hizasında tut.</span></li>
+<li><span class="sn sn-green">5</span><span>Bandı yukarı it — direnç hissedeceksin.</span></li>
+<li><span class="sn sn-green">6</span><span>Yavaşça in. 12 tekrar.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Beli öne eğmek — gövde dik ve sıkı</li>
+<li>Bar çok geride veya önde — trapez kasının üstünde olmalı</li>
+<li>Bandın kayması — ayak ortasında sağlam basılı olmalı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+overhead+shoulder+press+standing" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">04</div>
+    <div class="ex-dot" style="background:#c05a25"></div>
+    <div class="ex-info">
+      <div class="ex-name">Pec Deck / Kelebek Makinesi</div>
+      <div class="ex-muscles">Pectoralis · Anterior Deltoid · Göğüs şekillendirme</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sırt tamamen yaslanmış otur. Dirsekler omuz hizasında.</span></li>
+<li><span class="sn sn-green">2</span><span>Kolları öne doğru birleştir — göğüste kasılma hissedeceksin.</span></li>
+<li><span class="sn sn-green">3</span><span>Kontrollü geri aç. Omuz hizasından fazla açma.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kolları çok geriye açmak — omuz eklemine zarar verir</li>
+<li>Omuzları yukarı kaldırmak — omuzlar aşağıda sakin</li>
+<li>Hızlı açılış — kontrollü hisset</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=pec+deck+machine+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Cable Flye (Çapraz Kablo)</div>
+      <div class="alt-muscles">Pectoralis · Kablo ile izole göğüs</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>İki kablo makinesinin ortasında dur. Pulley'ler omuz hizasında.</span></li>
+<li><span class="sn sn-blue">2</span><span>Her elden bir tutaç tut, hafifçe öne eğil.</span></li>
+<li><span class="sn sn-blue">3</span><span>Kolları yanlarda, hafif bükülü — geniş kucaklama pozu.</span></li>
+<li><span class="sn sn-blue">4</span><span>Kolları öne birleştir — sanki büyük bir topu kucaklıyorsun.</span></li>
+<li><span class="sn sn-blue">5</span><span>Zirvedeyken 1 sn tut. Kontrollü aç.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kolları düz tutmak — hafif bükük kalsın</li>
+<li>Çok geriye açmak — omuz hizasında dur</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=cable+flye+chest+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Push-Up (Geniş Tutuş)</div>
+      <div class="alt-muscles">Pectoralis · Triceps · Shoulder · Ekipmansız</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Yüzüstü pozisyon. Ellerini omuzdan biraz geniş yerleştir.</span></li>
+<li><span class="sn sn-blue">2</span><span>Vücut düz çizgi — baştan topuğa. Karnı sık.</span></li>
+<li><span class="sn sn-blue">3</span><span>Dirsekleri hafifçe dışa açarak göğsü yere doğru indir.</span></li>
+<li><span class="sn sn-blue">4</span><span>Göğüs yeri neredeyse sıfıra yakın. İt, kalk.</span></li>
+<li><span class="sn sn-blue">5</span><span>Başlangıçta: Dizler yerde (knee push-up) yapabilirsin.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçayı yukarı kaldırmak — vücut düz çizgi</li>
+<li>Boynu öne uzatmak — nötr pozisyon</li>
+<li>Yarım hareket — göğsü yere yaklaştır</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=push+up+proper+form+chest+wide+grip+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Pilates Çemberi Göğüs Squeeze</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Pilates çemberi (35 cm)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Ayakta dur veya sandalyede dik otur.</span></li>
+<li><span class="sn sn-green">2</span><span>Pilates çemberini iki avuç içiyle tut — göğüs önünde, kollar yatay.</span></li>
+<li><span class="sn sn-green">3</span><span>Çemberi iki elden sıkıştır — sanki parçalayacaksın. Göğüste kasılma.</span></li>
+<li><span class="sn sn-green">4</span><span>Zirvedeyken 3–4 sn tut. Yavaşça gevşet.</span></li>
+<li><span class="sn sn-green">5</span><span>Kolların tamamen uzanmamasına dikkat — dirsekler hafif bükük kalsın.</span></li>
+<li><span class="sn sn-green">6</span><span>Alternatif: Push-up (ekipmansız, her yerde yapılabilir).</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Omuzları kulağa yaklaştırmak — omuzlar aşağıda</li>
+<li>Nefes tutmak — sıkarken nefes ver</li>
+<li>Çemberi çok aşağıda tutmak — göğüs hizasında olmalı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=pilates+ring+chest+press+exercise+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">05</div>
+    <div class="ex-dot" style="background:#1e5a8a"></div>
+    <div class="ex-info">
+      <div class="ex-name">Dumbbell Bicep Curl</div>
+      <div class="ex-muscles">Biceps · Önkol · Temel kol hareketi</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Ayakta veya oturur. İki dumbbell yanlarda, avuç içi öne.</span></li>
+<li><span class="sn sn-green">2</span><span>Dirsekler gövdeye yapışık — sabit kalacak.</span></li>
+<li><span class="sn sn-green">3</span><span>Dumbbell'ları omuza doğru kaldır. Zirvedeyken 1 sn tut.</span></li>
+<li><span class="sn sn-green">4</span><span>Yavaşça tam aşağı in.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dirsekleri öne fırlatarak momentum — dirsek sabit!</li>
+<li>Beli sallayarak kaldırmak — ağırlığı azalt</li>
+<li>Çok hızlı indirmek — iniş de kas çalışır</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+bicep+curl+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Cable Curl (Kablo Alçakta)</div>
+      <div class="alt-muscles">Biceps · Sabit direnç · Kablo versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Pulley en altta. Düz bar veya EZ bar tak.</span></li>
+<li><span class="sn sn-blue">2</span><span>Makinenin önünde dur, barı omuz genişliğinde tut.</span></li>
+<li><span class="sn sn-blue">3</span><span>Dirsekler gövdeye yapışık — sabit.</span></li>
+<li><span class="sn sn-blue">4</span><span>Barı çeneye doğru kaldır. Zirvedeyken 1 sn tut.</span></li>
+<li><span class="sn sn-blue">5</span><span>Yavaşça tam aşağı in. Kablo sabit direnç sağlar — dumbbell'dan farklı hisseder.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dirsekleri ileri götürmek — sabit</li>
+<li>Gövdeyi geriye yatırmak — dik dur</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=cable+bicep+curl+standing+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Concentration Curl (Oturur)</div>
+      <div class="alt-muscles">Biceps · İzole · Oturur konsantrasyon</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Bankta otur, bacaklar ayrık. Dumbbell'ı tut.</span></li>
+<li><span class="sn sn-blue">2</span><span>Dirsek iç uyluk üstüne daya — bu sabit kalacak.</span></li>
+<li><span class="sn sn-blue">3</span><span>Dumbbell'ı yavaşça omuza kaldır.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken sık, yavaşça in.</span></li>
+<li><span class="sn sn-blue">5</span><span>Her kol ayrı ayrı. İzolasyon harikası.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dirsek uyluktan ayrılırsa izolasyon kaybolur</li>
+<li>Gövdeyi döndürmek — sabit kal</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=concentration+curl+proper+form+seated" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Loop Bant Bicep Curl</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (kırmızı/yeşil)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Bandı iki ayağının altına bas — ortadan, simetrik.</span></li>
+<li><span class="sn sn-green">2</span><span>Bandın her iki ucunu ellerinle tut, avuç içleri öne. Kollar aşağıda.</span></li>
+<li><span class="sn sn-green">3</span><span>Dirsekler gövdeye yapışık — bu sabit kalacak.</span></li>
+<li><span class="sn sn-green">4</span><span>Kolları yukarı kaldır — omuza doğru çek. Bant gerilecek.</span></li>
+<li><span class="sn sn-green">5</span><span>Zirvedeyken 1 sn sık. Yavaşça tam aşağı in.</span></li>
+<li><span class="sn sn-green">6</span><span>Direnç için: Bandı daha dar tutarak basabilirsin — daha çok gerilim.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bandın ayaktan kayması — ortasından sıkıca bas</li>
+<li>Dirsekleri öne fırlatmak — sabit tut</li>
+<li>Çok hızlı indirmek — kasın inerken de çalışır</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+bicep+curl+standing+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">06</div>
+    <div class="ex-dot" style="background:#5a3a8a"></div>
+    <div class="ex-info">
+      <div class="ex-name">Cable Tricep Pushdown (Rope)</div>
+      <div class="ex-muscles">Triceps · Kolun arka yüzü · Pulley üstte · Rope tutacak</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 15</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Pulley en üstte, rope tak. Makinenin önünde dur, hafifçe öne eğil.</span></li>
+<li><span class="sn sn-green">2</span><span>Dirsekler gövdeye yapışık — sabit kalacak.</span></li>
+<li><span class="sn sn-green">3</span><span>Ön kolları aşağı it — tam uzatınca rope uçlarını hafifçe dışa aç.</span></li>
+<li><span class="sn sn-green">4</span><span>Yavaşça başlangıca dön.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dirsekleri öne çıkarmak — dirsek gövdeye sabit</li>
+<li>Gövdeyi eğerek momentum — sadece dirsekten hareket</li>
+<li>Tam uzatmamak — kolları tam uzat</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=cable+tricep+rope+pushdown+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Dumbbell Overhead Tricep Extension</div>
+      <div class="alt-muscles">Triceps · Uzun baş · Overhead versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Ayakta dur veya bankta otur. Tek dumbbell'ı iki elinle tut.</span></li>
+<li><span class="sn sn-blue">2</span><span>Dumbbell'ı başın üstünde, dirsekler kulak yanında.</span></li>
+<li><span class="sn sn-blue">3</span><span>Sadece ön kolları hareket ettirerek dumbbell'ı ensene doğru indir.</span></li>
+<li><span class="sn sn-blue">4</span><span>Dirsekler sabit — sadece dirsek eklemi çalışır.</span></li>
+<li><span class="sn sn-blue">5</span><span>Yavaşça yukarı uzat. Triceps'i hisset.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dirsekleri dışarı açmak — kulak yanında sabit</li>
+<li>Beli bükmek — gövde dik</li>
+<li>Çok ağır başlamak — tricepte form bozulur kolayca</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+overhead+tricep+extension+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Bench Dip</div>
+      <div class="alt-muscles">Triceps · Vücut ağırlığı · Ekipmansız</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Sağlam bir bank veya sandalyenin kenarına otur.</span></li>
+<li><span class="sn sn-blue">2</span><span>Ellerini bankın kenarına koy, parmaklar öne.</span></li>
+<li><span class="sn sn-blue">3</span><span>Kalçayı banktan kaldır, bacakları öne uzat.</span></li>
+<li><span class="sn sn-blue">4</span><span>Dirsekleri bükerek vücudu aşağı indir — kollar 90° olana kadar.</span></li>
+<li><span class="sn sn-blue">5</span><span>Dirseklerden iterek kalk. Tekrar.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dirseklerin dışarı açılması — gövdeye yakın tut</li>
+<li>Çok aşağı inmek — omuz eklemi zorlanır</li>
+<li>Bacakları bükük tutmak — uzatınca daha zor, başta bükük olabilir</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=bench+dip+tricep+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Bant Overhead Tricep Extension</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (kırmızı/yeşil) veya bench dip (ekipmansız)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Bandı ayağının altına bas — bir ayak, ortasından.</span></li>
+<li><span class="sn sn-green">2</span><span>Bandın ucunu her iki elinle birlikte tut.</span></li>
+<li><span class="sn sn-green">3</span><span>Kolları başının üstüne kaldır — dirsekler kulak yanında.</span></li>
+<li><span class="sn sn-green">4</span><span>Sadece ön kolları aşağı bük — ensene doğru. Dirsekler sabit.</span></li>
+<li><span class="sn sn-green">5</span><span>Yavaşça yukarı uzat. Triceps'i hissedeceksin.</span></li>
+<li><span class="sn sn-green">6</span><span>Alternatif: Bench/sandalye dip — tamamen ekipmansız.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bandın ayaktan kayması — sıkıca bas</li>
+<li>Dirseklerin dışarı açılması — kulak yanında tut</li>
+<li>Beli bükmek — dik dur</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+overhead+tricep+extension+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+</div>
+  
+<div id="per" class="wtab-pane">
+  <div class="wo-head">
+    <div class="wo-icon">⚡</div>
+    <div class="wo-info">
+      <div class="wo-day">Perşembe</div>
+      <div class="wo-title">Tüm Vücut — Alt + Üst 2. Frekans</div>
+      <div class="wo-desc">Haftalık ikinci alt ve üst vücut çalışması. Hafif ağırlık, temiz form.</div>
+    </div>
+    <div class="wo-stats">
+      <div class="wo-stat"><div class="wo-stat-l">Süre</div><div class="wo-stat-v">50 dk</div></div>
+      <div class="wo-stat"><div class="wo-stat-l">Hareket</div><div class="wo-stat-v">6 hareket</div></div>
+    </div>
+  </div>
+  <div class="warmup">⚡ <strong>Isınma (5 dk):</strong> Treadmill veya bisiklet 5 dk · 10 bodyweight squat + 10 arm circle · Ağırlıkları %10–15 düşür</div>
+  
+  
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">01</div>
+    <div class="ex-dot" style="background:#2a5c45"></div>
+    <div class="ex-info">
+      <div class="ex-name">Goblet Squat (Dumbbell)</div>
+      <div class="ex-muscles">Quad · Glut · Core · Pazartesi Leg Press'in 2. frekans alternatifi</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Dumbbell'ı iki elinle dikey tutarak göğüs hizasında tut.</span></li>
+<li><span class="sn sn-green">2</span><span>Ayaklar omuz genişliğinde, parmak uçları hafifçe dışa.</span></li>
+<li><span class="sn sn-green">3</span><span>Sırt düz, göğüs açık. Dizleri bükerek çömel — uyluklar yere paralel.</span></li>
+<li><span class="sn sn-green">4</span><span>Topuklardan it, kalk. Core sıkı.</span></li>
+<li><span class="sn sn-green">5</span><span>Hareket boyunca dumbbell'ı göğse yakın tut.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlamak — göğüs açık, sırt düz</li>
+<li>Topukların kalkması — topuk yerde sabit</li>
+<li>Dizlerin içe toplanması — diz parmak yönünde</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=goblet+squat+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Smith Machine Squat</div>
+      <div class="alt-muscles">Quad · Glut · Destekli squat</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Bar omuzların üstünde, Smith makinesine gir.</span></li>
+<li><span class="sn sn-blue">2</span><span>Ayaklar omuz genişliğinde, parmak uçları dışa.</span></li>
+<li><span class="sn sn-blue">3</span><span>Kilidi aç. Sırt düz, çömel — 90° hedef.</span></li>
+<li><span class="sn sn-blue">4</span><span>Topuklardan it, kalk. Kilidi kapat.</span></li>
+<li><span class="sn sn-blue">5</span><span>Smith makinesi stabilizasyon gerektirmez — form öğrenmek için ideal.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Ayakları çok geride tutmak — biraz önde olmalı</li>
+<li>Tam kilitleme — dizleri hafif bükük bırak</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=smith+machine+squat+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Leg Press (Hafif Ağırlık)</div>
+      <div class="alt-muscles">Quad · Glut · Pazartesi'nin hafif versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Pazartesi ile aynı form. Ağırlığı %15–20 düşür.</span></li>
+<li><span class="sn sn-blue">2</span><span>2. frekans amacıyla kasları uyarmak yeterli — çok zorlanmak gerekmez.</span></li>
+<li><span class="sn sn-blue">3</span><span>3 set × 12 tekrar yeterli.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Pazartesi ile aynı ağırlıkta yapmak — hafiflet</li>
+<li>Form bozulursa daha da azalt</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=leg+press+machine+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Squat Bar Goblet Squat veya Bant Squat</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Squat bar veya loop bant (kırmızı/yeşil)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Squat bar ile: Barı göğüs önünde, her iki elinle dik tutarak çömel. Goblet squat ile aynı hareket.</span></li>
+<li><span class="sn sn-green">2</span><span>Bant ile: Loop bandı iki ayağının altına bas. Bandın uçlarını omuz hizasında tut.</span></li>
+<li><span class="sn sn-green">3</span><span>Her iki versiyonda: Ayaklar omuz genişliğinde, parmak uçları dışa.</span></li>
+<li><span class="sn sn-green">4</span><span>Sırt düz, göğüs açık. Dizleri bükerek çömel.</span></li>
+<li><span class="sn sn-green">5</span><span>Topuklardan it, kalk.</span></li>
+<li><span class="sn sn-green">6</span><span>Vücut ağırlığıyla da yapılabilir — 15–20 tekrara çık.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Topukların kalkması</li>
+<li>Dizlerin içe toplanması</li>
+<li>Öne eğilmek — göğüs yukarı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+goblet+squat+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">02</div>
+    <div class="ex-dot" style="background:#2a5c45"></div>
+    <div class="ex-info">
+      <div class="ex-name">Glute Bridge (Vücut Ağırlığı / Bant)</div>
+      <div class="ex-muscles">Glut · Hamstring · Hip Thrust'ın daha kolay versiyonu · 2. frekans</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 15</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sırtüstü yat. Dizler bükülü, ayaklar yerde. Kollar yanda.</span></li>
+<li><span class="sn sn-green">2</span><span>Kalçaları yukarı kaldır — omuz, kalça, diz düz çizgi.</span></li>
+<li><span class="sn sn-green">3</span><span>Zirvedeyken 2 sn sık. Yavaşça in.</span></li>
+<li><span class="sn sn-green">4</span><span>Bant varsa dizlerin üstüne tak — daha fazla glut aktivasyonu.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Hızlı zıplamak — yavaş ve kasılı</li>
+<li>Beli fazla bükmek — düz çizgi yeterli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=glute+bridge+proper+form+bands" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Dumbbell Hip Thrust (Hafif)</div>
+      <div class="alt-muscles">Glut · 2. frekans için hafif versiyon</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Pazartesi ile aynı hareket. Dumbbell'ı %15–20 düşür.</span></li>
+<li><span class="sn sn-blue">2</span><span>Form aynı — zirvedeyken 2 sn sık.</span></li>
+<li><span class="sn sn-blue">3</span><span>Amacımız ikinci uyarı — aşırı zorlamak gerekmez.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Aynı ağırlıkta yapmak — hafiflet</li>
+<li>Form bozulursa daha da azalt</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+hip+thrust+floor+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Tek Bacak Glute Bridge</div>
+      <div class="alt-muscles">Glut · Hamstring · İleri seviye versiyon</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Sırtüstü yat, dizler bükülü.</span></li>
+<li><span class="sn sn-blue">2</span><span>Bir bacağı düzleştirerek havaya kaldır.</span></li>
+<li><span class="sn sn-blue">3</span><span>Yerde kalan bacaktan iterek kalçayı kaldır.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 2 sn tut. Yavaşça in.</span></li>
+<li><span class="sn sn-blue">5</span><span>Tüm tekrarları bitir, tarafı değiştir.</span></li>
+<li><span class="sn sn-blue">6</span><span>Başlangıçta zor gelirse her iki bacakla devam et.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçanın yan tarafa düşmesi — dengede tut</li>
+<li>Hızlı yapmak — yavaş ve kontrollü</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=single+leg+glute+bridge+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Glute Bridge + Pilates Çemberi / Bant</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Pilates çemberi veya loop bant</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sırtüstü yat, dizler bükülü. Pilates çemberini diz arasına yerleştir.</span></li>
+<li><span class="sn sn-green">2</span><span>Kollar yanda, karnı sık.</span></li>
+<li><span class="sn sn-green">3</span><span>Topuklardan iterek kalçayı kaldır — çemberi hafifçe sık.</span></li>
+<li><span class="sn sn-green">4</span><span>Omuz–kalça–diz düz çizgi. Zirvedeyken 2 sn sık.</span></li>
+<li><span class="sn sn-green">5</span><span>Yavaşça in. 15 tekrar.</span></li>
+<li><span class="sn sn-green">6</span><span>Loop bant versiyonu: Bandı diz üstüne tak, aynı hareketi yap.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Çemberi düşürmek — dizler hafif içe bastır</li>
+<li>Beli fazla bükmek</li>
+<li>Hızlı yapmak</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=glute+bridge+pilates+ring+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">03</div>
+    <div class="ex-dot" style="background:#2a5c45"></div>
+    <div class="ex-info">
+      <div class="ex-name">Dumbbell Romanian Deadlift (RDL)</div>
+      <div class="ex-muscles">Hamstring · Glut · Alt Sırt · Öğrenilmesi gereken temel hinge hareketi</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>İki dumbbell önde tut, ayaklar omuz genişliğinde.</span></li>
+<li><span class="sn sn-green">2</span><span>Sırt düz, göğüs açık. Dizler hafif bükülü — bu sabit kalacak.</span></li>
+<li><span class="sn sn-green">3</span><span>Kalçaları arkaya göndererek öne eğil — dumbbell'lar bacak boyunca kayar.</span></li>
+<li><span class="sn sn-green">4</span><span>Hamstringte gerilme hissedince dur. Kalçaları öne iterek kalk.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlayarak eğilmek — sırt boyunca düz</li>
+<li>Dizleri tam bükmek — RDL hinge hareketi, squat değil</li>
+<li>Dumbbell'ı vücuttan uzaklaştırmak — bacak boyunca kaymalı</li>
+<li>Ağır başlamak — 5–8 kg ile başla, form önce</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+romanian+deadlift+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Leg Curl Makinesi (Hafif)</div>
+      <div class="alt-muscles">Hamstring · 2. frekans için makine versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Çarşamba ile aynı hareket.</span></li>
+<li><span class="sn sn-blue">2</span><span>Ağırlığı %15–20 düşür.</span></li>
+<li><span class="sn sn-blue">3</span><span>3 set × 12 yeterli.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Aynı ağırlık — hafiflet</li>
+<li>Form aynı kalmalı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=leg+curl+machine+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Cable Pull-Through</div>
+      <div class="alt-muscles">Hamstring · Glut · Kablo ile hinge</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Pulley en altta, rope tutacak tak.</span></li>
+<li><span class="sn sn-blue">2</span><span>Kabloya sırtını dönerek dur, bacaklar arasından rope'u tut.</span></li>
+<li><span class="sn sn-blue">3</span><span>Birkaç adım öne yürü — gerilim oluştursun.</span></li>
+<li><span class="sn sn-blue">4</span><span>Kalçaları arkaya göndererek öne eğil.</span></li>
+<li><span class="sn sn-blue">5</span><span>Kalçaları öne iterek kalk — glut ve hamstring hissedeceksin.</span></li>
+<li><span class="sn sn-blue">6</span><span>RDL'ye çok benzer ama kabloyla yapılır.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlayarak eğilmek</li>
+<li>Dizleri çok bükmek — bu da hinge hareketi</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=cable+pull+through+glute+hamstring+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Squat Bar RDL</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Squat bar veya loop bant (mavi/yeşil)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Squat bar ile: Barı iki elinle öne tut, vücuda yakın.</span></li>
+<li><span class="sn sn-green">2</span><span>Sırt düz. Kalçaları arkaya göndererek öne eğil.</span></li>
+<li><span class="sn sn-green">3</span><span>Bar bacak boyunca kayar, hamstringte gerilme hissedince dur.</span></li>
+<li><span class="sn sn-green">4</span><span>Kalçaları öne iterek kalk. Glut'ları sık.</span></li>
+<li><span class="sn sn-green">5</span><span>Bant ile: Bandı ayakların altına bas, uçları her iki elinle tut.</span></li>
+<li><span class="sn sn-green">6</span><span>Aynı hinge hareketini yap — bant gerilim sağlar.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlayarak eğilmek</li>
+<li>Bar/bant vücuttan uzaklaşırsa — yakın tut</li>
+<li>Dizleri fazla bükmek — hinge hareketi</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+romanian+deadlift+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">04</div>
+    <div class="ex-dot" style="background:#1e5a8a"></div>
+    <div class="ex-info">
+      <div class="ex-name">Dumbbell Bent-Over Row</div>
+      <div class="ex-muscles">Orta Sırt · Latissimus · Biceps · Çarşamba Cable Row'un 2. frekansı</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>İki dumbbell tut. Ayaklar omuz genişliğinde, dizler hafif bükülü.</span></li>
+<li><span class="sn sn-green">2</span><span>Öne eğil (~45°), sırt düz. Dumbbell'lar sarkık.</span></li>
+<li><span class="sn sn-green">3</span><span>İki kolu aynı anda göbeğe doğru çek — kürek kemiklerini birleştir.</span></li>
+<li><span class="sn sn-green">4</span><span>Yavaşça uzat. Tekrar.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sırtı yuvarlayarak çekmek — sırt düz kalmalı</li>
+<li>Momentum kullanmak — kontrollü çek</li>
+<li>Dirsekleri çok açmak — gövde yanından geçmeli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+bent+over+row+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Seated Cable Row (Hafif)</div>
+      <div class="alt-muscles">Orta Sırt · 2. frekans için kablo versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Çarşamba ile aynı form. Ağırlığı %15–20 düşür.</span></li>
+<li><span class="sn sn-blue">2</span><span>3 set × 12 tekrar yeterli.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Aynı ağırlık — hafiflet</li>
+<li>Sırt formunu koru</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=seated+cable+row+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Single Arm Dumbbell Row</div>
+      <div class="alt-muscles">Sırt · Tek kol · Daha iyi izolasyon</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Bir elinle banka daya, aynı taraf dizini bankta tut.</span></li>
+<li><span class="sn sn-blue">2</span><span>Diğer elinle dumbbell tut — tam sarkık.</span></li>
+<li><span class="sn sn-blue">3</span><span>Dumbbell'ı kalçana doğru çek — dirsek geride.</span></li>
+<li><span class="sn sn-blue">4</span><span>Kürek kemiğini sık. Yavaşça in.</span></li>
+<li><span class="sn sn-blue">5</span><span>Tüm tekrarları bitir, tarafı değiştir.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Gövdeyi döndürmek — sabit tut</li>
+<li>Kol yerine sırt kasını kullan — dirsek geride gitmeli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=single+arm+dumbbell+row+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Bant Bent-Over Row</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (yeşil/mavi)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Bandı iki ayağının altına bas — ortasından, simetrik.</span></li>
+<li><span class="sn sn-green">2</span><span>Bandın her iki ucunu ellerinle tut. Öne eğil ~45°, sırt düz.</span></li>
+<li><span class="sn sn-green">3</span><span>Kollar aşağıda sarkık, bant gerilim hissettirmeli.</span></li>
+<li><span class="sn sn-green">4</span><span>Her iki kolu aynı anda göbeğe doğru çek — kürek kemiklerini birleştir.</span></li>
+<li><span class="sn sn-green">5</span><span>Zirvedeyken 1 sn tut. Yavaşça uzat.</span></li>
+<li><span class="sn sn-green">6</span><span>12 tekrar.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bandın ayaktan kayması — ortasından sıkıca bas</li>
+<li>Sırtı yuvarlayarak çekmek</li>
+<li>Sadece kollarla çekmek — kürek kemiklerini sık</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+bent+over+row+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">05</div>
+    <div class="ex-dot" style="background:#c05a25"></div>
+    <div class="ex-info">
+      <div class="ex-name">Dumbbell Lateral Raise</div>
+      <div class="ex-muscles">Deltoid (orta) · Omuz genişliği · Çarşamba shoulder press tamamlayıcısı</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 15</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Ayakta dur, hafif öne eğimli (10°). Dumbbell'lar yanda.</span></li>
+<li><span class="sn sn-green">2</span><span>Dirsekler hafif bükülü — bu sabit kalacak.</span></li>
+<li><span class="sn sn-green">3</span><span>Kolları yanlara, omuz hizasına kaldır. Küçük parmak hafifçe yukarıda.</span></li>
+<li><span class="sn sn-green">4</span><span>Yavaşça in. Momentum kullanma.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Çok ağır alıp sallayarak kaldırmak — hafif ol, form önce</li>
+<li>Omuz hizasından yukarı kaldırmak — omuz hizası yeterli</li>
+<li>Omuzları kulağa yaklaştırmak — omuzlar aşağıda sakin</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+lateral+raise+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Cable Lateral Raise</div>
+      <div class="alt-muscles">Deltoid · Kablo versiyonu · Daha sabit direnç</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Pulley en altta. Tek tutaç tak.</span></li>
+<li><span class="sn sn-blue">2</span><span>Makineye yan dur, karşı elinle tutacağı kavra.</span></li>
+<li><span class="sn sn-blue">3</span><span>Kolu yana, omuz hizasına kaldır.</span></li>
+<li><span class="sn sn-blue">4</span><span>Yavaşça in. Tüm tekrarları bitir, tarafı değiştir.</span></li>
+<li><span class="sn sn-blue">5</span><span>Kablo, hareket boyunca sabit direnç sağlar — dumbbell'dan farklı hisseder.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Gövdeyi döndürmek — sabit dur</li>
+<li>Omuz hizasından yukarı çıkmak</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=cable+lateral+raise+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Machine Lateral Raise</div>
+      <div class="alt-muscles">Deltoid · Makine versiyonu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Makineye otur, dirsekleri yastıklara yerleştir.</span></li>
+<li><span class="sn sn-blue">2</span><span>Dirseklerden iterek kolları yanlara kaldır — omuz hizasına.</span></li>
+<li><span class="sn sn-blue">3</span><span>Zirvedeyken 1 sn tut. Yavaşça in.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Omuzları kulağa yaklaştırmak — aşağıda tut</li>
+<li>Momentum — yavaş çalış</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=machine+lateral+raise+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Loop Bant Lateral Raise</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant (sarı/kırmızı)</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Bandı iki ayağının altına bas — omuz genişliğinde.</span></li>
+<li><span class="sn sn-green">2</span><span>Bandın her iki ucunu ellerinle tut. Kollar yanda.</span></li>
+<li><span class="sn sn-green">3</span><span>Dirsekler hafif bükülü — bu sabit.</span></li>
+<li><span class="sn sn-green">4</span><span>Kolları yanlara omuz hizasına kaldır. Bant gerilecek.</span></li>
+<li><span class="sn sn-green">5</span><span>Zirvedeyken 1 sn tut. Yavaşça in.</span></li>
+<li><span class="sn sn-green">6</span><span>Omuzları kulağa yaklaştırma — aşağıda tut.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bandın ayaktan kayması</li>
+<li>Sallayarak kaldırmak — hafif bant ile başla</li>
+<li>Omuz hizasından yukarı çıkmak</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+lateral+raise+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">06</div>
+    <div class="ex-dot" style="background:#888"></div>
+    <div class="ex-info">
+      <div class="ex-name">Treadmill İnkline Yürüyüş</div>
+      <div class="ex-muscles">Kardiyovasküler · Glut aktif · Kan şekeri düşürme · Low impact</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">10 dk</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Eğim: %5–8. Hız: 5.0–6.0 km/h.</span></li>
+<li><span class="sn sn-green">2</span><span>Kolları serbest — tutamaçlara tutunma.</span></li>
+<li><span class="sn sn-green">3</span><span>10 dk kesintisiz yürü. Nefes alabiliyorsan doğru tempo.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Tutamaçlara asılmak — eğimi azalt</li>
+<li>Diyabetliler: Yanında meyve/glikoz taşı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=treadmill+incline+walking+benefits+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Elliptical (10 dk)</div>
+      <div class="alt-muscles">Kardiyovasküler · Eklem dostu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Elliptical makinede direnci orta seviyeye ayarla.</span></li>
+<li><span class="sn sn-blue">2</span><span>Kolları da kullan — üst vücut da çalışsın.</span></li>
+<li><span class="sn sn-blue">3</span><span>10 dk kesintisiz. Tempo: nefes alabildiğin ama konuşmakta zorlandığın.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Sadece bacak kullanmak — kolları da aktif tut</li>
+<li>Çok düşük direnç — biraz zorlanmalısın</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=elliptical+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Stair Climber (10 dk)</div>
+      <div class="alt-muscles">Glut · Quad · Kardiyovasküler · Yoğun</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Orta tempo ile başla.</span></li>
+<li><span class="sn sn-blue">2</span><span>Gövde hafifçe öne eğik — çok fazla öne kapanma.</span></li>
+<li><span class="sn sn-blue">3</span><span>Tutamaçlara hafifçe dokun, asılma.</span></li>
+<li><span class="sn sn-blue">4</span><span>10 dk. Çok yorucuysa 5–7 dk ile başla.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Tutamaçlara asılmak — eforu azaltır</li>
+<li>Çok hızlı — tempo sürdürülebilir olmalı</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=stair+climber+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Koşu Bandı ✓ Zaten Var</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Walke W-fit koşu bandı</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Aynı protokolü ev koşu bandında uygula.</span></li>
+<li><span class="sn sn-green">2</span><span>Eğim: %5–8 (bantta manual incline varsa). Hız: 5.0–6.0 km/h.</span></li>
+<li><span class="sn sn-green">3</span><span>Kolları serbest tut — tutamaçlara asılma.</span></li>
+<li><span class="sn sn-green">4</span><span>10 dk kesintisiz yürüyüş.</span></li>
+<li><span class="sn sn-green">5</span><span>Bantın eğim ayarı yoksa: Hızı biraz artır (6.5–7.0 km/h) aynı etkiyi alırsın.</span></li>
+<li><span class="sn sn-green">6</span><span>Müzik veya podcast ile geçer — monoton görünebilir ama faydalı.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Tutamaçlara asılmak</li>
+<li>Eğimsiz düz yürümek — az fayda</li>
+<li>Çok hızlı başlamak — yavaştan al</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=treadmill+incline+walking+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+</div>
+  
+<div id="cum" class="wtab-pane">
+  <div class="wo-head">
+    <div class="wo-icon">🔥</div>
+    <div class="wo-info">
+      <div class="wo-day">Cuma</div>
+      <div class="wo-title">Cardio + Core — Battle Rope & Fonksiyonel</div>
+      <div class="wo-desc">Kan şekerini en çok düşüren gün. Öncesinde mutlaka küçük bir şey ye.</div>
+    </div>
+    <div class="wo-stats">
+      <div class="wo-stat"><div class="wo-stat-l">Süre</div><div class="wo-stat-v">40 dk</div></div>
+      <div class="wo-stat"><div class="wo-stat-l">Hareket</div><div class="wo-stat-v">6 hareket</div></div>
+    </div>
+  </div>
+  <div class="warmup">⚡ <strong>Isınma (5 dk):</strong> Yürüyüş + 10 jumping jack + 10 arm circle · KAN ŞEKERİNİ ÖNCEDEN ÖLÇ!</div>
+  
+<div class="guide-box" style="background:#fdf0e8;border:1px solid rgba(192,90,37,0.18)">
+  <div class="guide-title" style="color:#c05a25">⚡ BATTLE ROPE TEMEL DURUŞ</div>
+  <ol class="guide-steps">
+    <li><span class="sn sn-green" style="background:#fdf0e8;color:#c05a25;border:1px solid rgba(192,90,37,0.18)">1</span><span style="color:#c05a25cc">Ayaklar omuz genişliğinde — bu sabit atletik duruş tüm battle rope hareketlerinin temelidir.</span></li>
+<li><span class="sn sn-green" style="background:#fdf0e8;color:#c05a25;border:1px solid rgba(192,90,37,0.18)">2</span><span style="color:#c05a25cc">Dizler hafif bükülü ("yumuşat" — tam squat değil). Bel üstündeki yükü azaltır.</span></li>
+<li><span class="sn sn-green" style="background:#fdf0e8;color:#c05a25;border:1px solid rgba(192,90,37,0.18)">3</span><span style="color:#c05a25cc">Kalçalar hafifçe arkaya. Sırt düz, omuzlar aşağıda.</span></li>
+<li><span class="sn sn-green" style="background:#fdf0e8;color:#c05a25;border:1px solid rgba(192,90,37,0.18)">4</span><span style="color:#c05a25cc">Rope'u omuz genişliğinde tut — dirsekler hafif bükülü.</span></li>
+  </ol>
+  
+</div>
+  
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">01</div>
+    <div class="ex-dot" style="background:#c05a25"></div>
+    <div class="ex-info">
+      <div class="ex-name">Battle Rope — Çift Dalga (Double Waves)</div>
+      <div class="ex-muscles">Omuz · Sırt · Core · Tüm vücut kardiyovasküler</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">4 × 30 sn</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Atletik duruşa gir (ayaklar omuz genişliğinde, dizler hafif bükülü, kalçalar hafifçe arkaya).</span></li>
+<li><span class="sn sn-green">2</span><span>İki kolu aynı anda yukarı kaldır — aşağı vur. Dalga oluşturuyorsun.</span></li>
+<li><span class="sn sn-green">3</span><span>30 sn boyunca düzenli tempo. Yavaşlamak zorundaysan yavaşla, durma.</span></li>
+<li><span class="sn sn-green">4</span><span>30 sn dinlen. Toplam 4 set.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kolları tam uzatıp tam indirmek — küçük hızlı hareketler daha etkili</li>
+<li>Nefes tutmak — ritimli nefes</li>
+<li>Beli büküp öne kapanmak — gövde dik ve sağlam</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=battle+rope+double+waves+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Battle Rope Dönüşümlü Dalga</div>
+      <div class="alt-muscles">Omuz · Core rotasyon · Koordinasyon</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Aynı atletik duruş. Kolları dönüşümlü kaldır — biri yukarıdayken diğeri aşağıda.</span></li>
+<li><span class="sn sn-blue">2</span><span>Sanki yürür gibi ritmik: sağ ↑ sol ↑ sağ ↑...</span></li>
+<li><span class="sn sn-blue">3</span><span>Gövde hafifçe döner ama aşırı sallanma.</span></li>
+<li><span class="sn sn-blue">4</span><span>25 sn × 3 set.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Ritmi kaybetmek — yavaşla ama durma</li>
+<li>Gövdeyi aşırı döndürmek</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=battle+rope+alternating+waves+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Jumping Jack</div>
+      <div class="alt-muscles">Tüm vücut · Kardiyovasküler · Battle rope yoksa</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Ayakta dur, kollar yanda.</span></li>
+<li><span class="sn sn-blue">2</span><span>Atlayarak ayakları aç, kolları başın üstünde birleştir.</span></li>
+<li><span class="sn sn-blue">3</span><span>Atlayarak başlangıca dön.</span></li>
+<li><span class="sn sn-blue">4</span><span>30 sn × 4 set. Dinlenmeler aynı.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Topuktan inmek — parmak ucundan hafif in</li>
+<li>Dizleri kilitleme — hafif bükük tut</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=jumping+jacks+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Uzun Bant / Havlu Dalga Hareketi</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Uzun loop bant (veya kıvrılmış havlu) · Kapı ankrajı veya yatak</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Uzun bir loop bandı sabit bir noktaya (kapı, yatak ayağı) bağla.</span></li>
+<li><span class="sn sn-green">2</span><span>Bandın serbest ucunu her iki elinle tut. Birkaç adım geri git — gerilim oluştursun.</span></li>
+<li><span class="sn sn-green">3</span><span>Atletik duruşa gir: Ayaklar omuz genişliğinde, dizler hafif bükülü.</span></li>
+<li><span class="sn sn-green">4</span><span>İki kolu aynı anda yukarı kaldır — aşağı vur. Bant dalga gibi hareket eder.</span></li>
+<li><span class="sn sn-green">5</span><span>30 sn sürdür. 4 set.</span></li>
+<li><span class="sn sn-green">6</span><span>Havlu alternatifi: Uzun bir havluyu katla, ortasını tut. Aynı hareketi yap — direnç daha az ama koordinasyon çalışır.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Bandın bağlantısının güvensiz olması — test et</li>
+<li>Çok yakın durmak — yeterli gerilim için uzaklaş</li>
+<li>Gövdeyi büküp salmak — dik dur</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=resistance+band+battle+rope+substitute+at+home" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">02</div>
+    <div class="ex-dot" style="background:#c05a25"></div>
+    <div class="ex-info">
+      <div class="ex-name">Battle Rope — Dönüşümlü Dalga</div>
+      <div class="ex-muscles">Omuz · Core rotasyon · Koordinasyon</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 25 sn</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Aynı atletik duruş. Kolları dönüşümlü kaldır — biri yukarıdayken diğeri aşağıda.</span></li>
+<li><span class="sn sn-green">2</span><span>Sanki yürür gibi ritmik: sağ ↑ sol ↑ sağ ↑...</span></li>
+<li><span class="sn sn-green">3</span><span>Gövde hafifçe döner ama aşırı sallanma.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Ritmi kaybetmek — yavaşla ama durma</li>
+<li>Gövdeyi aşırı döndürmek — küçük rotasyon yeterli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=battle+rope+alternating+waves+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Battle Rope Çift Dalga (Tekrar)</div>
+      <div class="alt-muscles">Omuz · Core · Dönüşümlü zor gelirse</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Çift dalga hareketine dön.</span></li>
+<li><span class="sn sn-blue">2</span><span>25 sn × 3 set.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dönüşümlü zor gelirse — çift dalgayla devam et, kademeli geç</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=battle+rope+double+waves+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Bant Dönüşümlü Dalga veya Dumbbell Punch</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant veya hafif dumbbell</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Bant ile: Önceki battle rope ev alternatifiyle aynı kurulum.</span></li>
+<li><span class="sn sn-green">2</span><span>Bu sefer kolları dönüşümlü hareket ettir — sağ ↑ sol ↑.</span></li>
+<li><span class="sn sn-green">3</span><span>Dumbbell alternatifi: Her elde 1–2 kg hafif dumbbell.</span></li>
+<li><span class="sn sn-green">4</span><span>Atletik duruşta, dönüşümlü olarak yukarı "vur" hareketi yap.</span></li>
+<li><span class="sn sn-green">5</span><span>25 sn × 3 set. Dinlenme 30 sn.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Omuzları kulağa yaklaştırmak</li>
+<li>Ritmi kaybetmek</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=alternating+dumbbell+punch+cardio+exercise" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">03</div>
+    <div class="ex-dot" style="background:#2a5c45"></div>
+    <div class="ex-info">
+      <div class="ex-name">Kettlebell Swing</div>
+      <div class="ex-muscles">Glut · Hamstring · Core · Kalça gücü ve yağ yakımı</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 12</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Ayaklar omuz genişliğinde. Kettlebell önde. İki elinle tut.</span></li>
+<li><span class="sn sn-green">2</span><span>Dizleri hafif bükerek kalçaları arkaya gönder — kettlebell bacaklar arasından geçsin.</span></li>
+<li><span class="sn sn-green">3</span><span>Kalçaları öne fırlat — kettlebell kendiliğinden göğüs hizasına çıkar.</span></li>
+<li><span class="sn sn-green">4</span><span>Kollar sadece "tutar". Fırlatan kalça! Kontrollü geri bırak.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Squat yaparak kaldırmak — bu HINGE hareketi, kalça bükülür diz değil</li>
+<li>Kollarla kaldırmak — kollar pasif, kalça itiyor</li>
+<li>Beli büküp aşağı eğilmek — sırt düz</li>
+<li>Çok ağır başlamak — 8–12 kg ile başla</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=kettlebell+swing+proper+form+beginner+hinge" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Dumbbell Swing</div>
+      <div class="alt-muscles">Glut · Hamstring · Kettlebell yoksa</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Tek dumbbell'ı iki elinle tut, kettlebell gibi.</span></li>
+<li><span class="sn sn-blue">2</span><span>Aynı hinge hareketi: Kalçaları arkaya, öne fırlat.</span></li>
+<li><span class="sn sn-blue">3</span><span>Dumbbell göğüs hizasına kadar çıkar.</span></li>
+<li><span class="sn sn-blue">4</span><span>Kontrollü geri bırak.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Squat gibi yapmak — hinge</li>
+<li>Kollarla kaldırmak — kalça iter</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dumbbell+swing+kettlebell+substitute+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Bant Hip Hinge (Öğrenme Aracı)</div>
+      <div class="alt-muscles">Glut · Hamstring · Hinge hareketini öğrenmek için</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Bandı bel etrafına dola, sabit bir noktaya bağla (yatak başı).</span></li>
+<li><span class="sn sn-blue">2</span><span>Banttan uzaklaşarak gerilim oluştur.</span></li>
+<li><span class="sn sn-blue">3</span><span>Kalçaları arkaya göndererek öne eğil.</span></li>
+<li><span class="sn sn-blue">4</span><span>Kalçaları öne fırlat — bu swing'in özü.</span></li>
+<li><span class="sn sn-blue">5</span><span>Amaç: Hinge hareketini hissetmek. Spor salonunda kettlebell'a geçince çok kolaylaşır.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Dizleri bükerek squat yapmak — kalça arkaya gitmeli</li>
+<li>Sırtı yuvarlayarak eğilmek</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=hip+hinge+with+band+teach+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Bant Hip Hinge / Squat Bar Swing</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Loop bant veya squat bar · Dumbbell varsa dumbbell swing</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Squat bar ile: Barı iki elinle önde sarkıt — dumbbell gibi tut.</span></li>
+<li><span class="sn sn-green">2</span><span>Kalçaları arkaya göndererek öne eğil. Dizler hafif bükülü.</span></li>
+<li><span class="sn sn-green">3</span><span>Kalçaları öne fırlat — bar kendiliğinden yukarı çıkar.</span></li>
+<li><span class="sn sn-green">4</span><span>Bant ile: Bandı bel etrafına dola, kapıya veya yatağa bağla.</span></li>
+<li><span class="sn sn-green">5</span><span>Bantın gerdiği yönün tersine doğru hinge yap.</span></li>
+<li><span class="sn sn-green">6</span><span>Kalçaları öne iterek kalk — glut ve hamstring çalışır.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Squat gibi çömelmek</li>
+<li>Barı/bandı kollarla yukarı çekmek — kalça iter</li>
+<li>Sırtı yuvarlayarak eğilmek</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=hip+hinge+at+home+no+equipment+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">04</div>
+    <div class="ex-dot" style="background:#1e5a8a"></div>
+    <div class="ex-info">
+      <div class="ex-name">Plank</div>
+      <div class="ex-muscles">Core · Transversus Abdominis · Bel sağlığı</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 30–40 sn</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Dirsekler omuz altında, önkol yerde. Parmak uçlarında dur.</span></li>
+<li><span class="sn sn-green">2</span><span>Vücut baştan topuğa düz çizgi — kalça ne yukarıda ne aşağıda.</span></li>
+<li><span class="sn sn-green">3</span><span>Karnı göbeği içe çekip sık. Nefes almayı unutma.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçayı yukarı kaldırmak — vücut düz çizgide</li>
+<li>Beli sarkıtmak — karn sıkı</li>
+<li>Nefes tutmak — ritimli nefes</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=plank+proper+form+core+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Knee Plank (Diz Yerde)</div>
+      <div class="alt-muscles">Core · Başlangıç için daha kolay</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Aynı pozisyon ama parmak ucu yerine diz yerde.</span></li>
+<li><span class="sn sn-blue">2</span><span>Dizler hafif geride — kalça yüksekte değil, düz çizgide.</span></li>
+<li><span class="sn sn-blue">3</span><span>Karnı sık, nefes al.</span></li>
+<li><span class="sn sn-blue">4</span><span>30–40 sn tut. Normal plank'a geçiş için adım.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçayı yukarı kaldırmak — düz çizgi</li>
+<li>Beli sarkıtmak</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=knee+plank+modified+plank+beginner+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Side Plank</div>
+      <div class="alt-muscles">Oblik · Yan core · Kalça stabilitesi</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Bir önkol üzerinde yan yat. Dirseğin omuz altında.</span></li>
+<li><span class="sn sn-blue">2</span><span>Kalçayı yukarı kaldır — vücut düz çizgi.</span></li>
+<li><span class="sn sn-blue">3</span><span>20–30 sn tut. Tarafı değiştir.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zor gelirse alt dizi bükerek destek al.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçanın düşmesi — yukarıda tut</li>
+<li>Boynu bükmek — düz tut</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=side+plank+proper+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Plank — Ekipmansız, Her Yerde</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Ekipman gerekmez · Yoga matı konforlu olur</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Aynı form — dirsekler omuz altında, önkol yerde.</span></li>
+<li><span class="sn sn-green">2</span><span>Vücut düz çizgi, karn sıkı.</span></li>
+<li><span class="sn sn-green">3</span><span>30–40 sn × 3 set.</span></li>
+<li><span class="sn sn-green">4</span><span>İlerleme: Normal plank → side plank → plank + kol kaldırma.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Kalçayı yukarı kaldırmak</li>
+<li>Beli sarkıtmak</li>
+<li>Nefes tutmak</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=plank+exercise+at+home+form+beginner" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">05</div>
+    <div class="ex-dot" style="background:#1e5a8a"></div>
+    <div class="ex-info">
+      <div class="ex-name">Dead Bug</div>
+      <div class="ex-muscles">Derin Core · Koordinasyon · Bel fıtığı önleyici</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">3 × 8/yan</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sırtüstü yat. Her iki kolu tavana uzat. Dizleri 90° kaldır.</span></li>
+<li><span class="sn sn-green">2</span><span>Bel yere yapışık tut — bu kritik!</span></li>
+<li><span class="sn sn-green">3</span><span>Sağ kolu geriye, sol bacağı öne — aynı anda, yavaşça.</span></li>
+<li><span class="sn sn-green">4</span><span>Başlangıca dön. Diğer taraf. Bel hep yerde.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Belin yerden kalkması — en sık hata, hareketi yavaşlat</li>
+<li>Nefes tutmak — nefes verirken uzat</li>
+<li>Çok hızlı yapmak — yavaşlık = doğruluk</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dead+bug+exercise+proper+form+core" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Bird Dog (Dörtnala)</div>
+      <div class="alt-muscles">Core · Sırt stabilitesi · Dead bug'ın alternatifi</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Dörtnala pozisyona geç — eller omuz altında, dizler kalça altında.</span></li>
+<li><span class="sn sn-blue">2</span><span>Sırt düz, boyun nötr.</span></li>
+<li><span class="sn sn-blue">3</span><span>Sağ kolu ve sol bacağı aynı anda uzat — vücut düz çizgi.</span></li>
+<li><span class="sn sn-blue">4</span><span>Zirvedeyken 2 sn tut. Yavaşça in.</span></li>
+<li><span class="sn sn-blue">5</span><span>Diğer taraf. 8 tekrar her yana.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Belin çökmesi veya yukarı kalkması — sırt düz</li>
+<li>Kalçanın yana dönmesi — sabit tut</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=bird+dog+exercise+proper+form+core" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Dead Bug — Ekipmansız, Her Yerde</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Ekipman gerekmez</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Sırtüstü yat. Kolları tavana uzat. Dizleri 90°.</span></li>
+<li><span class="sn sn-green">2</span><span>Beli yere yapıştır — el sığmayacak şekilde.</span></li>
+<li><span class="sn sn-green">3</span><span>Sağ kol geriye uzanırken sol bacağı öne uzat — yavaşça.</span></li>
+<li><span class="sn sn-green">4</span><span>Bel yerden kalktı mı? Dur, sıfırla. Devam.</span></li>
+<li><span class="sn sn-green">5</span><span>8 tekrar her yana × 3 set.</span></li>
+<li><span class="sn sn-green">6</span><span>Zor gelirse: Sadece kolları veya sadece bacakları hareket ettir — ikisini birden yapma.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Belin yerden kalkması</li>
+<li>Hızlı yapmak</li>
+<li>Nefes tutmak</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=dead+bug+exercise+at+home+core+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+<div class="ex-card" onclick="toggleEx(this)">
+  <div class="ex-header">
+    <div class="ex-num">06</div>
+    <div class="ex-dot" style="background:#888"></div>
+    <div class="ex-info">
+      <div class="ex-name">Treadmill İnkline Yürüyüş (Bitiş)</div>
+      <div class="ex-muscles">Kardiyovasküler · Kan şekeri düşürme · Soğuma</div>
+    </div>
+    <div class="ex-meta">
+      <div class="ex-sets">10–12 dk</div>
+      <span class="ex-chev">▾</span>
+    </div>
+  </div>
+  <div class="ex-body">
+    <div class="ex-grid">
+      <div class="ex-section">
+        <div class="ex-section-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Eğim: %5–8. Hız: 5.0–6.0 km/h.</span></li>
+<li><span class="sn sn-green">2</span><span>Kolları serbest bırak — tutamaçlara tutunma.</span></li>
+<li><span class="sn sn-green">3</span><span>10–12 dk kesintisiz yürü.</span></li></ol>
+      </div>
+      <div class="ex-section">
+        <div class="ex-section-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Tutamaçlara asılmak — eğimi azalt</li>
+<li>Diyabetliler: Bu bölüm kan şekerini en çok düşürür — yanında meyve taşı!</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=treadmill+incline+walking+benefits+form" target="_blank">▶ YouTube — Video Rehberi</a>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Salon Alternatifleri</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label salon">↔ Alternatif</span>
+    <div class="ex-info">
+      <div class="alt-name">Elliptical (10–12 dk)</div>
+      <div class="alt-muscles">Kardiyovasküler · Eklem dostu</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-blue">1</span><span>Orta direnç. Kolları da kullan.</span></li>
+<li><span class="sn sn-blue">2</span><span>10–12 dk kesintisiz.</span></li>
+<li><span class="sn sn-blue">3</span><span>Tempo: Nefes alabildiğin ama konuşmakta zorlandığın.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Çok düşük direnç — biraz zorlanmalısın</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=elliptical+cardio+proper+form" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+    <div class="ex-sub-section">
+      <div class="ex-sub-title">Evde Yap</div>
+      
+<div class="alt-card" onclick="toggleAlt(this)">
+  <div class="alt-header">
+    <span class="alt-label home">🏠 Evde Yap</span>
+    <div class="ex-info">
+      <div class="alt-name">Ev Koşu Bandı ✓ Zaten Var</div>
+      <div class="alt-muscles">undefined</div>
+    </div>
+    <span class="alt-chev">▾</span>
+  </div>
+  <div class="alt-body">
+    <div class="home-equip">🏠 Walke W-fit koşu bandı</div>
+    <div class="alt-grid">
+      <div class="alt-sec">
+        <div class="alt-sec-title">Nasıl Yapılır</div>
+        <ol class="ex-steps-list"><li><span class="sn sn-green">1</span><span>Aynı protokol: Eğim %5–8, hız 5.0–6.0 km/h.</span></li>
+<li><span class="sn sn-green">2</span><span>Kolları serbest tut.</span></li>
+<li><span class="sn sn-green">3</span><span>10–12 dk.</span></li>
+<li><span class="sn sn-green">4</span><span>Bantın eğim ayarı yoksa hızı 6.5 km/h'e çıkar.</span></li></ol>
+      </div>
+      <div class="alt-sec">
+        <div class="alt-sec-title">⚠ Sık Yapılan Hatalar</div>
+        <ul class="ex-mistakes-list"><li>Tutamaçlara asılmak</li>
+<li>Düz yürümek — eğim önemli</li></ul>
+      </div>
+    </div>
+    <a class="yt-link" href="https://www.youtube.com/results?search_query=treadmill+incline+walking+at+home+30+minutes" target="_blank">▶ YouTube — Video Rehberi</a>
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+<div class="div"></div>
+<!-- AĞIRLIK SEÇİMİ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">Ağırlık Seçimi</div>
+    <span class="sec-pill">ACSM + NSCA + Schoenfeld 2021</span>
+  </div>
+  <p class="sec-sub">Her harekette bu kuralı uygula</p>
+  <div class="rpe-grid">
+    <div class="rpe-card light">
+      <div class="rpe-label">Çok Hafif</div>
+      <div class="rpe-feel">"Son tekrarda bile zorlanmadım"</div>
+      <div class="rpe-action">→ Bir sonraki sette direnç / ağırlık artır</div>
+    </div>
+    <div class="rpe-card good">
+      <div class="rpe-label">✅ Doğru Ağırlık</div>
+      <div class="rpe-feel">"Son 2–3 tekrar zordu ama formum bozulmadan bittim"</div>
+      <div class="rpe-action">→ Bu dirençte kal veya hafif artır</div>
+    </div>
+    <div class="rpe-card heavy">
+      <div class="rpe-label">Çok Ağır</div>
+      <div class="rpe-feel">"Form bozuldu / nefes kesildi"</div>
+      <div class="rpe-action">→ Azalt. Ego değil, kas çalışmalı</div>
+    </div>
+  </div>
+  <div style="margin-top:12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;">
+    <div style="font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:10px;">Başlangıç Direnç / Ağırlık Rehberi</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;font-size:12px;">
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;"><div style="color:var(--muted);font-size:10px;">Leg Press (salon)</div><div style="color:var(--green);font-family:'Bebas Neue',sans-serif;font-size:20px;margin-top:1px;">20–30 kg</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;"><div style="color:var(--muted);font-size:10px;">Loop Bant (ev)</div><div style="color:var(--green);font-family:'Bebas Neue',sans-serif;font-size:20px;margin-top:1px;">Sarı → Kırmızı</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;"><div style="color:var(--muted);font-size:10px;">Kablo Makinesi</div><div style="color:var(--green);font-family:'Bebas Neue',sans-serif;font-size:20px;margin-top:1px;">5–10 kg</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;"><div style="color:var(--muted);font-size:10px;">Dumbbell (salon)</div><div style="color:var(--green);font-family:'Bebas Neue',sans-serif;font-size:20px;margin-top:1px;">3–5 kg</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;"><div style="color:var(--muted);font-size:10px;">Hip Thrust H.1–2</div><div style="color:var(--green);font-family:'Bebas Neue',sans-serif;font-size:20px;margin-top:1px;">Vücut A.</div></div>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:8px;padding:9px 12px;"><div style="color:var(--muted);font-size:10px;">Dumbbell RDL</div><div style="color:var(--green);font-family:'Bebas Neue',sans-serif;font-size:20px;margin-top:1px;">5–8 kg</div></div>
+    </div>
+  </div>
+  <div class="sources" style="margin-top:10px;">
+    <strong>Kaynaklar:</strong> ACSM Position Stand (2009) · NSCA CPT Guidelines · Schoenfeld et al. (2021) — Kas gelişimi 6–30 tekrar arasında mümkün; asıl belirleyici seti yetmeye yakın bitirmek.
+  </div>
+</div>
+<div class="div"></div>
+<!-- PROGRESİF İLERLEME -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">İlerleme Planı</div>
+    <span class="sec-pill">Bana sormana gerek yok</span>
+  </div>
+  <p class="sec-sub">Bu tabloyu takip et · Her faza geçmeden önce kontrol listesini işaretle</p>
+  <table class="prog-table">
+    <tr><th>Faz</th><th>Hafta</th><th>Gün</th><th>Set × Tekrar</th><th>Direnç / Ağırlık</th><th>Odak</th></tr>
+    <tr>
+      <td><span class="phase-badge ph1">🌱 Temel</span></td>
+      <td>1–2</td>
+      <td>3 gün (Per yok)</td>
+      <td>3 × 12–15</td>
+      <td>Çok hafif / sarı bant</td>
+      <td>Form öğren, salonla tanış. Evde bant egzersizlerini dene.</td>
+    </tr>
+    <tr>
+      <td><span class="phase-badge ph2">🌿 Alışma</span></td>
+      <td>3–4</td>
+      <td>3 gün</td>
+      <td>3–4 × 12</td>
+      <td>Hafif–Orta / kırmızı bant</td>
+      <td>Her haftada 1–2 harekette direnç artır. Son 2 tekrar zorlanıyor mu? ✓</td>
+    </tr>
+    <tr>
+      <td><span class="phase-badge ph3">🌳 İlerleme</span></td>
+      <td>5–8</td>
+      <td>4 gün (Per eklenir)</td>
+      <td>4 × 10–12</td>
+      <td>Orta / yeşil bant</td>
+      <td>Perşembe Tüm Vücut başlar. Hip thrust bench'e geçer. Her 2 haftada direnç artır.</td>
+    </tr>
+    <tr>
+      <td><span class="phase-badge ph4">💪 Güçlenme</span></td>
+      <td>9–12</td>
+      <td>4 gün</td>
+      <td>4 × 8–12</td>
+      <td>Orta–Ağır / yeşil+mavi bant</td>
+      <td>Progressive overload. Her haftada en az 1 harekette yük artır. Sonuçlar görünür.</td>
+    </tr>
+  </table>
+  <div class="checklist" style="margin-top:18px;">
+    <div class="checklist-title">✅ 4. Güne (Perşembe) Geçmeye Hazır Mısın?</div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label">3 gün × 4 hafta boyunca aksatmadan gittim</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label">Hip thrust'ı formunu bozmadan yapabiliyorum</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label">Kablo makinesini tek başıma bağlayıp kullanabiliyorum</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label">Battle rope 4×30 sn'yi tamamlayabiliyorum</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label">Ev egzersizlerini bant setiyle denedim</div></div>
+    <div class="check-item" onclick="toggleCheck(this)"><div class="check-box"></div><div class="check-label">Salonda kendimi rahat hissediyorum ✓</div></div>
+  </div>
+</div>
+<div class="div"></div>
+<!-- DİYABET -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">Diyabet + Spor</div>
+    <span class="sec-pill">ACSM 2022 · ADA Kaynaklı</span>
+  </div>
+  <div class="diab-grid">
+    <div class="diab-card"><div class="diab-icon">🩸</div><div class="diab-title">Spor Öncesi Kan Şekeri</div><div class="diab-desc">Her antrenmandan önce ölç. 100 mg/dL altında → küçük bir şey ye. 250 mg/dL üzeri → o gün dinlen.</div></div>
+    <div class="diab-card"><div class="diab-icon">🍬</div><div class="diab-title">Yanında Taşı</div><div class="diab-desc">Her antrenmanda: 1 küçük meyve veya glikoz tableti. Cuma (Cardio) kan şekerini en çok düşürür.</div></div>
+    <div class="diab-card"><div class="diab-icon">💧</div><div class="diab-title">Su</div><div class="diab-desc">Diyabetliler dehidrasyona daha hassas. Her set arasında küçük bir yudum. Toplam 500–750 ml.</div></div>
+    <div class="diab-card"><div class="diab-icon">🌡️</div><div class="diab-title">Antalya Yazları</div><div class="diab-desc">Yüksek sıcaklıkta egzersiz insülin dengesini bozabilir. Sabah sporu salonun klimalı içinde yap. Ev egzersizi yazın daha rahat olabilir.</div></div>
+    <div class="diab-card"><div class="diab-icon">🛑</div><div class="diab-title">Dur İşaretleri</div><div class="diab-desc">Başdönmesi · Titreme · Anormal ter · Nefes güçlüğü → Dur, otur, hemen ye/iç. 10 dk bekle.</div></div>
+    <div class="diab-card"><div class="diab-icon">💊</div><div class="diab-title">Metformin + Egzersiz</div><div class="diab-desc">Metformin hipoglisemi riskini düşük tutar ama sıfırlamaz. Aç karnına spor yapma. Endokrinologuna programı göster.</div></div>
+  </div>
+  <div class="sources">
+    <strong>Kaynaklar:</strong> ACSM Consensus Statement — Exercise in Type 2 Diabetes (2022) · American Diabetes Association Position Statement (2016) · NASM — Diabetes: Safe and Effective Exercise Programming
+  </div>
+</div>
+</div><!-- /wrap -->
+<footer>
+  <div>Gizem için özel hazırlandı · Claude by Anthropic</div>
+  <div style="margin-top:4px;font-size:10px;">ACSM Position Stand · NSCA CPT Guidelines · Schoenfeld et al. (2021) · PureGym PT Rehberi · ADA Position Statement</div>
+  <div style="margin-top:4px;font-size:10px;">Bu plan genel rehber niteliğindedir · Endokrinolog ve fizyoterapist takibini sürdür</div>
+  <button class="print-btn" onclick="window.print()">🖨 Yazdır / PDF</button>
+</footer>
+<script>
+function switchTab(id, el) {
+  document.querySelectorAll('.wtab-pane').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.wtab').forEach(t => t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+}
+function switchDay(id) {
+  const map = {pzt:0,car:1,per:2,cum:3};
+  document.querySelectorAll('.wday:not(.rest)').forEach((d,i) => {
+    d.classList.toggle('active', i === map[id]);
+  });
+  const btn = document.querySelectorAll('.wtab')[map[id]];
+  if(btn) switchTab(id, btn);
+}
+function toggleEx(card) {
+  // close other ex-cards in same pane
+  const pane = card.closest('.wtab-pane');
+  if (pane) {
+    pane.querySelectorAll('.ex-card.open').forEach(c => {
+      if (c !== card) c.classList.remove('open');
+    });
+  }
+  card.classList.toggle('open');
+}
+function toggleAlt(card) {
+  card.classList.toggle('open');
+  event.stopPropagation();
+}
+function toggleCheck(item) {
+  item.classList.toggle('checked');
+  item.querySelector('.check-box').textContent = item.classList.contains('checked') ? '✓' : '';
+}
+</script>
+</body>

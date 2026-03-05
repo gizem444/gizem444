@@ -1,0 +1,25 @@
+{
+  "name": "My Good Life",
+  "short_name": "My Good Life",
+  "description": "Gizem'in antrenman ve beslenme planı",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#2a5c45",
+  "theme_color": "#2a5c45",
+  "orientation": "portrait-primary",
+  "lang": "tr",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-maskable.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

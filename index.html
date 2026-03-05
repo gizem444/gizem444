@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="My Good Life">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#2a5c45">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon.svg">
+<title>My Good Life</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  height: 100%;
+  font-family: 'Jost', sans-serif;
+  background: #1a3828;
+  color: #fff;
+  overflow: hidden;
+}
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 28px;
+  text-align: center;
+  background: linear-gradient(150deg, #1a3828 0%, #2a5c45 55%, #3d7a5e 100%);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.screen::before {
+  content: '';
+  position: fixed;
+  top: -100px; right: -100px;
+  width: 350px; height: 350px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  pointer-events: none;
+}
+.screen::after {
+  content: '';
+  position: fixed;
+  bottom: -60px; left: -60px;
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  background: rgba(168,230,192,0.05);
+  pointer-events: none;
+}
+.logo {
+  font-size: 64px;
+  margin-bottom: 20px;
+  animation: float 3s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.title {
+  font-family: 'Lora', serif;
+  font-size: 44px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.title em { font-style: italic; color: #a8e6c0; }
+.subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 300;
+  margin-bottom: 40px;
+  line-height: 1.6;
+}
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  max-width: 380px;
+}
+.card {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 18px;
+  padding: 20px 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+  -webkit-tap-highlight-color: transparent;
+}
+.card:active { transform: scale(0.97); background: rgba(255,255,255,0.16); }
+.card-icon { font-size: 36px; flex-shrink: 0; }
+.card-info { flex: 1; text-align: left; }
+.card-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+.card-desc { font-size: 12px; color: rgba(255,255,255,0.55); font-weight: 300; line-height: 1.4; }
+.card-arrow { font-size: 26px; color: rgba(255,255,255,0.35); }
+.footer {
+  margin-top: 32px;
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.7;
+}
+.install-hint {
+  margin-top: 20px;
+  padding: 10px 16px;
+  background: rgba(168,230,192,0.1);
+  border: 1px solid rgba(168,230,192,0.2);
+  border-radius: 12px;
+  font-size: 11.5px;
+  color: rgba(168,230,192,0.8);
+  max-width: 380px;
+  line-height: 1.5;
+}
+</style>
+</head>
+<body>
+<div class="screen">
+  <div class="logo">🌿</div>
+  <div class="title">My Good <em>Life</em></div>
+  <div class="subtitle">Gizem'in sağlıklı yaşam rehberi<br>Antrenman · Beslenme · Her an yanında</div>
+
+  <div class="cards">
+    <a class="card" href="workout.html">
+      <div class="card-icon">🏋️</div>
+      <div class="card-info">
+        <div class="card-title">Antrenman Programı</div>
+        <div class="card-desc">4 gün/hafta · Alt + Üst vücut · Salon + Ev seçenekleri · Tip 2 diyabet uyumlu</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+    <a class="card" href="nutrition.html">
+      <div class="card-icon">🥗</div>
+      <div class="card-info">
+        <div class="card-title">Beslenme Planı</div>
+        <div class="card-desc">~1500 kcal · 5 öğün · Gluten-free · FODMAP · 7 alternatif · Tatlı tarifleri</div>
+      </div>
+      <div class="card-arrow">›</div>
+    </a>
+  </div>
+
+  <div class="install-hint">
+    📱 <strong>Uygulamaya eklemek için:</strong><br>
+    Android: Chrome menüsü → "Ana ekrana ekle"<br>
+    iPad/iPhone: Safari → Paylaş → "Ana Ekrana Ekle"
+  </div>
+
+  <div class="footer">
+    My Good Life · Kişisel kullanım için hazırlandı<br>
+    ACSM · NSCA · ADA · USDA FoodData
+  </div>
+</div>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('./sw.js');
+  });
+}
+</script>
+</body>
+</html>
