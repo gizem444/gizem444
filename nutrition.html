@@ -38,7 +38,6 @@ body {
   font-size: 14px;
   line-height: 1.6;
 }
-/* HERO */
 .hero {
   background: var(--deep);
   padding: 56px 52px 52px;
@@ -98,7 +97,6 @@ body {
   color: rgba(255,255,255,0.4);
   letter-spacing: 0.5px;
 }
-/* STATS */
 .stats {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -113,12 +111,9 @@ body {
 .stat-l { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 4px; }
 .stat-v { font-family: 'Lora', serif; font-size: 20px; color: #fff; }
 .stat-v small { font-family: 'Jost', sans-serif; font-size: 11px; color: rgba(255,255,255,0.4); }
-/* WRAP */
 .wrap { max-width: 980px; margin: 0 auto; padding: 0 40px 80px; }
-/* SECTION */
-.sec {
-  margin-top: 52px;
-}
+@media(max-width:600px) { .wrap { padding: 0 16px 60px; } }
+.sec { margin-top: 52px; }
 .sec-head {
   display: flex;
   align-items: center;
@@ -146,7 +141,6 @@ body {
   margin-bottom: 20px;
   font-weight: 300;
 }
-/* TIMING */
 .timing-strip {
   display: flex;
   gap: 8px;
@@ -170,114 +164,166 @@ body {
 .t-name { font-size: 12px; font-weight: 500; color: var(--deep); margin: 3px 0; }
 .t-note { font-size: 11px; color: var(--muted); line-height: 1.4; }
 .t-warn { color: var(--terra); font-size: 10px; margin-top: 4px; }
-/* TABS */
-.meal-tabs {
-  display: flex;
-  gap: 6px;
-  margin-bottom: 18px;
-  flex-wrap: wrap;
-}
-.mtab {
-  font-size: 12px;
-  padding: 7px 16px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--muted);
-  cursor: pointer;
-  font-family: 'Jost', sans-serif;
-  transition: all 0.18s;
-}
-.mtab:hover { border-color: var(--sage); color: var(--sage); }
-.mtab.on { background: var(--deep); color: #fff; border-color: var(--deep); font-weight: 500; }
-.tab-pane { display: none; }
-.tab-pane.on { display: block; }
-/* MACRO BANNER */
-.mbanner {
+/* INFO CARD */
+.info-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
-  padding: 18px 24px;
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  align-items: center;
-  margin-bottom: 20px;
+  padding: 20px 24px;
+  margin-top: 52px;
 }
-.mb-item { display: flex; flex-direction: column; gap: 2px; }
-.mb-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); }
-.mb-val { font-family: 'Lora', serif; font-size: 22px; }
-.mb-val.g { color: var(--sage); }
-.mb-val.b { color: var(--blue); }
-.mb-val.o { color: var(--terra); }
-.mb-val.gold { color: var(--gold); }
-.mb-sub { font-size: 10px; color: var(--muted); }
-.mb-note { margin-left: auto; font-size: 12px; color: var(--muted); max-width: 200px; line-height: 1.5; }
-/* MEAL CARD */
-.meals-grid {
+.info-card-title {
+  font-family: 'Lora', serif;
+  font-size: 18px;
+  color: var(--deep);
+  margin-bottom: 14px;
+}
+.info-card-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
-@media(max-width:580px) { .meals-grid { grid-template-columns: 1fr; } }
-.meals-grid.single { grid-template-columns: 1fr 1fr; }
-.mc {
+@media(max-width:600px) { .info-card-grid { grid-template-columns: 1fr; } }
+.info-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.info-box-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+.info-box-val { font-family: 'Lora', serif; font-size: 22px; color: var(--gold); }
+.info-box-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+.info-box-p { font-size: 12px; color: var(--sage); margin-top: 6px; font-weight: 500; }
+/* MEAL CATEGORY */
+.meal-cat { margin-top: 48px; }
+.meal-cat-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+}
+.meal-cat-emoji { font-size: 32px; line-height: 1; flex-shrink: 0; }
+.meal-cat-info { flex: 1; }
+.meal-cat-title {
+  font-family: 'Lora', serif;
+  font-size: 26px;
+  font-weight: 400;
+  color: var(--deep);
+  line-height: 1.1;
+}
+.meal-cat-meta {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.cat-pill {
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 11px;
+  border-radius: 20px;
+  background: var(--border);
+  color: var(--muted);
+}
+.cat-pill.p { background: var(--sage-light); color: var(--sage); border: 1px solid #b8d4b4; }
+.cat-pill.k { background: var(--gold-light); color: var(--gold); }
+/* ACCORDION */
+.acc-grid { display: flex; flex-direction: column; gap: 8px; }
+.acc-card {
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
 }
-.mc.span2 { grid-column: span 2; }
-@media(max-width:580px) { .mc.span2 { grid-column: span 1; } }
-.mc-head {
+.acc-head {
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 13px 16px;
-  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.15s;
 }
-.mc-icon {
-  width: 36px; height: 36px;
+.acc-head:hover { background: var(--card); }
+.acc-card.open .acc-head {
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+.acc-icon {
+  width: 38px; height: 38px;
   border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 17px; flex-shrink: 0;
+  font-size: 18px; flex-shrink: 0;
 }
-.mc-icon.sage { background: var(--sage-light); }
-.mc-icon.gold { background: var(--gold-light); }
-.mc-icon.terra { background: var(--terra-light); }
-.mc-icon.blue { background: var(--blue-light); }
-.mc-meta { flex: 1; }
-.mc-day { font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
-.mc-name { font-size: 14px; font-weight: 500; color: var(--deep); margin-top: 1px; }
-.mc-nums {
+.acc-icon.sage { background: var(--sage-light); }
+.acc-icon.gold { background: var(--gold-light); }
+.acc-icon.terra { background: var(--terra-light); }
+.acc-icon.blue { background: var(--blue-light); }
+.acc-meta { flex: 1; min-width: 0; }
+.acc-code { font-size: 9.5px; letter-spacing: 1px; text-transform: uppercase; color: var(--muted); }
+.acc-name { font-size: 14px; font-weight: 500; color: var(--deep); margin-top: 1px; }
+.acc-macros {
   text-align: right;
   flex-shrink: 0;
 }
-.mc-kcal { font-family: 'Lora', serif; font-size: 18px; color: var(--gold); }
-.mc-pfc { font-size: 10px; color: var(--muted); margin-top: 1px; }
-.mc-body { padding: 13px 16px; }
-.mc-body ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
-.mc-body li {
+.acc-kcal { font-family: 'Lora', serif; font-size: 18px; color: var(--gold); }
+.acc-pfc { font-size: 10px; color: var(--muted); margin-top: 1px; white-space: nowrap; }
+.acc-chevron {
+  font-size: 12px;
+  color: var(--subtle);
+  margin-left: 8px;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.acc-card.open .acc-chevron { transform: rotate(180deg); }
+.acc-body {
+  display: none;
+  padding: 14px 16px;
+}
+.acc-card.open .acc-body { display: block; }
+.acc-body ul { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+.acc-body li {
   font-size: 12.5px; color: #5a5248;
   display: flex; gap: 8px; align-items: flex-start; line-height: 1.4;
 }
-.mc-body li::before { content: '·'; color: var(--subtle); font-size: 16px; line-height: 1; flex-shrink: 0; margin-top: 0px; }
-.mc-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
-.mtag { font-size: 10px; padding: 2px 9px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); }
-.mtag.p { border-color: #b8d4b4; color: var(--sage); }
-.mtag.c { border-color: #b4cad8; color: var(--blue); }
-.mtag.warn { border-color: #e8c9b8; color: var(--terra); }
-.mtag.ok { border-color: #b8d4b4; color: var(--sage); background: var(--sage-light); }
-.mc-note {
+.acc-body li::before { content: '·'; color: var(--subtle); font-size: 16px; line-height: 1; flex-shrink: 0; }
+.acc-cook {
   margin-top: 10px;
   padding: 8px 12px;
-  background: var(--card);
+  background: var(--gold-light);
   border-radius: 8px;
   font-size: 11.5px;
-  color: var(--muted);
+  color: #7a5c1a;
   line-height: 1.5;
 }
-/* MACRO TABLE */
+.acc-tip {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--sage-light);
+  border-radius: 8px;
+  font-size: 11.5px;
+  color: #3a5a34;
+  line-height: 1.5;
+}
+.acc-warn {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: var(--terra-light);
+  border-radius: 8px;
+  font-size: 11.5px;
+  color: #7a3d25;
+  line-height: 1.5;
+}
+.acc-tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 10px; }
+.atag { font-size: 10px; padding: 2px 9px; border-radius: 20px; border: 1px solid var(--border); color: var(--muted); }
+.atag.p { border-color: #b8d4b4; color: var(--sage); }
+.atag.c { border-color: #b4cad8; color: var(--blue); }
+.atag.warn { border-color: #e8c9b8; color: var(--terra); }
+.atag.ok { border-color: #b8d4b4; color: var(--sage); background: var(--sage-light); }
+/* TABLO */
 .macro-tbl {
   width: 100%;
   border-collapse: collapse;
@@ -324,81 +370,7 @@ body {
   color: var(--sage);
   border: 1px solid #b8d4b4;
 }
-/* WEEKLY TABLE */
-.week-tbl {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 12px;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  overflow: hidden;
-}
-.week-tbl th {
-  background: var(--deep);
-  color: rgba(255,255,255,0.7);
-  padding: 10px 14px;
-  text-align: left;
-  font-size: 10px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 400;
-}
-.week-tbl td {
-  padding: 11px 14px;
-  border-bottom: 1px solid var(--border);
-  vertical-align: top;
-  line-height: 1.5;
-  color: var(--deep);
-}
-.week-tbl tr:last-child td { border-bottom: none; }
-.week-tbl tr:nth-child(even) td { background: var(--card); }
-.day-cell { font-weight: 600; font-size: 11px; letter-spacing: 0.5px; color: var(--brown); white-space: nowrap; }
-.macro-cell { font-size: 11px; color: var(--muted); white-space: nowrap; }
-/* SWEETS */
-.sweet-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-}
-@media(max-width:580px) { .sweet-grid { grid-template-columns: 1fr; } }
-.sweet-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 18px 18px;
-}
-.sweet-icon { font-size: 24px; margin-bottom: 10px; }
-.sweet-name { font-size: 14px; font-weight: 500; color: var(--deep); margin-bottom: 8px; }
-.sweet-steps { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.sweet-steps li { font-size: 12px; color: var(--muted); display: flex; gap: 8px; }
-.sweet-steps li::before { content: '→'; color: var(--subtle); flex-shrink: 0; }
-.sweet-macro {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-  margin-top: 12px;
-  padding-top: 10px;
-  border-top: 1px solid var(--border);
-}
-.sm { font-size: 10px; padding: 2px 9px; border-radius: 20px; }
-.sm.kcal { background: var(--gold-light); color: var(--gold); }
-.sm.p { background: var(--sage-light); color: var(--sage); }
-.sm.note { background: var(--blue-light); color: var(--blue); }
-/* ALERT */
-.alert {
-  background: var(--terra-light);
-  border: 1px solid #e8c9b8;
-  border-left: 3px solid var(--terra);
-  border-radius: 0 10px 10px 0;
-  padding: 12px 18px;
-  font-size: 12.5px;
-  color: #7a3d25;
-  line-height: 1.6;
-  margin: 28px 0 0;
-}
-.alert strong { color: var(--terra); }
-/* BESIN REF */
+/* REF TABLE */
 .ref-tbl-wrap {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -437,9 +409,54 @@ body {
   color: var(--blue);
   margin-left: 4px;
 }
-/* DIVIDER */
+/* GREEN GUIDE */
+.green-guide {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin-top: 8px;
+}
+.green-guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 12px;
+}
+@media(max-width:600px) { .green-guide-grid { grid-template-columns: 1fr; } }
+.gg-block-label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+  display: block;
+}
+.gg-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.gg-tag {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--sage-light);
+  color: var(--sage);
+  border: 1px solid #b8d4b4;
+}
+.gg-tag.herb { background: var(--gold-light); color: var(--gold); border-color: #e8d4a0; }
+.gg-tag.sauce { background: var(--blue-light); color: var(--blue); border-color: #b4cad8; }
+/* ALERT */
+.alert {
+  background: var(--terra-light);
+  border: 1px solid #e8c9b8;
+  border-left: 3px solid var(--terra);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 18px;
+  font-size: 12.5px;
+  color: #7a3d25;
+  line-height: 1.6;
+  margin: 28px 0 0;
+}
+.alert strong { color: var(--terra); }
 .div { height: 1px; background: var(--border); margin: 40px 0; }
-/* FOOTER */
 footer {
   text-align: center;
   padding: 28px;
@@ -462,11 +479,6 @@ footer {
   transition: all 0.2s;
 }
 .print-btn:hover { background: var(--deep); color: #fff; border-color: var(--deep); }
-@media print {
-  .meal-tabs, .print-btn { display: none; }
-  .tab-pane { display: block !important; }
-}
-/* BACK BUTTON */
 .back-btn {
   position: absolute; top: 14px; left: 14px; z-index: 10;
   background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
@@ -476,16 +488,24 @@ footer {
   -webkit-tap-highlight-color: transparent;
 }
 .back-btn:active { background: rgba(255,255,255,0.22); }
+@media(max-width:600px) {
+  .hero { padding: 48px 20px 40px; }
+  .hero h1 { font-size: 38px; }
+  .acc-name { font-size: 13px; }
+}
+@media print {
+  .print-btn, .back-btn { display: none; }
+  .acc-body { display: block !important; }
+}
 </style>
 </head>
 <body>
-
 <!-- HERO -->
 <div class="hero" style="position:relative;">
   <a class="back-btn" href="index.html">← Geri</a>
   <div class="hero-eyebrow">My Good Life · Kişisel Beslenme Planı</div>
-  <h1 style="font-family:'Lora',serif;font-size:54px;font-weight:400;color:#fff;line-height:1.05;">Beslenme <em>Planı</em></h1>
-  <div class="hero-desc">Gluten-free · FODMAP uyumlu · ~1570 kcal/gün · 6 öğün · Tip 2 diyabet yönetimi için optimize edilmiş.</div>
+  <h1>Beslenme <em>Planı</em></h1>
+  <div class="hero-desc">~1400–1570 kcal · Öğün bazlı alternatifler · Gluten kontrollü · FODMAP uyumlu · Tip 2 diyabet yönetimi</div>
   <div class="hero-sources">
     <span class="src-tag">ADA 2024</span>
     <span class="src-tag">USDA FoodData</span>
@@ -497,1260 +517,1539 @@ footer {
 
 <!-- STATS -->
 <div class="stats">
-  <div class="stat"><div class="stat-l">Kalori</div><div class="stat-v">~1570 <small>kcal</small></div></div>
-  <div class="stat"><div class="stat-l">Protein</div><div class="stat-v">~117 <small>g</small></div></div>
-  <div class="stat"><div class="stat-l">Karbonhidrat</div><div class="stat-v">~120 <small>g</small></div></div>
-  <div class="stat"><div class="stat-l">Yağ</div><div class="stat-v">~64 <small>g</small></div></div>
+  <div class="stat"><div class="stat-l">Kalori</div><div class="stat-v">1400–1570 <small>kcal</small></div></div>
+  <div class="stat"><div class="stat-l">Protein</div><div class="stat-v">95–130 <small>g</small></div></div>
   <div class="stat"><div class="stat-l">Öğün</div><div class="stat-v">6 <small>öğün</small></div></div>
-  <div class="stat"><div class="stat-l">Alternatif</div><div class="stat-v">7 <small>gün</small></div></div>
+  <div class="stat"><div class="stat-l">Kahvaltı</div><div class="stat-v">8 <small>seçenek</small></div></div>
+  <div class="stat"><div class="stat-l">Öğle</div><div class="stat-v">14 <small>seçenek</small></div></div>
+  <div class="stat"><div class="stat-l">Akşam</div><div class="stat-v">11 <small>seçenek</small></div></div>
 </div>
 
 <div class="wrap">
 
-  <!-- ÖĞÜN ZAMANLAMA -->
-  <div class="sec">
-    <div class="sec-head">
-      <div class="sec-title">Öğün Zamanlaması</div>
-      <span class="sec-pill">Günlük Ritim</span>
+<!-- GÜNLÜK TOPLAM ÖRNEĞİ -->
+<div class="info-card">
+  <div class="info-card-title">Günlük Toplam Örneği</div>
+  <div class="info-card-grid">
+    <div class="info-box">
+      <div class="info-box-label">Düşük Uç</div>
+      <div class="info-box-val">~1195 kcal</div>
+      <div class="info-box-sub">En hafif kombinasyon</div>
+      <div class="info-box-p">Protein: ~95g</div>
     </div>
-    <div class="sec-sub">Kan şekeri stabilitesi için 3–4 saat aralıklı öğünler önerilir.</div>
-    <div class="timing-strip">
-      <div class="t-step">
-        <div class="t-time">06:15</div>
-        <div class="t-name">Spor Öncesi</div>
-        <div class="t-note">~100 kcal · Hızlı enerji</div>
-        <div class="t-warn">⚡ Antrenman günleri</div>
-      </div>
-      <div class="t-step">
-        <div class="t-time">07:30</div>
-        <div class="t-name">Kahvaltı</div>
-        <div class="t-note">~420 kcal · Protein ağırlıklı</div>
-      </div>
-      <div class="t-step">
-        <div class="t-time">10:30</div>
-        <div class="t-name">Ara Öğün 1</div>
-        <div class="t-note">~180 kcal · Düşük GI</div>
-      </div>
-      <div class="t-step">
-        <div class="t-time">13:00</div>
-        <div class="t-name">Öğle Yemeği</div>
-        <div class="t-note">~420 kcal · Dengeli tabak</div>
-      </div>
-      <div class="t-step">
-        <div class="t-time">16:30</div>
-        <div class="t-name">Ara Öğün 2</div>
-        <div class="t-note">~165 kcal · Tatlı krizi önleyici</div>
-      </div>
-      <div class="t-step">
-        <div class="t-time">19:00</div>
-        <div class="t-name">Akşam Yemeği</div>
-        <div class="t-note">~290 kcal · Hafif, protein</div>
+    <div class="info-box">
+      <div class="info-box-label">Orta (Tipik Gün)</div>
+      <div class="info-box-val">~1420 kcal</div>
+      <div class="info-box-sub">Dengeli seçimler</div>
+      <div class="info-box-p">Protein: ~110g</div>
+    </div>
+    <div class="info-box">
+      <div class="info-box-label">Yüksek Uç</div>
+      <div class="info-box-val">~1640 kcal</div>
+      <div class="info-box-sub">Yoğun antrenman günü</div>
+      <div class="info-box-p">Protein: ~130g</div>
+    </div>
+  </div>
+</div>
+
+<!-- ÖĞÜN ZAMANLAMA -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">Öğün Zamanlaması</div>
+    <span class="sec-pill">Günlük Ritim</span>
+  </div>
+  <div class="sec-sub">Kan şekeri stabilitesi için 3–4 saat aralıklı öğünler önerilir.</div>
+  <div class="timing-strip">
+    <div class="t-step">
+      <div class="t-time">07:30</div>
+      <div class="t-name">Kahvaltı</div>
+      <div class="t-note">~280–320 kcal · Protein ağırlıklı</div>
+    </div>
+    <div class="t-step">
+      <div class="t-time">10:30</div>
+      <div class="t-name">Ara Öğün 1</div>
+      <div class="t-note">~120–165 kcal · Düşük GI</div>
+    </div>
+    <div class="t-step">
+      <div class="t-time">13:00</div>
+      <div class="t-name">Öğle Yemeği</div>
+      <div class="t-note">~280–420 kcal · Dengeli tabak</div>
+    </div>
+    <div class="t-step">
+      <div class="t-time">16:30</div>
+      <div class="t-name">Ara Öğün 2</div>
+      <div class="t-note">~115–165 kcal · Tatlı krizi önleyici</div>
+    </div>
+    <div class="t-step">
+      <div class="t-time">19:00</div>
+      <div class="t-name">Akşam Yemeği</div>
+      <div class="t-note">~250–350 kcal · Hafif, protein</div>
+    </div>
+    <div class="t-step">
+      <div class="t-time">21:00</div>
+      <div class="t-name">Sağlıklı Tatlı</div>
+      <div class="t-note">~150–220 kcal · Opsiyonel</div>
+      <div class="t-warn">⚡ Antrenman günleri önerilir</div>
+    </div>
+  </div>
+</div>
+
+<!-- ☀️ KAHVALTI -->
+<div class="meal-cat">
+  <div class="meal-cat-header">
+    <div class="meal-cat-emoji">☀️</div>
+    <div class="meal-cat-info">
+      <div class="meal-cat-title">Kahvaltı Alternatifleri</div>
+      <div class="meal-cat-meta">
+        <span class="cat-pill k">280–320 kcal</span>
+        <span class="cat-pill p">Ort. Protein: ~16g</span>
+        <span class="cat-pill">8 Seçenek</span>
       </div>
     </div>
   </div>
+  <div class="acc-grid">
 
-  <!-- GÜNLÜK ÖĞÜNLER -->
-  <div class="sec">
-    <div class="sec-head">
-      <div class="sec-title">Günlük Öğün Planı</div>
-      <span class="sec-pill">7 Gün · 7 Alternatif</span>
-    </div>
-    <div class="sec-sub">Her gün farklı bir seçenek — monotonluktan kaçınmak için 7 çeşit rotasyon.</div>
-
-    <div class="meal-tabs">
-      <button class="mtab on" onclick="showTab('gun1')">Pazartesi</button>
-      <button class="mtab" onclick="showTab('gun2')">Salı</button>
-      <button class="mtab" onclick="showTab('gun3')">Çarşamba</button>
-      <button class="mtab" onclick="showTab('gun4')">Perşembe</button>
-      <button class="mtab" onclick="showTab('gun5')">Cuma</button>
-      <button class="mtab" onclick="showTab('gun6')">Cumartesi</button>
-      <button class="mtab" onclick="showTab('gun7')">Pazar</button>
-    </div>
-
-    <!-- GÜN 1: PAZARTESİ -->
-    <div class="tab-pane on" id="gun1">
-      <div class="mbanner">
-        <div class="mb-item"><div class="mb-label">Toplam</div><div class="mb-val gold">~1570 kcal</div></div>
-        <div class="mb-item"><div class="mb-label">Protein</div><div class="mb-val g">~116g</div></div>
-        <div class="mb-item"><div class="mb-label">Karbonhidrat</div><div class="mb-val b">~118g</div></div>
-        <div class="mb-item"><div class="mb-label">Yağ</div><div class="mb-val o">~62g</div></div>
-        <div class="mb-note">K1 Türk Sofrası · AÖ1 Lor+Elma · AT1 Bitter+Badem · A1 Mercimek+Salata</div>
+    <!-- K1 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🍳</div>
+        <div class="acc-meta">
+          <div class="acc-code">K1 · Kahvaltı</div>
+          <div class="acc-name">Türk Sofrası</div>
+        </div>
+        <div class="acc-macros">
+          <div class="acc-kcal">310 kcal</div>
+          <div class="acc-pfc">P:16g · K:22g · Y:16g</div>
+        </div>
+        <span class="acc-chevron">▼</span>
       </div>
-      <div class="meals-grid">
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🍳</div>
-            <div class="mc-meta"><div class="mc-day">07:30 · Kahvaltı — K1</div><div class="mc-name">Türk Sofrası</div></div>
-            <div class="mc-nums"><div class="mc-kcal">430</div><div class="mc-pfc">P:22 K:30 Y:18</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>2 dilim glutensiz ekmek (80g)</li>
-              <li>1 yumurta (haşlanmış veya sahanda)</li>
-              <li>30g lor peyniri</li>
-              <li>1 dilim beyaz peynir (20g)</li>
-              <li>3 adet zeytin (siyah/yeşil)</li>
-              <li>Domates + salatalık + biber (dilimlenmiş)</li>
-              <li>Çay (şekersiz)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">FODMAP ✓</span>
-              <span class="mtag c">Düşük GI</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon gold">🍎</div>
-            <div class="mc-meta"><div class="mc-day">10:30 · Ara Öğün — AÖ1</div><div class="mc-name">Lor + Elma</div></div>
-            <div class="mc-nums"><div class="mc-kcal">200</div><div class="mc-pfc">P:12 K:22 Y:5</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>80g lor peyniri</li>
-              <li>1 orta boy elma (150g)</li>
-              <li>Tarçın (opsiyonel)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag p">Protein + Lif</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc span2">
-          <div class="mc-head">
-            <div class="mc-icon terra">🍗</div>
-            <div class="mc-meta"><div class="mc-day">13:00 · Öğle</div><div class="mc-name">Fırın Tavuk + Roka Salatası</div></div>
-            <div class="mc-nums"><div class="mc-kcal">430</div><div class="mc-pfc">P:40 K:20 Y:18</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>130g fırında pişmiş tavuk göğsü (kekik, limon)</li>
-              <li>Roka 40g, domates 80g, salatalık 80g</li>
-              <li>1 çay kaşığı zeytinyağı + limon sosu</li>
-              <li>1 dilim glutensiz ekmek (40g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Yüksek Protein</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon blue">🍫</div>
-            <div class="mc-meta"><div class="mc-day">16:30 · Ara Öğün — AT1</div><div class="mc-name">Bitter Çikolata + Badem</div></div>
-            <div class="mc-nums"><div class="mc-kcal">160</div><div class="mc-pfc">P:4 K:10 Y:12</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>2 kare bitter çikolata %70+ (20g)</li>
-              <li>15g çiğ badem</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag c">Antioksidan</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🍵</div>
-            <div class="mc-meta"><div class="mc-day">19:00 · Akşam — A1</div><div class="mc-name">Kırmızı Mercimek Çorbası + Yeşil Salata</div></div>
-            <div class="mc-nums"><div class="mc-kcal">310</div><div class="mc-pfc">P:18 K:45 Y:5</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>1 kase kırmızı mercimek çorbası (su ile, 200ml)</li>
-              <li>Havuç 30g, soğan 20g, limon (hazırda)</li>
-              <li>Taze yeşil salata: roka, domates, salatalık</li>
-              <li>1 çay kaşığı zeytinyağı (salata için)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Bitkisel Protein</span>
-              <span class="mtag c">Yüksek Lif</span>
-            </div>
-            <div class="mc-note">💡 Kırmızı mercimek çorbası glisemik indeksi düşük, lif ve bitkisel protein kaynağı — akşam için ideal hafif seçenek.</div>
-          </div>
+      <div class="acc-body">
+        <ul>
+          <li>1 yumurta — haşlanmış veya rafadan</li>
+          <li>30g beyaz peynir</li>
+          <li>5 zeytin</li>
+          <li>1 dilim glutensiz ekmek (40g çiğ ağırlık)</li>
+          <li>Domates, salatalık, taze maydanoz</li>
+        </ul>
+        <div class="acc-tags">
+          <span class="atag ok">Gluten kontrollü</span>
+          <span class="atag p">FODMAP ✓</span>
+          <span class="atag c">Düşük GI</span>
         </div>
       </div>
     </div>
 
-    <!-- GÜN 2: SALI -->
-    <div class="tab-pane" id="gun2">
-      <div class="mbanner">
-        <div class="mb-item"><div class="mb-label">Toplam</div><div class="mb-val gold">~1555 kcal</div></div>
-        <div class="mb-item"><div class="mb-label">Protein</div><div class="mb-val g">~118g</div></div>
-        <div class="mb-item"><div class="mb-label">Karbonhidrat</div><div class="mb-val b">~122g</div></div>
-        <div class="mb-item"><div class="mb-label">Yağ</div><div class="mb-val o">~58g</div></div>
-        <div class="mb-note">K2 Yulaf Bowl+Yumurta · AÖ7 Yumurta+Lor · AT2 Yoğurt+Çilek · A2 Fasulye+Tavuk</div>
+    <!-- K2 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🍳</div>
+        <div class="acc-meta">
+          <div class="acc-code">K2 · Kahvaltı</div>
+          <div class="acc-name">Menemen</div>
+        </div>
+        <div class="acc-macros">
+          <div class="acc-kcal">320 kcal</div>
+          <div class="acc-pfc">P:16g · K:22g · Y:18g</div>
+        </div>
+        <span class="acc-chevron">▼</span>
       </div>
-      <div class="meals-grid">
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🥣</div>
-            <div class="mc-meta"><div class="mc-day">07:30 · Kahvaltı — K2</div><div class="mc-name">Yulaf Bowl + 1 Yumurta</div></div>
-            <div class="mc-nums"><div class="mc-kcal">380</div><div class="mc-pfc">P:18 K:48 Y:10</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>Yulaf ezmesi 50g (suda/sütsüz pişmiş)</li>
-              <li>1 haşlanmış yumurta</li>
-              <li>1 çay kaşığı chia tohumu</li>
-              <li>5 adet badem (10g)</li>
-              <li>Tarçın (kan şekeri için)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag c">Beta-glukan · Lif</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon gold">🥚</div>
-            <div class="mc-meta"><div class="mc-day">10:30 · Ara Öğün — AÖ7</div><div class="mc-name">Yumurta + Lor</div></div>
-            <div class="mc-nums"><div class="mc-kcal">180</div><div class="mc-pfc">P:15 K:2 Y:11</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>1 haşlanmış yumurta</li>
-              <li>60g lor peyniri</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag p">Yüksek Protein</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc span2">
-          <div class="mc-head">
-            <div class="mc-icon terra">🫘</div>
-            <div class="mc-meta"><div class="mc-day">13:00 · Öğle</div><div class="mc-name">Fasulye Pilaki + Yoğurt</div></div>
-            <div class="mc-nums"><div class="mc-kcal">405</div><div class="mc-pfc">P:20 K:55 Y:12</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>150g pişmiş beyaz fasulye (pilaki usulü)</li>
-              <li>Domates, zeytinyağı, havuç (sote)</li>
-              <li>100g laktoz-free yoğurt (yanında)</li>
-              <li>1 dilim glutensiz ekmek (40g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag c">Yüksek Lif</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon blue">🍓</div>
-            <div class="mc-meta"><div class="mc-day">16:30 · Ara Öğün — AT2</div><div class="mc-name">Yoğurt + Çilek</div></div>
-            <div class="mc-nums"><div class="mc-kcal">140</div><div class="mc-pfc">P:8 K:18 Y:3</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>150g laktoz-free yoğurt</li>
-              <li>100g çilek (taze)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag p">Probiyotik</span>
-              <span class="mtag c">C Vitamini</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🍗</div>
-            <div class="mc-meta"><div class="mc-day">19:00 · Akşam — A2</div><div class="mc-name">Yeşil Fasulye + Tavuk</div></div>
-            <div class="mc-nums"><div class="mc-kcal">290</div><div class="mc-pfc">P:28 K:22 Y:8</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>120g ızgara/haşlanmış tavuk göğsü</li>
-              <li>200g yeşil fasulye (pişmiş)</li>
-              <li>1 çay kaşığı zeytinyağı + limon</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Yüksek Protein</span>
-              <span class="mtag c">Düşük Kalori</span>
-            </div>
-          </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 yumurta</li>
+          <li>1 domates, 1 sivri biber, 1 tatlı kaşığı zeytinyağı</li>
+          <li>Pul biber, tuz</li>
+          <li>Yanında 1 dilim glutensiz ekmek (40g)</li>
+        </ul>
+        <div class="acc-cook">🔥 Zeytinyağında biberi kavur → domates ekle → yumurtaları kır, karıştırarak pişir.</div>
+        <div class="acc-tags">
+          <span class="atag ok">Gluten kontrollü</span>
+          <span class="atag p">FODMAP ✓</span>
         </div>
       </div>
     </div>
 
-    <!-- GÜN 3: ÇARŞAMBA -->
-    <div class="tab-pane" id="gun3">
-      <div class="mbanner">
-        <div class="mb-item"><div class="mb-label">Toplam</div><div class="mb-val gold">~1580 kcal</div></div>
-        <div class="mb-item"><div class="mb-label">Protein</div><div class="mb-val g">~115g</div></div>
-        <div class="mb-item"><div class="mb-label">Karbonhidrat</div><div class="mb-val b">~115g</div></div>
-        <div class="mb-item"><div class="mb-label">Yağ</div><div class="mb-val o">~65g</div></div>
-        <div class="mb-note">K3 Kaşarlı Tost · AÖ3 Yumurta+Ceviz · AT4 Protein Tiramisu · A3 Ton Balığı Salatası</div>
+    <!-- K3 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🥣</div>
+        <div class="acc-meta">
+          <div class="acc-code">K3 · Kahvaltı</div>
+          <div class="acc-name">Yulaf Bowl</div>
+        </div>
+        <div class="acc-macros">
+          <div class="acc-kcal">310 kcal</div>
+          <div class="acc-pfc">P:16g · K:36g · Y:10g</div>
+        </div>
+        <span class="acc-chevron">▼</span>
       </div>
-      <div class="meals-grid">
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🧇</div>
-            <div class="mc-meta"><div class="mc-day">07:30 · Kahvaltı — K3</div><div class="mc-name">Kaşarlı Tost</div></div>
-            <div class="mc-nums"><div class="mc-kcal">410</div><div class="mc-pfc">P:20 K:35 Y:18</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>2 dilim glutensiz ekmek (80g)</li>
-              <li>30g kaşar peyniri (eritilmiş)</li>
-              <li>Domates dilimi + taze nane</li>
-              <li>Çay (şekersiz)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Kalsiyum</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon gold">🥚</div>
-            <div class="mc-meta"><div class="mc-day">10:30 · Ara Öğün — AÖ3</div><div class="mc-name">Yumurta + Ceviz</div></div>
-            <div class="mc-nums"><div class="mc-kcal">200</div><div class="mc-pfc">P:9 K:3 Y:16</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>1 haşlanmış yumurta</li>
-              <li>20g ceviz (4 yarım)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag c">Omega-3</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc span2">
-          <div class="mc-head">
-            <div class="mc-icon terra">🥗</div>
-            <div class="mc-meta"><div class="mc-day">13:00 · Öğle</div><div class="mc-name">Kinoa + Sebzeli Salata</div></div>
-            <div class="mc-nums"><div class="mc-kcal">420</div><div class="mc-pfc">P:16 K:55 Y:14</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>80g pişmiş kinoa</li>
-              <li>Roka, domates, salatalık, mısır (bol yeşillik)</li>
-              <li>1 yemek kaşığı zeytinyağı + limon sosu</li>
-              <li>1 haşlanmış yumurta (üstüne)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Tam Protein (Kinoa)</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon blue">☕</div>
-            <div class="mc-meta"><div class="mc-day">16:30 · Ara Öğün — AT4</div><div class="mc-name">Protein Tiramisu Bowl</div></div>
-            <div class="mc-nums"><div class="mc-kcal">185</div><div class="mc-pfc">P:14 K:15 Y:7</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>100g lor peyniri</li>
-              <li>1 yumurta sarısı</li>
-              <li>5g kakao tozu (sade)</li>
-              <li>Stevia/eritritol</li>
-              <li>1 çay bardağı siyah kahve (için)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Yüksek Protein</span>
-            </div>
-            <div class="mc-note">💡 T1 tarifi — Tatlılar bölümüne bakınız.</div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🐟</div>
-            <div class="mc-meta"><div class="mc-day">19:00 · Akşam — A3</div><div class="mc-name">Ton Balığı Salatası</div></div>
-            <div class="mc-nums"><div class="mc-kcal">280</div><div class="mc-pfc">P:28 K:12 Y:10</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>1 kutu ton balığı (80g, suda)</li>
-              <li>Roka, domates, salatalık, yeşil zeytin</li>
-              <li>1 çay kaşığı zeytinyağı + limon suyu</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Omega-3</span>
-              <span class="mtag c">Düşük Kalori</span>
-            </div>
-          </div>
+      <div class="acc-body">
+        <ul>
+          <li>40g yulaf ezmesi (kuru)</li>
+          <li>150ml laktoz-free süt</li>
+          <li>5 çilek veya ½ muz</li>
+          <li>1 tatlı kaşığı chia, tarçın</li>
+          <li>1 tablet stevia (sütte erit)</li>
+          <li>Yanında 1 haşlanmış yumurta</li>
+        </ul>
+        <div class="acc-cook">🔥 Sütü ılıt → stevia tabletini erit → yulaf ekle → 3-4dk pişir. Üstüne meyve ve chia.</div>
+        <div class="acc-tip">💡 Stevia tablet soğuk sıvıda zor çözünür. Önce ılık suda veya sütte eritin.</div>
+        <div class="acc-tags">
+          <span class="atag p">Beta-glukan · Lif</span>
+          <span class="atag c">Düşük GI</span>
         </div>
       </div>
     </div>
 
-    <!-- GÜN 4: PERŞEMBE -->
-    <div class="tab-pane" id="gun4">
-      <div class="mbanner">
-        <div class="mb-item"><div class="mb-label">Toplam</div><div class="mb-val gold">~1545 kcal</div></div>
-        <div class="mb-item"><div class="mb-label">Protein</div><div class="mb-val g">~112g</div></div>
-        <div class="mb-item"><div class="mb-label">Karbonhidrat</div><div class="mb-val b">~115g</div></div>
-        <div class="mb-item"><div class="mb-label">Yağ</div><div class="mb-val o">~65g</div></div>
-        <div class="mb-note">K4 Menemen · AÖ6 Lor+Çilek · AT3 Bitter+Ceviz · A4 Sebzeli Omlet</div>
+    <!-- K4 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🧀</div>
+        <div class="acc-meta">
+          <div class="acc-code">K4 · Kahvaltı</div>
+          <div class="acc-name">Lor Tabak</div>
+        </div>
+        <div class="acc-macros">
+          <div class="acc-kcal">280 kcal</div>
+          <div class="acc-pfc">P:16g · K:18g · Y:14g</div>
+        </div>
+        <span class="acc-chevron">▼</span>
       </div>
-      <div class="meals-grid">
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🍳</div>
-            <div class="mc-meta"><div class="mc-day">07:30 · Kahvaltı — K4</div><div class="mc-name">Menemen</div></div>
-            <div class="mc-nums"><div class="mc-kcal">420</div><div class="mc-pfc">P:20 K:28 Y:22</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>2 yumurta</li>
-              <li>1 domates (100g, doğranmış)</li>
-              <li>1 yeşil biber (50g)</li>
-              <li>1 çay kaşığı zeytinyağı</li>
-              <li>2 dilim glutensiz ekmek (80g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">FODMAP ✓</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon gold">🍓</div>
-            <div class="mc-meta"><div class="mc-day">10:30 · Ara Öğün — AÖ6</div><div class="mc-name">Lor + Çilek</div></div>
-            <div class="mc-nums"><div class="mc-kcal">155</div><div class="mc-pfc">P:11 K:12 Y:5</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>80g lor peyniri</li>
-              <li>100g çilek (taze)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag c">C Vitamini</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc span2">
-          <div class="mc-head">
-            <div class="mc-icon terra">🍗</div>
-            <div class="mc-meta"><div class="mc-day">13:00 · Öğle</div><div class="mc-name">Tavuk Sote + Buharda Kabak</div></div>
-            <div class="mc-nums"><div class="mc-kcal">430</div><div class="mc-pfc">P:36 K:25 Y:18</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>120g tavuk göğsü (sote, kekik + sarımsak tozu)</li>
-              <li>200g kabak (buharda)</li>
-              <li>1 yemek kaşığı zeytinyağı</li>
-              <li>1 dilim glutensiz ekmek (40g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Yüksek Protein</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon blue">🍫</div>
-            <div class="mc-meta"><div class="mc-day">16:30 · Ara Öğün — AT3</div><div class="mc-name">Bitter Çikolata + Ceviz</div></div>
-            <div class="mc-nums"><div class="mc-kcal">185</div><div class="mc-pfc">P:3 K:9 Y:16</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>2 kare bitter çikolata %70+ (20g)</li>
-              <li>20g ceviz</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag c">Omega-3 · Antioksidan</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🍳</div>
-            <div class="mc-meta"><div class="mc-day">19:00 · Akşam — A4</div><div class="mc-name">Sebzeli Omlet</div></div>
-            <div class="mc-nums"><div class="mc-kcal">260</div><div class="mc-pfc">P:20 K:8 Y:16</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>2 yumurta + 1 yumurta beyazı</li>
-              <li>Ispanak 30g, mantar 50g, domates 30g</li>
-              <li>1 çay kaşığı zeytinyağı</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">FODMAP ✓</span>
-              <span class="mtag c">Düşük Karbonhidrat</span>
-            </div>
-          </div>
+      <div class="acc-body">
+        <ul>
+          <li>100g lor peynir</li>
+          <li>5 ceviz (kırık)</li>
+          <li>1 tablet stevia veya 1 tatlı kaşığı bal</li>
+          <li>5–6 çilek veya ½ muz</li>
+          <li>Taze nane (üste)</li>
+        </ul>
+        <div class="acc-tip">💡 Stevia tablet soğuk lor içinde zor çözünür — önce 1 tatlı kaşığı ılık suda eritip lora karıştırın.</div>
+        <div class="acc-tags">
+          <span class="atag p">Yüksek Protein</span>
+          <span class="atag ok">FODMAP ✓</span>
         </div>
       </div>
     </div>
 
-    <!-- GÜN 5: CUMA -->
-    <div class="tab-pane" id="gun5">
-      <div class="mbanner">
-        <div class="mb-item"><div class="mb-label">Toplam</div><div class="mb-val gold">~1575 kcal</div></div>
-        <div class="mb-item"><div class="mb-label">Protein</div><div class="mb-val g">~118g</div></div>
-        <div class="mb-item"><div class="mb-label">Karbonhidrat</div><div class="mb-val b">~120g</div></div>
-        <div class="mb-item"><div class="mb-label">Yağ</div><div class="mb-val o">~62g</div></div>
-        <div class="mb-note">K5 Lor Tabak · AÖ2 Yumurta+Badem · AT5 Yoğurt+Chia+Bitter · A5 Fırın Somon</div>
+    <!-- K5 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🥚</div>
+        <div class="acc-meta">
+          <div class="acc-code">K5 · Kahvaltı</div>
+          <div class="acc-name">Sebzeli Omlet</div>
+        </div>
+        <div class="acc-macros">
+          <div class="acc-kcal">300 kcal</div>
+          <div class="acc-pfc">P:20g · K:4g · Y:22g</div>
+        </div>
+        <span class="acc-chevron">▼</span>
       </div>
-      <div class="meals-grid">
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🧀</div>
-            <div class="mc-meta"><div class="mc-day">07:30 · Kahvaltı — K5</div><div class="mc-name">Lor Tabak</div></div>
-            <div class="mc-nums"><div class="mc-kcal">390</div><div class="mc-pfc">P:25 K:30 Y:15</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>100g lor peyniri</li>
-              <li>2 dilim glutensiz ekmek (80g)</li>
-              <li>Domates + salatalık dilimi</li>
-              <li>4 adet zeytin</li>
-              <li>Taze nane veya maydanoz</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">FODMAP ✓</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon gold">🥚</div>
-            <div class="mc-meta"><div class="mc-day">10:30 · Ara Öğün — AÖ2</div><div class="mc-name">Yumurta + Badem</div></div>
-            <div class="mc-nums"><div class="mc-kcal">185</div><div class="mc-pfc">P:10 K:5 Y:13</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>1 haşlanmış yumurta</li>
-              <li>20g çiğ badem</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag p">Protein + Sağlıklı Yağ</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc span2">
-          <div class="mc-head">
-            <div class="mc-icon terra">🐟</div>
-            <div class="mc-meta"><div class="mc-day">13:00 · Öğle</div><div class="mc-name">Izgara Balık + Sebzeli Pilav</div></div>
-            <div class="mc-nums"><div class="mc-kcal">425</div><div class="mc-pfc">P:32 K:38 Y:14</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>100g ızgara balık (çipura/levrek)</li>
-              <li>80g pişmiş pirinç (veya sebzeli)</li>
-              <li>Buharda brokoli 100g</li>
-              <li>Limon + zeytinyağı</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Omega-3</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon blue">🥛</div>
-            <div class="mc-meta"><div class="mc-day">16:30 · Ara Öğün — AT5</div><div class="mc-name">Yoğurt + Chia + Bitter</div></div>
-            <div class="mc-nums"><div class="mc-kcal">175</div><div class="mc-pfc">P:10 K:14 Y:7</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>150g laktoz-free yoğurt</li>
-              <li>½ çay kaşığı chia tohumu</li>
-              <li>1 kare bitter çikolata %70+ (10g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag p">Probiyotik</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🐟</div>
-            <div class="mc-meta"><div class="mc-day">19:00 · Akşam — A5</div><div class="mc-name">Fırın Somon</div></div>
-            <div class="mc-nums"><div class="mc-kcal">300</div><div class="mc-pfc">P:25 K:8 Y:18</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>100g somon fileto (fırında)</li>
-              <li>Brokoli 100g (buharda)</li>
-              <li>1 çay kaşığı zeytinyağı + limon suyu + dereotu</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Omega-3</span>
-              <span class="mtag c">Anti-inflamatuar</span>
-            </div>
-            <div class="mc-note">💡 Somon haftada 2 kez tüketilmesi önerilen Omega-3 kaynağı — kalp ve beyin sağlığı için önemli.</div>
-          </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 yumurta</li>
+          <li>50g çiğ ıspanak</li>
+          <li>1 sivri biber (doğranmış)</li>
+          <li>1 tatlı kaşığı zeytinyağı</li>
+          <li>Yanında 30g beyaz peynir</li>
+        </ul>
+        <div class="acc-cook">🔥 Zeytinyağında ıspanak ve biberi sotele → yumurtaları çırpıp üstüne dök → kapağını kapat, 3dk pişir.</div>
+        <div class="acc-tags">
+          <span class="atag p">En Yüksek Protein</span>
+          <span class="atag ok">Düşük Karbonhidrat</span>
         </div>
       </div>
     </div>
 
-    <!-- GÜN 6: CUMARTESİ -->
-    <div class="tab-pane" id="gun6">
-      <div class="mbanner">
-        <div class="mb-item"><div class="mb-label">Toplam</div><div class="mb-val gold">~1560 kcal</div></div>
-        <div class="mb-item"><div class="mb-label">Protein</div><div class="mb-val g">~114g</div></div>
-        <div class="mb-item"><div class="mb-label">Karbonhidrat</div><div class="mb-val b">~120g</div></div>
-        <div class="mb-item"><div class="mb-label">Yağ</div><div class="mb-val o">~65g</div></div>
-        <div class="mb-note">K6 Sebzeli Omlet · AÖ4 Yoğurt+Chia · AT7 Lor+Muz · A6 Kıymalı Kabak</div>
+    <!-- K6 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🧇</div>
+        <div class="acc-meta">
+          <div class="acc-code">K6 · Kahvaltı</div>
+          <div class="acc-name">Kaşarlı Tost (Glutensiz Ekmek)</div>
+        </div>
+        <div class="acc-macros">
+          <div class="acc-kcal">310 kcal</div>
+          <div class="acc-pfc">P:14g · K:40g · Y:10g</div>
+        </div>
+        <span class="acc-chevron">▼</span>
       </div>
-      <div class="meals-grid">
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🍳</div>
-            <div class="mc-meta"><div class="mc-day">07:30 · Kahvaltı — K6</div><div class="mc-name">Sebzeli Omlet</div></div>
-            <div class="mc-nums"><div class="mc-kcal">400</div><div class="mc-pfc">P:22 K:28 Y:20</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>2 yumurta</li>
-              <li>Ispanak 30g, domates 50g, yeşil biber 30g</li>
-              <li>1 çay kaşığı zeytinyağı</li>
-              <li>2 dilim glutensiz ekmek (80g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">FODMAP ✓</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon gold">🥛</div>
-            <div class="mc-meta"><div class="mc-day">10:30 · Ara Öğün — AÖ4</div><div class="mc-name">Yoğurt + Chia</div></div>
-            <div class="mc-nums"><div class="mc-kcal">140</div><div class="mc-pfc">P:8 K:12 Y:5</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>150g laktoz-free yoğurt</li>
-              <li>1 çay kaşığı chia tohumu</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag p">Probiyotik · Omega-3</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc span2">
-          <div class="mc-head">
-            <div class="mc-icon terra">🥗</div>
-            <div class="mc-meta"><div class="mc-day">13:00 · Öğle</div><div class="mc-name">Mercimek Köftesi + Salata</div></div>
-            <div class="mc-nums"><div class="mc-kcal">415</div><div class="mc-pfc">P:18 K:55 Y:12</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>6–8 adet kırmızı mercimek köftesi (glutensiz)</li>
-              <li>Taze maydanoz, soğan (az), domates</li>
-              <li>1 çay kaşığı zeytinyağı + nar ekşisi</li>
-              <li>Yeşil salata yanında</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag c">Bitkisel Protein</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon blue">🍌</div>
-            <div class="mc-meta"><div class="mc-day">16:30 · Ara Öğün — AT7</div><div class="mc-name">Lor + Muz</div></div>
-            <div class="mc-nums"><div class="mc-kcal">165</div><div class="mc-pfc">P:12 K:18 Y:5</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>80g lor peyniri</li>
-              <li>½ muz (50g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">FODMAP ✓</span>
-              <span class="mtag c">Potasyum</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🥩</div>
-            <div class="mc-meta"><div class="mc-day">19:00 · Akşam — A6</div><div class="mc-name">Kıymalı Kabak</div></div>
-            <div class="mc-nums"><div class="mc-kcal">280</div><div class="mc-pfc">P:22 K:18 Y:12</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>Kabak 200g (dilimlenmiş)</li>
-              <li>70g yağsız dana kıyması</li>
-              <li>Domates 50g + salça 1 çay kaşığı</li>
-              <li>1 çay kaşığı zeytinyağı</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Protein + Sebze</span>
-            </div>
-          </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 dilim glutensiz ekmek (80g)</li>
+          <li>30g kaşar peyniri</li>
+          <li>Domates dilimi</li>
+          <li>Kekik</li>
+        </ul>
+        <div class="acc-cook">🔥 Ekmekler arasına kaşar ve domates koy → tost makinesinde veya tavada pişir.</div>
+        <div class="acc-tags">
+          <span class="atag ok">Gluten kontrollü</span>
+          <span class="atag c">Hızlı Hazır</span>
         </div>
       </div>
     </div>
 
-    <!-- GÜN 7: PAZAR -->
-    <div class="tab-pane" id="gun7">
-      <div class="mbanner">
-        <div class="mb-item"><div class="mb-label">Toplam</div><div class="mb-val gold">~1590 kcal</div></div>
-        <div class="mb-item"><div class="mb-label">Protein</div><div class="mb-val g">~122g</div></div>
-        <div class="mb-item"><div class="mb-label">Karbonhidrat</div><div class="mb-val b">~126g</div></div>
-        <div class="mb-item"><div class="mb-label">Yağ</div><div class="mb-val o">~58g</div></div>
-        <div class="mb-note">K7 Yulaf Pankek+Lor · AÖ5 Pirinç Krakeri+Fıstık Ezmesi · AT6 Züber+Yoğurt · A7 Tavuk Haşlama</div>
+    <!-- K7 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🥞</div>
+        <div class="acc-meta">
+          <div class="acc-code">K7 · Kahvaltı</div>
+          <div class="acc-name">Yulaf Pankek + Lor</div>
+        </div>
+        <div class="acc-macros">
+          <div class="acc-kcal">290 kcal</div>
+          <div class="acc-pfc">P:18g · K:28g · Y:10g</div>
+        </div>
+        <span class="acc-chevron">▼</span>
       </div>
-      <div class="meals-grid">
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🥞</div>
-            <div class="mc-meta"><div class="mc-day">07:30 · Kahvaltı — K7</div><div class="mc-name">Yulaf Pankek + Lor</div></div>
-            <div class="mc-nums"><div class="mc-kcal">450</div><div class="mc-pfc">P:28 K:42 Y:14</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>Yulaf ezmesi 50g (toz haline getirilmiş)</li>
-              <li>2 yumurta (hamurda)</li>
-              <li>½ muz 30g (hamurda, tatlandırmak için)</li>
-              <li>Tarçın + vanilya</li>
-              <li>80g lor peyniri (üstüne servis)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Yüksek Protein</span>
-              <span class="mtag c">Beta-glukan</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon gold">🫙</div>
-            <div class="mc-meta"><div class="mc-day">10:30 · Ara Öğün — AÖ5</div><div class="mc-name">Pirinç Krakeri + Fıstık Ezmesi</div></div>
-            <div class="mc-nums"><div class="mc-kcal">170</div><div class="mc-pfc">P:5 K:20 Y:8</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>3 adet pirinç krakeri (30g)</li>
-              <li>1 yemek kaşığı fıstık ezmesi (şekersiz, 16g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag c">Sağlıklı Yağ</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc span2">
-          <div class="mc-head">
-            <div class="mc-icon terra">🍗</div>
-            <div class="mc-meta"><div class="mc-day">13:00 · Öğle</div><div class="mc-name">Tavuk Çorba + Glutensiz Ekmek</div></div>
-            <div class="mc-nums"><div class="mc-kcal">400</div><div class="mc-pfc">P:30 K:38 Y:12</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>Tavuk suyuyla yapılan çorba (1.5 kase)</li>
-              <li>80g haşlanmış tavuk (içinde)</li>
-              <li>Havuç, kereviz sapı, maydanoz</li>
-              <li>2 dilim glutensiz ekmek (80g)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">Kollajen · Protein</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon blue">🍰</div>
-            <div class="mc-meta"><div class="mc-day">16:30 · Ara Öğün — AT6</div><div class="mc-name">Züber (Zucchini Brownie) + Yoğurt</div></div>
-            <div class="mc-nums"><div class="mc-kcal">160</div><div class="mc-pfc">P:8 K:16 Y:7</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>1 dilim züber brownie (kabak+kakao)</li>
-              <li>100g laktoz-free yoğurt (yanında)</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag c">Antioksidan</span>
-            </div>
-          </div>
-        </div>
-        <div class="mc">
-          <div class="mc-head">
-            <div class="mc-icon sage">🍗</div>
-            <div class="mc-meta"><div class="mc-day">19:00 · Akşam — A7</div><div class="mc-name">Tavuk Haşlama</div></div>
-            <div class="mc-nums"><div class="mc-kcal">270</div><div class="mc-pfc">P:28 K:10 Y:10</div></div>
-          </div>
-          <div class="mc-body">
-            <ul>
-              <li>120g haşlanmış tavuk göğsü</li>
-              <li>Zeytinyağı + limon sosu</li>
-              <li>Buharda brokoli veya kabak 150g</li>
-            </ul>
-            <div class="mc-tags">
-              <span class="mtag ok">Gluten-free</span>
-              <span class="mtag p">FODMAP ✓</span>
-              <span class="mtag c">Düşük Kalori</span>
-            </div>
-          </div>
+      <div class="acc-body">
+        <ul>
+          <li>40g yulaf ezmesi (kuru)</li>
+          <li>1 yumurta</li>
+          <li>50ml laktoz-free süt</li>
+          <li>1 tablet stevia (sütte erit, hamura kat)</li>
+          <li>Üstü: 50g lor + tarçın</li>
+        </ul>
+        <div class="acc-cook">🔥 Blenderla karıştır → yapışmaz tavada orta ateşte her yüzü 2-3dk pişir. Üstüne lor sür.</div>
+        <div class="acc-tip">💡 Stevia tableti önce ılık sütte eritin, sonra hamura ekleyin.</div>
+        <div class="acc-tags">
+          <span class="atag p">Yüksek Protein</span>
+          <span class="atag ok">Gluten kontrollü</span>
         </div>
       </div>
     </div>
 
-  </div><!-- /sec -->
-
-  <div class="div"></div>
-
-  <!-- HAFTALIK ÖZET -->
-  <div class="sec">
-    <div class="sec-head">
-      <div class="sec-title">Haftalık Özet</div>
-      <span class="sec-pill">Makro Tablosu</span>
+    <!-- K8 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🍳</div>
+        <div class="acc-meta">
+          <div class="acc-code">K8 · Kahvaltı</div>
+          <div class="acc-name">Çılbır (Yoğurtlu Poşe Yumurta)</div>
+        </div>
+        <div class="acc-macros">
+          <div class="acc-kcal">320 kcal</div>
+          <div class="acc-pfc">P:18g · K:20g · Y:18g</div>
+        </div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 yumurta (poşe)</li>
+          <li>100g laktoz-free yoğurt (taban)</li>
+          <li>1 tatlı kaşığı tereyağı + pul biber (üste gezdir)</li>
+          <li>Taze dereotu</li>
+          <li>Yanında 1 dilim glutensiz ekmek (40g)</li>
+        </ul>
+        <div class="acc-cook">🔥 Yoğurdu tabağa koy → sirkeyle kaynar suda yumurtaları poşe yap (3dk) → yoğurtun üstüne yerleştir → eritilmiş tereyağı ve pul biberi gezdir.</div>
+        <div class="acc-tags">
+          <span class="atag ok">Gluten kontrollü</span>
+          <span class="atag p">FODMAP ✓</span>
+          <span class="atag c">Probiyotik</span>
+        </div>
+      </div>
     </div>
-    <div class="sec-sub">Her güne ait toplam kalori ve makro dağılımı.</div>
-    <table class="week-tbl">
+
+  </div>
+</div>
+
+<!-- 🍎 ARA ÖĞÜN 1 -->
+<div class="meal-cat">
+  <div class="meal-cat-header">
+    <div class="meal-cat-emoji">🍎</div>
+    <div class="meal-cat-info">
+      <div class="meal-cat-title">Ara Öğün 1 — Kuşluk</div>
+      <div class="meal-cat-meta">
+        <span class="cat-pill k">120–165 kcal</span>
+        <span class="cat-pill p">Ort. Protein: ~9g</span>
+        <span class="cat-pill">7 Seçenek</span>
+      </div>
+    </div>
+  </div>
+  <div class="acc-grid">
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🧀</div>
+        <div class="acc-meta"><div class="acc-code">AÖ1 · Kuşluk</div><div class="acc-name">Lor + Elma</div></div>
+        <div class="acc-macros"><div class="acc-kcal">130 kcal</div><div class="acc-pfc">P:10g · K:12g · Y:4g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>80g lor peynir</li>
+          <li>½ elma (dilimlenmiş)</li>
+          <li>Opsiyonel: tarçın serp</li>
+        </ul>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Protein + Lif</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🥚</div>
+        <div class="acc-meta"><div class="acc-code">AÖ2 · Kuşluk</div><div class="acc-name">Yumurta + Badem</div></div>
+        <div class="acc-macros"><div class="acc-kcal">150 kcal</div><div class="acc-pfc">P:10g · K:3g · Y:12g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>1 haşlanmış yumurta</li>
+          <li>8 badem (çiğ)</li>
+        </ul>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Yüksek Protein</span><span class="atag c">Sağlıklı Yağ</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🥚</div>
+        <div class="acc-meta"><div class="acc-code">AÖ3 · Kuşluk</div><div class="acc-name">Yumurta + Ceviz</div></div>
+        <div class="acc-macros"><div class="acc-kcal">155 kcal</div><div class="acc-pfc">P:9g · K:2g · Y:13g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>1 haşlanmış yumurta</li>
+          <li>4 ceviz (kırık)</li>
+        </ul>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag c">Omega-3</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🥛</div>
+        <div class="acc-meta"><div class="acc-code">AÖ4 · Kuşluk</div><div class="acc-name">Yoğurt + Chia</div></div>
+        <div class="acc-macros"><div class="acc-kcal">120 kcal</div><div class="acc-pfc">P:8g · K:12g · Y:4g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g laktoz-free yoğurt</li>
+          <li>1 tatlı kaşığı chia tohumu</li>
+        </ul>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Probiyotik</span><span class="atag c">Lif</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🫙</div>
+        <div class="acc-meta"><div class="acc-code">AÖ5 · Kuşluk</div><div class="acc-name">Pirinç Krakeri + Fıstık Ezmesi</div></div>
+        <div class="acc-macros"><div class="acc-kcal">160 kcal</div><div class="acc-pfc">P:5g · K:20g · Y:7g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>3 pirinç krakeri</li>
+          <li>1 yemek kaşığı fıstık ezmesi (şekersiz)</li>
+        </ul>
+        <div class="acc-tip">💡 Fıstık ezmesini ekmek üstüne yaymak yerine krakerin içine batırarak yiyin — daha tatmin edici.</div>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag c">Hızlı Enerji</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🍓</div>
+        <div class="acc-meta"><div class="acc-code">AÖ6 · Kuşluk</div><div class="acc-name">Lor + Çilek</div></div>
+        <div class="acc-macros"><div class="acc-kcal">120 kcal</div><div class="acc-pfc">P:10g · K:10g · Y:4g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>80g lor peynir</li>
+          <li>5–6 çilek (taze veya dondurulmuş-çözülmüş)</li>
+        </ul>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">C Vitamini</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🥮</div>
+        <div class="acc-meta"><div class="acc-code">AÖ7 · Kuşluk</div><div class="acc-name">Lor Kremalı Pirinç Keki</div></div>
+        <div class="acc-macros"><div class="acc-kcal">140 kcal</div><div class="acc-pfc">P:8g · K:16g · Y:4g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 pirinç keki</li>
+          <li>50g lor + labne karışımı (eşit oranda karıştır)</li>
+          <li>Domates dilimi (üstüne)</li>
+        </ul>
+        <div class="acc-tip">💡 Lor-labne karışımı cream cheese gibi kremamsı bir yapı verir — lezzetli ve doyurucu.</div>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag p">Protein</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 🍽️ ÖĞLE YEMEĞİ -->
+<div class="meal-cat">
+  <div class="meal-cat-header">
+    <div class="meal-cat-emoji">🍽️</div>
+    <div class="meal-cat-info">
+      <div class="meal-cat-title">Öğle Yemeği Alternatifleri</div>
+      <div class="meal-cat-meta">
+        <span class="cat-pill k">280–420 kcal</span>
+        <span class="cat-pill p">Ort. Protein: ~30g</span>
+        <span class="cat-pill">14 Seçenek</span>
+      </div>
+    </div>
+  </div>
+  <div class="acc-grid">
+
+    <!-- Ö1 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🍗</div>
+        <div class="acc-meta"><div class="acc-code">Ö1 · Öğle</div><div class="acc-name">Fırın Tavuk + Yeşil Salata</div></div>
+        <div class="acc-macros"><div class="acc-kcal">320 kcal</div><div class="acc-pfc">P:38g · K:6g · Y:14g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>160g çiğ tavuk göğsü (kekik, limon, zeytinyağı ile marine)</li>
+          <li>Salata: marul + maydanoz + domates + limon-zeytinyağı sosu</li>
+        </ul>
+        <div class="acc-cook">🔥 200°C fırında 25dk. Marine süresi: en az 15dk.</div>
+        <div class="acc-tip">💡 Protein bombası, en basit öğün. Antrenman günleri için ideal.</div>
+        <div class="acc-tags"><span class="atag p">En Yüksek Protein</span><span class="atag ok">Düşük Karbonhidrat</span></div>
+      </div>
+    </div>
+
+    <!-- Ö2 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🫘</div>
+        <div class="acc-meta"><div class="acc-code">Ö2 · Öğle</div><div class="acc-name">Fasulye Pilaki + Yoğurt</div></div>
+        <div class="acc-macros"><div class="acc-kcal">350 kcal</div><div class="acc-pfc">P:18g · K:42g · Y:10g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>80g çiğ kuru fasulye (önceden gece ıslatılmış)</li>
+          <li>Havuç, domates, soğan yeşili, zeytinyağı</li>
+          <li>Yanında 150g laktoz-free yoğurt</li>
+        </ul>
+        <div class="acc-cook">🔥 Islatılmış fasulyeyi düdüklüde 25dk pişir → sebzelerle birlikte zeytinyağında sotele.</div>
+        <div class="acc-tags"><span class="atag p">Bitkisel Protein</span><span class="atag c">Yüksek Lif</span></div>
+      </div>
+    </div>
+
+    <!-- Ö3 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🥗</div>
+        <div class="acc-meta"><div class="acc-code">Ö3 · Öğle</div><div class="acc-name">Kinoa Salatası + Tavuk</div></div>
+        <div class="acc-macros"><div class="acc-kcal">380 kcal</div><div class="acc-pfc">P:32g · K:30g · Y:12g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>50g çiğ kinoa</li>
+          <li>120g çiğ tavuk göğsü (haşla veya ızgara, didik)</li>
+          <li>Salatalık, domates, taze nane, limon, 1 tatlı kaşığı zeytinyağı</li>
+        </ul>
+        <div class="acc-cook">🔥 Kinoa 1:2 su oranında 15dk haşla → soğut → diğer malzemelerle karıştır.</div>
+        <div class="acc-tip">💡 Kinoa A101/BİM'de bulunabilir. Glutensiz tam protein kaynağı.</div>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag p">Tam Protein</span></div>
+      </div>
+    </div>
+
+    <!-- Ö4 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🍗</div>
+        <div class="acc-meta"><div class="acc-code">Ö4 · Öğle</div><div class="acc-name">Tavuk Sote + Buharda Kabak</div></div>
+        <div class="acc-macros"><div class="acc-kcal">290 kcal</div><div class="acc-pfc">P:36g · K:8g · Y:12g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g çiğ tavuk göğsü (küp doğra)</li>
+          <li>200g çiğ kabak (buharda veya haşla)</li>
+          <li>Kekik, sarımsak tozu, pul biber, 1 tatlı kaşığı zeytinyağı</li>
+        </ul>
+        <div class="acc-cook">🔥 Tavuğu zeytinyağında 8-10dk sotele → baharatları ekle. Kabağı ayrıca buharda 10dk pişir.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag ok">Düşük Karbonhidrat</span></div>
+      </div>
+    </div>
+
+    <!-- Ö5 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🫓</div>
+        <div class="acc-meta"><div class="acc-code">Ö5 · Öğle</div><div class="acc-name">Mercimek Köftesi + Yoğurt</div></div>
+        <div class="acc-macros"><div class="acc-kcal">350 kcal</div><div class="acc-pfc">P:20g · K:48g · Y:6g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>80g çiğ kırmızı mercimek</li>
+          <li>40g ince bulgur (kontrollü gluten)</li>
+          <li>Soğan yeşili, maydanoz, domates salçası, pul biber</li>
+          <li>Marul yapraklarıyla servis</li>
+          <li>Yanında 150g laktoz-free yoğurt</li>
+        </ul>
+        <div class="acc-cook">🔥 Mercimeği haşla, suy azalınca bulguru ekle, 5dk daha pişir → soğut → baharatlarla yoğur → şekillendir.</div>
+        <div class="acc-warn">⚠️ Bulgur kontrollü gluten içerir. Hassasiyetinize göre porsiyonu ayarlayın.</div>
+        <div class="acc-tags"><span class="atag p">Bitkisel Protein</span><span class="atag c">Yüksek Lif</span><span class="atag warn">Kontrollü Gluten</span></div>
+      </div>
+    </div>
+
+    <!-- Ö6 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🍝</div>
+        <div class="acc-meta"><div class="acc-code">Ö6 · Öğle</div><div class="acc-name">Tavuklu Kapya Biberli Makarna (Labne Kremalı)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">420 kcal</div><div class="acc-pfc">P:38g · K:42g · Y:10g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>60g çiğ makarna (kontrollü gluten)</li>
+          <li>150g çiğ tavuk göğsü (küp doğra)</li>
+          <li>1 kapya biber (şerit doğra)</li>
+          <li>2 yemek kaşığı labne</li>
+          <li>Sarımsak tozu, kekik</li>
+        </ul>
+        <div class="acc-cook">🔥 Makarnayı haşla, 2 kepçe pişirme suyunu ayır. Tavuğu sotele → biber ekle → makarnayı ve labneyi ekle → pişirme suyuyla kremamsı sos oluştur.</div>
+        <div class="acc-tip">💡 Labne + makarna suyu = kremamsı sos, krema olmadan. Harika bir aldatma tekniği!</div>
+        <div class="acc-warn">⚠️ Makarna kontrollü gluten içerir.</div>
+        <div class="acc-tags"><span class="atag p">En Yüksek Protein</span><span class="atag warn">Kontrollü Gluten</span></div>
+      </div>
+    </div>
+
+    <!-- Ö7 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🍆</div>
+        <div class="acc-meta"><div class="acc-code">Ö7 · Öğle</div><div class="acc-name">Karnıyarık (Fırında)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">340 kcal</div><div class="acc-pfc">P:24g · K:18g · Y:18g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>1 orta patlıcan (~200g çiğ)</li>
+          <li>100g çiğ yağsız dana kıyma</li>
+          <li>1 domates, 1 sivri biber, soğan yeşili, maydanoz</li>
+          <li>1 tatlı kaşığı zeytinyağı</li>
+        </ul>
+        <div class="acc-cook">🔥 Patlıcanı ortadan yar → zeytinyağıyla fırında 10dk pişir → içini oyup kıymalı harçla doldur → 180°C, 25dk daha.</div>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Dengeli Makro</span></div>
+      </div>
+    </div>
+
+    <!-- Ö8 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🥘</div>
+        <div class="acc-meta"><div class="acc-code">Ö8 · Öğle</div><div class="acc-name">İzmir Köfte (Fırında, Kabakla)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">380 kcal</div><div class="acc-pfc">P:28g · K:16g · Y:22g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>120g çiğ yağsız dana kıyma</li>
+          <li>1 yemek kaşığı pirinç unu (bağlayıcı)</li>
+          <li>1 orta kabak (~200g çiğ, kalın dilim — patates yerine)</li>
+          <li>2 domates, 1 sivri biber, soğan yeşili</li>
+        </ul>
+        <div class="acc-cook">🔥 Köfteleri yoğur → pişirme kabına diz → kabak ve domates dilimleriyle çevrele → 190°C, 35dk.</div>
+        <div class="acc-tip">💡 Kabak patates yerine kullanılır — karbonhidratı düşürür, GI'yı dengeler.</div>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag p">Yüksek Protein</span></div>
+      </div>
+    </div>
+
+    <!-- Ö9 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🫑</div>
+        <div class="acc-meta"><div class="acc-code">Ö9 · Öğle</div><div class="acc-name">Etli Biber Dolma</div></div>
+        <div class="acc-macros"><div class="acc-kcal">370 kcal</div><div class="acc-pfc">P:26g · K:32g · Y:14g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>3 dolmalık biber</li>
+          <li>100g çiğ dana kıyma + 40g çiğ baldo pirinç</li>
+          <li>Domates, salça, maydanoz</li>
+          <li>Yanında 100g laktoz-free yoğurt</li>
+        </ul>
+        <div class="acc-cook">🔥 Pirinci yıka → kıyma ve baharatlarla karıştır → biberleri doldur → tencerede 200ml su ile 35-40dk pişir.</div>
+        <div class="acc-tip">💡 Baldo pirinç kullanılır (esmer pirinç yerine — Türkiye'de her markette var).</div>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Dengeli Makro</span></div>
+      </div>
+    </div>
+
+    <!-- Ö10 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🍢</div>
+        <div class="acc-meta"><div class="acc-code">Ö10 · Öğle</div><div class="acc-name">Tavuk Şiş + Közlenmiş Sebze</div></div>
+        <div class="acc-macros"><div class="acc-kcal">310 kcal</div><div class="acc-pfc">P:36g · K:12g · Y:12g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>160g çiğ tavuk göğsü (küp, şişe geçir)</li>
+          <li>Marine: yoğurt, kekik, pul biber, 1 tatlı kaşığı zeytinyağı</li>
+          <li>Közlenmiş: 1 kapya biber, 1 patlıcan, 1 domates</li>
+          <li>Yanında marul + sumak + limon</li>
+        </ul>
+        <div class="acc-cook">🔥 Marine edilmiş tavukları ızgarada veya fırında (200°C, 20dk) pişir. Sebzeleri ocak alevinde veya fırında közle.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag ok">FODMAP ✓</span></div>
+      </div>
+    </div>
+
+    <!-- Ö11 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🥒</div>
+        <div class="acc-meta"><div class="acc-code">Ö11 · Öğle</div><div class="acc-name">Tavuklu Lor Kremalı Kabak (Fırında)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">330 kcal</div><div class="acc-pfc">P:42g · K:8g · Y:14g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g çiğ tavuk göğsü (ince dilim)</li>
+          <li>1 orta kabak (~200g çiğ, uzun dilim)</li>
+          <li>80g lor + 1 yemek kaşığı labne (karıştır → krema yap)</li>
+          <li>Sarımsak tozu, kekik, karabiber</li>
+        </ul>
+        <div class="acc-cook">🔥 Kabakları ve tavukları fırın tepsisine diz → üstüne lor kreması sür → 190°C, 25dk.</div>
+        <div class="acc-tip">💡 En yüksek proteinli öğün (42g!) — antrenman günleri için ideal seçim.</div>
+        <div class="acc-tags"><span class="atag p">★ En Yüksek Protein</span><span class="atag ok">Düşük Karbonhidrat</span></div>
+      </div>
+    </div>
+
+    <!-- Ö12 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🥬</div>
+        <div class="acc-meta"><div class="acc-code">Ö12 · Öğle</div><div class="acc-name">Kıymalı Ispanak Kavurma + Yoğurt</div></div>
+        <div class="acc-macros"><div class="acc-kcal">320 kcal</div><div class="acc-pfc">P:28g · K:10g · Y:18g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>100g çiğ yağsız dana kıyma</li>
+          <li>200g çiğ ıspanak</li>
+          <li>Soğan yeşili, 1 tatlı kaşığı zeytinyağı</li>
+          <li>Yanında 150g laktoz-free yoğurt</li>
+        </ul>
+        <div class="acc-cook">🔥 Zeytinyağında kıymayı kavur → soğan yeşilini ekle → ıspanakları ekle, kapağını kapat, 5dk soldur.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag c">Demir · Folat</span></div>
+      </div>
+    </div>
+
+    <!-- Ö13 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🍲</div>
+        <div class="acc-meta"><div class="acc-code">Ö13 · Öğle</div><div class="acc-name">Tavuk Çorba + Glutensiz Ekmek</div></div>
+        <div class="acc-macros"><div class="acc-kcal">310 kcal</div><div class="acc-pfc">P:36g · K:24g · Y:8g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g çiğ tavuk göğsü (bütün haşla, sonra parçala)</li>
+          <li>Havuç, kabak (~100g çiğ toplam)</li>
+          <li>1 dilim glutensiz ekmek (40g)</li>
+          <li>Limon, tuz, karabiber</li>
+        </ul>
+        <div class="acc-cook">🔥 Tavuğu 1L suda 30dk haşla → çıkar, parçala → sebzeleri aynı suya ekle, 10dk daha pişir → tavuğu geri koy.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag ok">Gluten kontrollü</span></div>
+      </div>
+    </div>
+
+    <!-- Ö14 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🐟</div>
+        <div class="acc-meta"><div class="acc-code">Ö14 · Öğle</div><div class="acc-name">Ton Balığı Salatası</div></div>
+        <div class="acc-macros"><div class="acc-kcal">280 kcal</div><div class="acc-pfc">P:24g · K:18g · Y:10g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>1 kutu ton balığı (suda, 80g süzülmüş)</li>
+          <li>Marul, domates, salatalık, mısır (2 yemek kaşığı)</li>
+          <li>1 tatlı kaşığı zeytinyağı, limon</li>
+          <li>Yanında 2 pirinç krakeri</li>
+        </ul>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag p">Omega-3</span><span class="atag c">Hızlı Hazır</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 🍫 ARA ÖĞÜN 2 -->
+<div class="meal-cat">
+  <div class="meal-cat-header">
+    <div class="meal-cat-emoji">🍫</div>
+    <div class="meal-cat-info">
+      <div class="meal-cat-title">Ara Öğün 2 — İkindi</div>
+      <div class="meal-cat-meta">
+        <span class="cat-pill k">115–165 kcal</span>
+        <span class="cat-pill p">Ort. Protein: ~7g</span>
+        <span class="cat-pill">7 Seçenek</span>
+      </div>
+    </div>
+  </div>
+  <div class="acc-grid">
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🍫</div>
+        <div class="acc-meta"><div class="acc-code">AT1 · İkindi</div><div class="acc-name">Bitter Çikolata + Badem</div></div>
+        <div class="acc-macros"><div class="acc-kcal">150 kcal</div><div class="acc-pfc">P:3g · K:10g · Y:11g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 kare bitter çikolata (%70 ve üzeri)</li>
+          <li>6 badem (çiğ)</li>
+        </ul>
+        <div class="acc-tags"><span class="atag c">Antioksidan</span><span class="atag ok">FODMAP ✓</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🍓</div>
+        <div class="acc-meta"><div class="acc-code">AT2 · İkindi</div><div class="acc-name">Yoğurt + Çilek</div></div>
+        <div class="acc-macros"><div class="acc-kcal">115 kcal</div><div class="acc-pfc">P:8g · K:14g · Y:2g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g laktoz-free yoğurt</li>
+          <li>5–6 çilek (taze veya dondurulmuş-çözülmüş)</li>
+        </ul>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Probiyotik</span><span class="atag c">C Vitamini</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🍫</div>
+        <div class="acc-meta"><div class="acc-code">AT3 · İkindi</div><div class="acc-name">Bitter Çikolata + Ceviz</div></div>
+        <div class="acc-macros"><div class="acc-kcal">155 kcal</div><div class="acc-pfc">P:3g · K:10g · Y:12g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 kare bitter çikolata (%70 ve üzeri)</li>
+          <li>3 ceviz (kırık)</li>
+        </ul>
+        <div class="acc-tags"><span class="atag c">Omega-3</span><span class="atag c">Antioksidan</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🥛</div>
+        <div class="acc-meta"><div class="acc-code">AT4 · İkindi</div><div class="acc-name">Yoğurt + Chia + Bitter Rende</div></div>
+        <div class="acc-macros"><div class="acc-kcal">140 kcal</div><div class="acc-pfc">P:7g · K:12g · Y:7g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>100g laktoz-free yoğurt</li>
+          <li>1 tatlı kaşığı chia tohumu</li>
+          <li>1 kare bitter çikolata (rendelenmiş — üste)</li>
+        </ul>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Probiyotik</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🍌</div>
+        <div class="acc-meta"><div class="acc-code">AT5 · İkindi</div><div class="acc-name">Lor + Muz</div></div>
+        <div class="acc-macros"><div class="acc-kcal">135 kcal</div><div class="acc-pfc">P:10g · K:16g · Y:4g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>80g lor peynir</li>
+          <li>½ küçük muz (dilimlenmiş)</li>
+        </ul>
+        <div class="acc-tags"><span class="atag p">Protein</span><span class="atag c">Potasyum</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🎂</div>
+        <div class="acc-meta"><div class="acc-code">AT6 · İkindi</div><div class="acc-name">Züber Brownie + Yoğurt</div></div>
+        <div class="acc-macros"><div class="acc-kcal">165 kcal</div><div class="acc-pfc">P:6g · K:20g · Y:6g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>1 dilim Züber brownie (kabak + kakao bazlı, marketten)</li>
+          <li>100g laktoz-free yoğurt (yanında)</li>
+        </ul>
+        <div class="acc-tip">💡 Züber marka kabak bazlı brownie — büyük marketlerde bulunur. Şekerli kek alternatifi.</div>
+        <div class="acc-tags"><span class="atag c">Tatmin Edici</span></div>
+      </div>
+    </div>
+
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🍯</div>
+        <div class="acc-meta"><div class="acc-code">AT7 · İkindi</div><div class="acc-name">Lor + Tarçın + Bal</div></div>
+        <div class="acc-macros"><div class="acc-kcal">150 kcal</div><div class="acc-pfc">P:11g · K:12g · Y:6g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>80g lor peynir</li>
+          <li>1 tablet stevia veya 1 tatlı kaşığı bal</li>
+          <li>Tarçın</li>
+          <li>4 badem kırığı (üste)</li>
+        </ul>
+        <div class="acc-tip">💡 Stevia tablet kullanıyorsanız önce ılık suda eritin, sonra lora ekleyin.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag ok">FODMAP ✓</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 🌙 AKŞAM YEMEĞİ -->
+<div class="meal-cat">
+  <div class="meal-cat-header">
+    <div class="meal-cat-emoji">🌙</div>
+    <div class="meal-cat-info">
+      <div class="meal-cat-title">Akşam Yemeği Alternatifleri</div>
+      <div class="meal-cat-meta">
+        <span class="cat-pill k">250–350 kcal</span>
+        <span class="cat-pill p">Ort. Protein: ~26g</span>
+        <span class="cat-pill">11 Seçenek</span>
+      </div>
+    </div>
+  </div>
+  <div class="acc-grid">
+
+    <!-- A1 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🍲</div>
+        <div class="acc-meta"><div class="acc-code">A1 · Akşam</div><div class="acc-name">Kırmızı Mercimek Çorbası + Yeşil Salata</div></div>
+        <div class="acc-macros"><div class="acc-kcal">280 kcal</div><div class="acc-pfc">P:16g · K:38g · Y:6g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>80g çiğ kırmızı mercimek</li>
+          <li>Havuç, soğan yeşili, domates salçası</li>
+          <li>1 tatlı kaşığı zeytinyağı, limon</li>
+          <li>Yanında: marul + maydanoz + limon salatası</li>
+        </ul>
+        <div class="acc-cook">🔥 Mercimeği 600ml suda 15dk haşla → blenderla pürüzsüz yap → zeytinyağı ve limonla tamamla.</div>
+        <div class="acc-tip">💡 Proteini düşük — yanına +50g lor ekleyerek proteini ~22g'ye çıkarabilirsiniz.</div>
+        <div class="acc-tags"><span class="atag p">Bitkisel Protein</span><span class="atag c">Yüksek Lif</span></div>
+      </div>
+    </div>
+
+    <!-- A2 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🫘</div>
+        <div class="acc-meta"><div class="acc-code">A2 · Akşam</div><div class="acc-name">Yeşil Fasulye + Tavuk</div></div>
+        <div class="acc-macros"><div class="acc-kcal">290 kcal</div><div class="acc-pfc">P:30g · K:16g · Y:10g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>200g çiğ taze yeşil fasulye</li>
+          <li>120g çiğ tavuk göğsü (haşla veya ızgara)</li>
+          <li>Domates, soğan yeşili, zeytinyağı</li>
+        </ul>
+        <div class="acc-cook">🔥 Fasulyeyi zeytinyağında sotele → domates ve soğan yeşilini ekle → 15dk pişir. Tavuğu ayrıca haşla.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag c">Yüksek Lif</span></div>
+      </div>
+    </div>
+
+    <!-- A3 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🥒</div>
+        <div class="acc-meta"><div class="acc-code">A3 · Akşam</div><div class="acc-name">Kıymalı Kabak</div></div>
+        <div class="acc-macros"><div class="acc-kcal">300 kcal</div><div class="acc-pfc">P:22g · K:14g · Y:16g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 orta kabak (~300g çiğ)</li>
+          <li>80g çiğ yağsız dana kıyma</li>
+          <li>Domates, soğan yeşili, 1 tatlı kaşığı zeytinyağı</li>
+        </ul>
+        <div class="acc-cook">🔥 Kıymayı zeytinyağında kavur → soğan yeşili ekle → kabak küplerini ekle → domates ekle → kısık ateşte 20dk pişir.</div>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Dengeli Makro</span></div>
+      </div>
+    </div>
+
+    <!-- A4 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🍲</div>
+        <div class="acc-meta"><div class="acc-code">A4 · Akşam</div><div class="acc-name">Tavuk Suyuna Sebze Çorbası</div></div>
+        <div class="acc-macros"><div class="acc-kcal">260 kcal</div><div class="acc-pfc">P:34g · K:10g · Y:6g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g çiğ tavuk göğsü (bütün haşla, sonra didikle)</li>
+          <li>Havuç, kabak, kereviz sapı (~200g çiğ toplam)</li>
+          <li>Tuz, karabiber, limon</li>
+        </ul>
+        <div class="acc-cook">🔥 Tavuğu 1L suda 30dk haşla → çıkar, didikle → sebzeleri aynı suya ekle, 15dk daha pişir → tavuğu geri koy.</div>
+        <div class="acc-tip">💡 Hem çorba hem protein — tek tencerede, minimum bulaşık.</div>
+        <div class="acc-tags"><span class="atag p">En Yüksek Protein</span><span class="atag ok">Düşük Kalori</span></div>
+      </div>
+    </div>
+
+    <!-- A5 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🐟</div>
+        <div class="acc-meta"><div class="acc-code">A5 · Akşam</div><div class="acc-name">Fırın Somon + Yeşil Salata</div></div>
+        <div class="acc-macros"><div class="acc-kcal">310 kcal</div><div class="acc-pfc">P:26g · K:4g · Y:20g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>120g çiğ somon fileto</li>
+          <li>Limon, kekik, 1 tatlı kaşığı zeytinyağı</li>
+          <li>Salata: ıspanak + tere + limon</li>
+        </ul>
+        <div class="acc-cook">🔥 Somonu folyo üzerine koy → limon ve kekik ile marine → 200°C, 18dk.</div>
+        <div class="acc-tip">💡 Haftada 1 kez yeterli — Omega-3 kaynağı, kalp ve beyin sağlığı için önemli.</div>
+        <div class="acc-tags"><span class="atag c">Omega-3</span><span class="atag ok">Gluten kontrollü</span></div>
+      </div>
+    </div>
+
+    <!-- A6 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🥞</div>
+        <div class="acc-meta"><div class="acc-code">A6 · Akşam</div><div class="acc-name">Kabak Mücver (Fırında) + Yoğurt</div></div>
+        <div class="acc-macros"><div class="acc-kcal">250 kcal</div><div class="acc-pfc">P:16g · K:22g · Y:10g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>1 orta kabak (~200g çiğ, rendelenmiş)</li>
+          <li>1 yumurta (bağlayıcı — istisna)</li>
+          <li>2 yemek kaşığı pirinç unu</li>
+          <li>Dereotu, tuz</li>
+          <li>Yanında 150g laktoz-free yoğurt</li>
+        </ul>
+        <div class="acc-cook">🔥 Rendeli kabağı tuzla, 10dk beklet, suyunu sık → yumurta, pirinç unu, dereotu ile karıştır → yağlanmış tepside 200°C, 20dk → çevir, +10dk.</div>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag p">Dengeli Makro</span></div>
+      </div>
+    </div>
+
+    <!-- A7 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🥒</div>
+        <div class="acc-meta"><div class="acc-code">A7 · Akşam</div><div class="acc-name">Kıymalı Kabak Dolma + Yoğurt</div></div>
+        <div class="acc-macros"><div class="acc-kcal">340 kcal</div><div class="acc-pfc">P:22g · K:28g · Y:14g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>2 orta kabak (~300g çiğ, oyulmuş)</li>
+          <li>80g çiğ dana kıyma + 30g çiğ baldo pirinç</li>
+          <li>Domates sosu, maydanoz</li>
+          <li>Yanında 100g laktoz-free yoğurt</li>
+        </ul>
+        <div class="acc-cook">🔥 Kabakları boylamasına iç oyarak doldur → tencerede domates sosunda 30-35dk pişir.</div>
+        <div class="acc-tags"><span class="atag ok">FODMAP ✓</span><span class="atag p">Dengeli Makro</span></div>
+      </div>
+    </div>
+
+    <!-- A8 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🥦</div>
+        <div class="acc-meta"><div class="acc-code">A8 · Akşam</div><div class="acc-name">Lor Kremalı Brokoli (Fırında)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">270 kcal</div><div class="acc-pfc">P:28g · K:14g · Y:12g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>250g çiğ brokoli (küçük demetlere ayır)</li>
+          <li>100g lor + 1 yemek kaşığı labne (karıştır → krema)</li>
+          <li>30g kaşar rendesi (üstüne)</li>
+          <li>Sarımsak tozu, karabiber</li>
+        </ul>
+        <div class="acc-cook">🔥 Brokoliyi buharda 5dk ön pişir → fırın kabına diz → üstüne lor kreması sür → kaşar rendesi serp → 200°C, 15dk.</div>
+        <div class="acc-tip">💡 Lor kreması = graten tadı, sağlıklı. Kremalı güveç istiyorsanız bu!.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag c">C Vitamini</span></div>
+      </div>
+    </div>
+
+    <!-- A9 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🥘</div>
+        <div class="acc-meta"><div class="acc-code">A9 · Akşam</div><div class="acc-name">Fırında Köfte + Yoğurtlu Kabak</div></div>
+        <div class="acc-macros"><div class="acc-kcal">350 kcal</div><div class="acc-pfc">P:30g · K:14g · Y:18g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>120g çiğ yağsız dana kıyma</li>
+          <li>1 yemek kaşığı pirinç unu, maydanoz, soğan yeşili, kimyon</li>
+          <li>Yanında: 200g çiğ kabak (haşla) + 100g yoğurt + nane</li>
+        </ul>
+        <div class="acc-cook">🔥 Malzemeleri yoğur → köfte şekillendir → 190°C, 20dk. Kabağı haşlayıp yoğurtla karıştır.</div>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag p">Yüksek Protein</span></div>
+      </div>
+    </div>
+
+    <!-- A10 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🍲</div>
+        <div class="acc-meta"><div class="acc-code">A10 · Akşam</div><div class="acc-name">Tavuklu Sebze Güveç</div></div>
+        <div class="acc-macros"><div class="acc-kcal">290 kcal</div><div class="acc-pfc">P:35g · K:14g · Y:10g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g çiğ tavuk göğsü (küp)</li>
+          <li>1 kapya biber, 1 domates, 100g çiğ patlıcan, 100g çiğ kabak</li>
+          <li>Kekik, defne yaprağı, pul biber, 1 tatlı kaşığı zeytinyağı</li>
+        </ul>
+        <div class="acc-cook">🔥 Güveç kabında malzemeleri katmanla diz → üstüne domates dilimleri → 190°C, 40dk (üstü kapalı).</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag ok">FODMAP ✓</span></div>
+      </div>
+    </div>
+
+    <!-- A11 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🍗</div>
+        <div class="acc-meta"><div class="acc-code">A11 · Akşam</div><div class="acc-name">Tavuk Haşlama + Sebze</div></div>
+        <div class="acc-macros"><div class="acc-kcal">250 kcal</div><div class="acc-pfc">P:34g · K:8g · Y:6g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g çiğ tavuk göğsü (haşla)</li>
+          <li>Havuç, kabak (~150g çiğ toplam, yanında haşla)</li>
+          <li>Limon, tuz, karabiber</li>
+        </ul>
+        <div class="acc-tip">💡 En sade, en hafif akşam seçeneği. Mide rahatsızlığı olan günler için de idealdir.</div>
+        <div class="acc-tags"><span class="atag p">En Düşük Kalori</span><span class="atag ok">FODMAP ✓</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 🍰 SAĞLIKLI TATLILAR -->
+<div class="meal-cat">
+  <div class="meal-cat-header">
+    <div class="meal-cat-emoji">🍰</div>
+    <div class="meal-cat-info">
+      <div class="meal-cat-title">Sağlıklı Tatlılar</div>
+      <div class="meal-cat-meta">
+        <span class="cat-pill k">150–220 kcal</span>
+        <span class="cat-pill p">Ort. Protein: ~11g</span>
+        <span class="cat-pill">8 Seçenek · Opsiyonel</span>
+      </div>
+    </div>
+  </div>
+  <div class="acc-grid">
+
+    <!-- T1 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">☕</div>
+        <div class="acc-meta"><div class="acc-code">T1 · Tatlı</div><div class="acc-name">Protein Tiramisu Bowl</div></div>
+        <div class="acc-macros"><div class="acc-kcal">185 kcal</div><div class="acc-pfc">P:14g · K:15g · Y:7g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>100g lor peynir (çırp)</li>
+          <li>1 yumurta sarısı + 2 tablet stevia (yumurta sarısıyla erit)</li>
+          <li>1 çay bardağı siyah kahve (soğutulmuş)</li>
+          <li>5g kakao tozu (üste)</li>
+        </ul>
+        <div class="acc-cook">→ Yumurta sarısını stevia ile çırp → lor ile karıştır → kahveye batır (yok, kahve ayrı servis edilir, üste gezdirin) → kakao serp → buzdolabında 30dk.</div>
+        <div class="acc-tip">💡 Stevia tablet ılık suda eritin (2 tablet = 1 yemek kaşığı ılık su), sonra yumurta sarısına ekleyin.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag c">Kafein</span></div>
+      </div>
+    </div>
+
+    <!-- T2 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🥛</div>
+        <div class="acc-meta"><div class="acc-code">T2 · Tatlı</div><div class="acc-name">Süt Muhallebisi (Pirinç Nişastalı)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">170 kcal</div><div class="acc-pfc">P:6g · K:28g · Y:5g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>200ml laktoz-free süt</li>
+          <li>20g pirinç nişastası (soğuk sütün birazıyla erit)</li>
+          <li>2 tablet stevia (sıcak sütte erit) + vanilya</li>
+        </ul>
+        <div class="acc-cook">→ Sütü ılıt → stevia tabletlerini erit → pirinç nişastasını soğuk sütün 2 yemek kaşığında ayrıca erit → sıcak süte ekle → sürekli karıştırarak 5-7dk koyulaştır → kaplara dök → soğut.</div>
+        <div class="acc-tip">💡 2 tablet stevia orta porsiyon için uygundur. Daha tatlı istiyorsanız 3 tablet kullanabilirsiniz.</div>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag c">Nostaljik Lezzet</span></div>
+      </div>
+    </div>
+
+    <!-- T3 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">🍫</div>
+        <div class="acc-meta"><div class="acc-code">T3 · Tatlı</div><div class="acc-name">Çikolatalı Yoğurt Bark (Dondurulabilir)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">160 kcal</div><div class="acc-pfc">P:10g · K:16g · Y:6g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>200g laktoz-free yoğurt</li>
+          <li>2 kare bitter çikolata (eritilmiş)</li>
+          <li>5–6 çilek (dilimlenmiş)</li>
+          <li>1 tatlı kaşığı chia tohumu</li>
+        </ul>
+        <div class="acc-cook">→ Yoğurdu yağlı kağıt üzerine ~1cm kalınlığında yay → eritilmiş çikolatayı gezdir → çilek ve chia serp → 2-3 saat dondur → kırarak porsiyonla.</div>
+        <div class="acc-tip">💡 Önceden yapılıp dondurucuda saklanabilir — tatlı krizinde hazır.</div>
+        <div class="acc-tags"><span class="atag c">Dondurulabilir</span><span class="atag p">Probiyotik</span></div>
+      </div>
+    </div>
+
+    <!-- T4 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🍰</div>
+        <div class="acc-meta"><div class="acc-code">T4 · Tatlı</div><div class="acc-name">Muzlu Lor Keki (Fırında)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">220 kcal</div><div class="acc-pfc">P:16g · K:24g · Y:7g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>1 küçük muz (~100g)</li>
+          <li>100g lor peynir</li>
+          <li>1 yumurta</li>
+          <li>2 yemek kaşığı pirinç unu</li>
+          <li>Tarçın, vanilya</li>
+          <li>2 tablet stevia (opsiyonel — muz zaten tatlı)</li>
+        </ul>
+        <div class="acc-cook">→ Tüm malzemeleri blenderla karıştır → küçük kek kalıbına dök → 180°C, 20dk.</div>
+        <div class="acc-tip">💡 Muz pişince tatlılık artar — stevia eklemeden önce tadına bakın.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag ok">Gluten kontrollü</span></div>
+      </div>
+    </div>
+
+    <!-- T5 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon sage">🎂</div>
+        <div class="acc-meta"><div class="acc-code">T5 · Tatlı</div><div class="acc-name">Labne Cheesecake (Pişirmesiz)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">200 kcal</div><div class="acc-pfc">P:14g · K:18g · Y:8g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>150g labne + 50g lor (karıştır)</li>
+          <li>2 tablet stevia (karışımda erit)</li>
+          <li>Taban: 3 pirinç keki (ezilmiş)</li>
+          <li>Üstü: çilek dilimleri + chia</li>
+        </ul>
+        <div class="acc-cook">→ Pirinç kekini ufalayıp kaba bas → labne-lor karışımını (stevia ile tatlandırılmış) üstüne koy → çilek ve chia serp → 2 saat buzdolabı.</div>
+        <div class="acc-tip">💡 5 dakikada hazır, gerçek cheesecake tadı. Stevia tableti labne içinde çözünmeyebilir — önce 1 tatlı kaşığı ılık suda eritin.</div>
+        <div class="acc-tags"><span class="atag p">Yüksek Protein</span><span class="atag c">Hızlı Hazır</span></div>
+      </div>
+    </div>
+
+    <!-- T6 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon gold">🍚</div>
+        <div class="acc-meta"><div class="acc-code">T6 · Tatlı</div><div class="acc-name">Sütlaç (Baldo Pirinçli)</div></div>
+        <div class="acc-macros"><div class="acc-kcal">180 kcal</div><div class="acc-pfc">P:8g · K:30g · Y:3g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>30g çiğ baldo pirinç</li>
+          <li>200ml laktoz-free süt</li>
+          <li>2 tablet stevia (sıcak sütte erit)</li>
+          <li>Vanilya, tarçın (üste)</li>
+        </ul>
+        <div class="acc-cook">→ Pirinci 100ml suda yarı pişir → sütü ekle → stevia tabletlerini sütte erit → kısık ateşte 15-20dk karıştırarak koyulaştır → kaplara dök → tarçın serp.</div>
+        <div class="acc-tip">💡 Baldo pirinç kullanın (esmer pirinç değil) — her markette bulunur, kremamsı doku verir.</div>
+        <div class="acc-tags"><span class="atag ok">Gluten kontrollü</span><span class="atag c">Nostaljik Lezzet</span></div>
+      </div>
+    </div>
+
+    <!-- T7 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon terra">⚡</div>
+        <div class="acc-meta"><div class="acc-code">T7 · Tatlı</div><div class="acc-name">Keçiboynuzlu Enerji Topları</div></div>
+        <div class="acc-macros"><div class="acc-kcal">160 kcal</div><div class="acc-pfc">P:6g · K:18g · Y:7g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>40g yulaf ezmesi (kuru)</li>
+          <li>1 yemek kaşığı fıstık ezmesi (şekersiz)</li>
+          <li>1 yemek kaşığı keçiboynuzu tozu</li>
+          <li>1 tatlı kaşığı bal (yapışkanlık sağlar — stevia tablet bu tarif için uygun değil)</li>
+        </ul>
+        <div class="acc-cook">→ Tüm malzemeleri karıştır → avuç içiyle yuvarlayıp top yap → buzdolabında 1 saat → 5-6 top çıkar. Porsiyon: 3 top.</div>
+        <div class="acc-warn">⚠️ Bu tarifde yapışkanlık için stevia tablet yerine bal kullanılır — stevia topu bir arada tutmaz.</div>
+        <div class="acc-tags"><span class="atag c">Hazır Snack</span><span class="atag ok">Enerji</span></div>
+      </div>
+    </div>
+
+    <!-- T8 -->
+    <div class="acc-card">
+      <div class="acc-head" onclick="toggleAcc(this)">
+        <div class="acc-icon blue">🥣</div>
+        <div class="acc-meta"><div class="acc-code">T8 · Tatlı</div><div class="acc-name">Lor + Tarçın + Bal Kase</div></div>
+        <div class="acc-macros"><div class="acc-kcal">150 kcal</div><div class="acc-pfc">P:13g · K:10g · Y:6g</div></div>
+        <span class="acc-chevron">▼</span>
+      </div>
+      <div class="acc-body">
+        <ul>
+          <li>100g lor peynir</li>
+          <li>1 tablet stevia veya 1 tatlı kaşığı bal</li>
+          <li>Tarçın (serp)</li>
+          <li>5–6 badem kırığı (üste)</li>
+        </ul>
+        <div class="acc-tip">💡 30 saniyede hazır — ani tatlı krizine birebir. Stevia kullanıyorsanız önce ılık suda eritin.</div>
+        <div class="acc-tags"><span class="atag p">En Yüksek Protein</span><span class="atag c">Hızlı Hazır</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ÇİĞ → PİŞMİŞ DÖNÜŞÜM TABLOSU -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">Çiğ → Pişmiş Dönüşüm</div>
+    <span class="sec-pill">Gramaj Rehberi</span>
+  </div>
+  <div class="sec-sub">Plandaki TÜM gramajlar çiğ ağırlık olarak verilmiştir. Pişince değişen gramajlar için bu tabloyu kullanın.</div>
+  <div class="ref-tbl-wrap">
+    <table class="ref-tbl">
       <thead>
         <tr>
-          <th>Gün</th>
-          <th>Kahvaltı</th>
-          <th>AÖ1</th>
-          <th>AÖ2 (İkindi)</th>
-          <th>Akşam</th>
-          <th>Toplam</th>
-          <th>Protein</th>
-          <th>Karb</th>
-          <th>Yağ</th>
+          <th>Besin</th>
+          <th>Çiğ Ağırlık</th>
+          <th>Pişmiş Ağırlık</th>
+          <th>Değişim</th>
+          <th>Not</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td class="day-cell">Pazartesi</td>
-          <td>K1 Türk Sofrası</td>
-          <td>AÖ1 Lor+Elma</td>
-          <td>AT1 Bitter+Badem</td>
-          <td>A1 Mercimek+Salata</td>
-          <td class="macro-cell kcal-val">~1570</td>
-          <td class="macro-cell p-val">116g</td>
-          <td class="macro-cell k-val">118g</td>
-          <td class="macro-cell y-val">62g</td>
+          <td>Tavuk göğsü</td>
+          <td class="p-val">150g</td>
+          <td>~110g</td>
+          <td><span class="tbl-num">%25–30 küçülür</span></td>
+          <td class="tbl-note">Haşlamada biraz daha az küçülür</td>
         </tr>
         <tr>
-          <td class="day-cell">Salı</td>
-          <td>K2 Yulaf+Yumurta</td>
-          <td>AÖ7 Yumurta+Lor</td>
-          <td>AT2 Yoğurt+Çilek</td>
-          <td>A2 Fasulye+Tavuk</td>
-          <td class="macro-cell kcal-val">~1555</td>
-          <td class="macro-cell p-val">118g</td>
-          <td class="macro-cell k-val">122g</td>
-          <td class="macro-cell y-val">58g</td>
+          <td>Dana kıyma</td>
+          <td class="p-val">120g</td>
+          <td>~85g</td>
+          <td><span class="tbl-num">%30 küçülür</span></td>
+          <td class="tbl-note">Yağı eriyor, su kaybı</td>
         </tr>
         <tr>
-          <td class="day-cell">Çarşamba</td>
-          <td>K3 Kaşarlı Tost</td>
-          <td>AÖ3 Yumurta+Ceviz</td>
-          <td>AT4 Prot. Tiramisu</td>
-          <td>A3 Ton Balığı Salata</td>
-          <td class="macro-cell kcal-val">~1580</td>
-          <td class="macro-cell p-val">115g</td>
-          <td class="macro-cell k-val">115g</td>
-          <td class="macro-cell y-val">65g</td>
+          <td>Baldo pirinç</td>
+          <td class="p-val">40g</td>
+          <td>~120g</td>
+          <td><span class="tbl-num">3 kat büyür</span></td>
+          <td class="tbl-note">Su emer, hacim artar</td>
         </tr>
         <tr>
-          <td class="day-cell">Perşembe</td>
-          <td>K4 Menemen</td>
-          <td>AÖ6 Lor+Çilek</td>
-          <td>AT3 Bitter+Ceviz</td>
-          <td>A4 Sebzeli Omlet</td>
-          <td class="macro-cell kcal-val">~1545</td>
-          <td class="macro-cell p-val">112g</td>
-          <td class="macro-cell k-val">115g</td>
-          <td class="macro-cell y-val">65g</td>
+          <td>Makarna</td>
+          <td class="p-val">60g</td>
+          <td>~130g</td>
+          <td><span class="tbl-num">2.2 kat büyür</span></td>
+          <td class="tbl-note">Al dente pişirilirse daha az şişer</td>
         </tr>
         <tr>
-          <td class="day-cell">Cuma</td>
-          <td>K5 Lor Tabak</td>
-          <td>AÖ2 Yumurta+Badem</td>
-          <td>AT5 Yoğurt+Chia+Bitter</td>
-          <td>A5 Fırın Somon</td>
-          <td class="macro-cell kcal-val">~1575</td>
-          <td class="macro-cell p-val">118g</td>
-          <td class="macro-cell k-val">120g</td>
-          <td class="macro-cell y-val">62g</td>
+          <td>Kırmızı mercimek</td>
+          <td class="p-val">80g</td>
+          <td>~200g</td>
+          <td><span class="tbl-num">2.5 kat büyür</span></td>
+          <td class="tbl-note">Çorba için uygundur</td>
         </tr>
         <tr>
-          <td class="day-cell">Cumartesi</td>
-          <td>K6 Sebzeli Omlet</td>
-          <td>AÖ4 Yoğurt+Chia</td>
-          <td>AT7 Lor+Muz</td>
-          <td>A6 Kıymalı Kabak</td>
-          <td class="macro-cell kcal-val">~1560</td>
-          <td class="macro-cell p-val">114g</td>
-          <td class="macro-cell k-val">120g</td>
-          <td class="macro-cell y-val">65g</td>
+          <td>Kuru fasulye</td>
+          <td class="p-val">80g</td>
+          <td>~180g</td>
+          <td><span class="tbl-num">2.2 kat büyür</span></td>
+          <td class="tbl-note">Önceden ıslatmak şart</td>
         </tr>
         <tr>
-          <td class="day-cell">Pazar</td>
-          <td>K7 Yulaf Pankek+Lor</td>
-          <td>AÖ5 Pirinç Kr.+Fıstık Ez.</td>
-          <td>AT6 Züber+Yoğurt</td>
-          <td>A7 Tavuk Haşlama</td>
-          <td class="macro-cell kcal-val">~1590</td>
-          <td class="macro-cell p-val">122g</td>
-          <td class="macro-cell k-val">126g</td>
-          <td class="macro-cell y-val">58g</td>
+          <td>Sebzeler (kabak, patlıcan)</td>
+          <td class="p-val">200g</td>
+          <td>~150g</td>
+          <td><span class="tbl-num">%20–25 küçülür</span></td>
+          <td class="tbl-note">Buharda daha az küçülür</td>
+        </tr>
+        <tr>
+          <td>Kinoa</td>
+          <td class="p-val">50g</td>
+          <td>~125g</td>
+          <td><span class="tbl-num">2.5 kat büyür</span></td>
+          <td class="tbl-note">1:2 su oranıyla pişirilir</td>
+        </tr>
+        <tr>
+          <td>Bulgur (ince)</td>
+          <td class="p-val">40g</td>
+          <td>~100g</td>
+          <td><span class="tbl-num">2.5 kat büyür</span></td>
+          <td class="tbl-note">Sıcak suyla demlenebilir</td>
         </tr>
       </tbody>
     </table>
   </div>
+</div>
 
-  <div class="div"></div>
-
-  <!-- TATLILAR -->
-  <div class="sec">
-    <div class="sec-head">
-      <div class="sec-title">Sağlıklı Tatlılar</div>
-      <span class="sec-pill">T1 · T2 · T3</span>
-    </div>
-    <div class="sec-sub">Şeker krizine karşı gluten-free, düşük GI alternatif tatlılar.</div>
-    <div class="sweet-grid">
-
-      <!-- T1 -->
-      <div class="sweet-card">
-        <div class="sweet-icon">☕</div>
-        <div class="sweet-name">T1 — Protein Tiramisu Bowl</div>
-        <ul class="sweet-steps">
-          <li>100g lor peynirini çırpın</li>
-          <li>1 yumurta sarısı + stevia/eritritol ekleyin</li>
-          <li>1 çay bardağı siyah kahveyi soğutun</li>
-          <li>5g kakao tozu serpin</li>
-          <li>Soğuk servis edin (opsiyonel: ½ saat buzdolabı)</li>
-        </ul>
-        <div class="sweet-macro">
-          <span class="sm kcal">185 kcal</span>
-          <span class="sm p">P: 14g</span>
-          <span class="sm note">K: 15g · Y: 7g</span>
-          <span class="sm note">Gluten-free ✓</span>
+<!-- YEŞİLLİK & SOS REHBERİ -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">Yeşillik & Sos Rehberi</div>
+    <span class="sec-pill">Salata Rotasyonu</span>
+  </div>
+  <div class="sec-sub">Salatalarda tek yeşilliğe takılmayın — her gün farklı bir yeşillik kullanın.</div>
+  <div class="green-guide">
+    <div class="green-guide-grid">
+      <div>
+        <span class="gg-block-label">Yeşillikler (Dönüşümlü Kullanın)</span>
+        <div class="gg-tags">
+          <span class="gg-tag">Kıvırcık marul</span>
+          <span class="gg-tag">Göbek marul</span>
+          <span class="gg-tag">Ispanak</span>
+          <span class="gg-tag">Semizotu</span>
+          <span class="gg-tag">Tere</span>
+          <span class="gg-tag">Roka</span>
         </div>
       </div>
-
-      <!-- T2 -->
-      <div class="sweet-card">
-        <div class="sweet-icon">🥛</div>
-        <div class="sweet-name">T2 — Süt Muhallebisi (Pirinç Nişastalı)</div>
-        <ul class="sweet-steps">
-          <li>200ml laktoz-free sütü ısıtın</li>
-          <li>20g pirinç nişastasını soğuk sütle eritin</li>
-          <li>Karıştırarak koyulaştırın (5–7 dk)</li>
-          <li>Stevia/eritritol + vanilya ekleyin</li>
-          <li>Kaselere dökün, soğuyunca servis</li>
-        </ul>
-        <div class="sweet-macro">
-          <span class="sm kcal">170 kcal</span>
-          <span class="sm p">P: 6g</span>
-          <span class="sm note">K: 28g · Y: 5g</span>
-          <span class="sm note">Laktoz-free ✓</span>
+      <div>
+        <span class="gg-block-label">Taze Otlar</span>
+        <div class="gg-tags">
+          <span class="gg-tag herb">Maydanoz</span>
+          <span class="gg-tag herb">Dereotu</span>
+          <span class="gg-tag herb">Nane</span>
+          <span class="gg-tag herb">Taze soğan yeşili</span>
         </div>
       </div>
-
-      <!-- T3 -->
-      <div class="sweet-card">
-        <div class="sweet-icon">🍫</div>
-        <div class="sweet-name">T3 — Dondurulabilir Çikolatalı Yoğurt Bark</div>
-        <ul class="sweet-steps">
-          <li>200g laktoz-free yoğurdu yayın (folyo üstünde)</li>
-          <li>2 kare bitter çikolatayı eritip gezdirin</li>
-          <li>Çilek/yaban mersini + chia serpin</li>
-          <li>2–3 saat dondurun</li>
-          <li>Kırarak porsiyonlayın, dondurucuda saklayın</li>
-        </ul>
-        <div class="sweet-macro">
-          <span class="sm kcal">160 kcal</span>
-          <span class="sm p">P: 10g</span>
-          <span class="sm note">K: 16g · Y: 6g</span>
-          <span class="sm note">Dondurulabilir ✓</span>
+      <div>
+        <span class="gg-block-label">Sos Seçenekleri</span>
+        <div class="gg-tags">
+          <span class="gg-tag sauce">Limon + Zeytinyağı + Sumak</span>
+          <span class="gg-tag sauce">Nar Ekşisi + Zeytinyağı</span>
+          <span class="gg-tag sauce">Limon + Tuz + Karabiber</span>
         </div>
       </div>
-
     </div>
   </div>
+</div>
 
-  <div class="div"></div>
-
-  <!-- BESİN REFERANSLARI -->
-  <div class="sec">
-    <div class="sec-head">
-      <div class="sec-title">Besin Referans Tablosu</div>
-      <span class="sec-pill">21 Besin</span>
-    </div>
-    <div class="sec-sub">Planda kullanılan besinlerin 100g başına makro değerleri (kaynak: USDA FoodData · diyetkolik.com · medicalpark.com.tr).</div>
-    <div class="ref-tbl-wrap">
-      <table class="ref-tbl">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Besin</th>
-            <th>Porsiyon</th>
-            <th>Kcal</th>
-            <th>Protein</th>
-            <th>Karbonhidrat</th>
-            <th>Yağ</th>
-            <th>Kaynak</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><span class="tbl-num">1</span></td>
-            <td>Glutensiz ekmek (pirinç unu)</td>
-            <td>1 dilim 40g</td>
-            <td class="kcal-val">104</td>
-            <td class="p-val">2g</td>
-            <td class="k-val">20g</td>
-            <td class="y-val">2g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">2</span></td>
-            <td>Yulaf ezmesi</td>
-            <td>50g (kuru)</td>
-            <td class="kcal-val">189</td>
-            <td class="p-val">7g</td>
-            <td class="k-val">32g</td>
-            <td class="y-val">4g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">3</span></td>
-            <td>Pirinç krakeri</td>
-            <td>1 adet 10g</td>
-            <td class="kcal-val">38</td>
-            <td class="p-val">1g</td>
-            <td class="k-val">8g</td>
-            <td class="y-val">0.3g</td>
-            <td><span class="src-badge">diyetkolik</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">4</span></td>
-            <td>Yumurta (tam)</td>
-            <td>1 adet 60g</td>
-            <td class="kcal-val">86</td>
-            <td class="p-val">7g</td>
-            <td class="k-val">0.5g</td>
-            <td class="y-val">6g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">5</span></td>
-            <td>Lor peyniri</td>
-            <td>100g</td>
-            <td class="kcal-val">98</td>
-            <td class="p-val">12g</td>
-            <td class="k-val">3g</td>
-            <td class="y-val">4g</td>
-            <td><span class="src-badge">diyetkolik</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">6</span></td>
-            <td>Kaşar peyniri</td>
-            <td>30g</td>
-            <td class="kcal-val">109</td>
-            <td class="p-val">7g</td>
-            <td class="k-val">0.5g</td>
-            <td class="y-val">9g</td>
-            <td><span class="src-badge">medicalpark</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">7</span></td>
-            <td>Beyaz peynir (az yağlı)</td>
-            <td>30g</td>
-            <td class="kcal-val">70</td>
-            <td class="p-val">5g</td>
-            <td class="k-val">0.5g</td>
-            <td class="y-val">5g</td>
-            <td><span class="src-badge">diyetkolik</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">8</span></td>
-            <td>Laktoz-free yoğurt</td>
-            <td>100g</td>
-            <td class="kcal-val">62</td>
-            <td class="p-val">5g</td>
-            <td class="k-val">7g</td>
-            <td class="y-val">2g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">9</span></td>
-            <td>Tavuk göğsü (haşlanmış)</td>
-            <td>100g</td>
-            <td class="kcal-val">165</td>
-            <td class="p-val">31g</td>
-            <td class="k-val">0g</td>
-            <td class="y-val">4g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">10</span></td>
-            <td>Dana kıyması (yağsız)</td>
-            <td>100g</td>
-            <td class="kcal-val">218</td>
-            <td class="p-val">26g</td>
-            <td class="k-val">0g</td>
-            <td class="y-val">12g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">11</span></td>
-            <td>Somon fileto</td>
-            <td>100g</td>
-            <td class="kcal-val">208</td>
-            <td class="p-val">20g</td>
-            <td class="k-val">0g</td>
-            <td class="y-val">13g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">12</span></td>
-            <td>Ton balığı (suda, konserve)</td>
-            <td>1 kutu 80g</td>
-            <td class="kcal-val">88</td>
-            <td class="p-val">20g</td>
-            <td class="k-val">0g</td>
-            <td class="y-val">0.5g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">13</span></td>
-            <td>Kırmızı mercimek (pişmiş)</td>
-            <td>100g</td>
-            <td class="kcal-val">116</td>
-            <td class="p-val">9g</td>
-            <td class="k-val">20g</td>
-            <td class="y-val">0.4g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">14</span></td>
-            <td>Yeşil fasulye (pişmiş)</td>
-            <td>100g</td>
-            <td class="kcal-val">35</td>
-            <td class="p-val">2g</td>
-            <td class="k-val">8g</td>
-            <td class="y-val">0.2g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">15</span></td>
-            <td>Badem (çiğ)</td>
-            <td>20g</td>
-            <td class="kcal-val">116</td>
-            <td class="p-val">4g</td>
-            <td class="k-val">4g</td>
-            <td class="y-val">10g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">16</span></td>
-            <td>Ceviz</td>
-            <td>20g</td>
-            <td class="kcal-val">130</td>
-            <td class="p-val">3g</td>
-            <td class="k-val">3g</td>
-            <td class="y-val">13g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">17</span></td>
-            <td>Fıstık ezmesi (şekersiz)</td>
-            <td>1 yemek kaşığı 16g</td>
-            <td class="kcal-val">94</td>
-            <td class="p-val">4g</td>
-            <td class="k-val">3g</td>
-            <td class="y-val">8g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">18</span></td>
-            <td>Bitter çikolata %70+</td>
-            <td>20g (2 kare)</td>
-            <td class="kcal-val">110</td>
-            <td class="p-val">2g</td>
-            <td class="k-val">8g</td>
-            <td class="y-val">8g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">19</span></td>
-            <td>Elma</td>
-            <td>1 orta 150g</td>
-            <td class="kcal-val">78</td>
-            <td class="p-val">0.4g</td>
-            <td class="k-val">21g</td>
-            <td class="y-val">0.2g</td>
-            <td><span class="src-badge">diyetkolik</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">20</span></td>
-            <td>Çilek</td>
-            <td>100g</td>
-            <td class="kcal-val">32</td>
-            <td class="p-val">0.7g</td>
-            <td class="k-val">8g</td>
-            <td class="y-val">0.3g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-          <tr>
-            <td><span class="tbl-num">21</span></td>
-            <td>Muz</td>
-            <td>½ orta 50g</td>
-            <td class="kcal-val">45</td>
-            <td class="p-val">0.5g</td>
-            <td class="k-val">11g</td>
-            <td class="y-val">0.2g</td>
-            <td><span class="src-badge">USDA</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+<!-- BESİN REFERANS TABLOSU -->
+<div class="sec">
+  <div class="sec-head">
+    <div class="sec-title">Besin Referans Tablosu</div>
+    <span class="sec-pill">30 Besin</span>
   </div>
-
-  <!-- DİYABET UYARISI -->
-  <div class="alert">
-    <strong>⚠️ Tip 2 Diyabet Uyarısı:</strong> Bu plan kan şekeri yönetimine yardımcı olmak için tasarlanmıştır ancak tıbbi tavsiye yerine geçmez. Kan şekerinizi düzenli ölçün, ilaç dozlarınızı diyetisyen ve doktorunuzla birlikte takip edin. Öğün atlamaktan kaçının.
+  <div class="sec-sub">Planda kullanılan besinlerin 100g başına makro değerleri (kaynak: USDA FoodData · diyetkolik.com · medicalpark.com.tr).</div>
+  <div class="ref-tbl-wrap">
+    <table class="ref-tbl">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Besin</th>
+          <th>Porsiyon</th>
+          <th>Kcal</th>
+          <th>Protein</th>
+          <th>Karbonhidrat</th>
+          <th>Yağ</th>
+          <th>Kaynak</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="tbl-num">1</span></td><td>Glutensiz ekmek (pirinç unu)</td><td>1 dilim 40g</td><td class="kcal-val">104</td><td class="p-val">2g</td><td class="k-val">20g</td><td class="y-val">2g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">2</span></td><td>Yulaf ezmesi</td><td>40g (kuru)</td><td class="kcal-val">152</td><td class="p-val">5g</td><td class="k-val">26g</td><td class="y-val">3g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">3</span></td><td>Pirinç krakeri</td><td>1 adet 10g</td><td class="kcal-val">38</td><td class="p-val">1g</td><td class="k-val">8g</td><td class="y-val">0.3g</td><td><span class="src-badge">diyetkolik</span></td></tr>
+        <tr><td><span class="tbl-num">4</span></td><td>Baldo pirinç (çiğ)</td><td>40g</td><td class="kcal-val">144</td><td class="p-val">3g</td><td class="k-val">32g</td><td class="y-val">0.4g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">5</span></td><td>Kinoa (çiğ)</td><td>50g</td><td class="kcal-val">182</td><td class="p-val">7g</td><td class="k-val">32g</td><td class="y-val">3g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">6</span></td><td>Bulgur ince (çiğ)</td><td>40g</td><td class="kcal-val">139</td><td class="p-val">5g</td><td class="k-val">29g</td><td class="y-val">0.5g</td><td><span class="src-badge">USDA</span><span class="best-tag">Kontrollü Gluten</span></td></tr>
+        <tr><td><span class="tbl-num">7</span></td><td>Makarna (çiğ)</td><td>60g</td><td class="kcal-val">213</td><td class="p-val">7g</td><td class="k-val">43g</td><td class="y-val">1g</td><td><span class="src-badge">USDA</span><span class="best-tag">Kontrollü Gluten</span></td></tr>
+        <tr><td><span class="tbl-num">8</span></td><td>Yumurta (tam)</td><td>1 adet 60g</td><td class="kcal-val">86</td><td class="p-val">7g</td><td class="k-val">0.5g</td><td class="y-val">6g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">9</span></td><td>Lor peyniri</td><td>100g</td><td class="kcal-val">98</td><td class="p-val">12g</td><td class="k-val">3g</td><td class="y-val">4g</td><td><span class="src-badge">diyetkolik</span></td></tr>
+        <tr><td><span class="tbl-num">10</span></td><td>Labne peyniri</td><td>100g</td><td class="kcal-val">140</td><td class="p-val">8g</td><td class="k-val">4g</td><td class="y-val">11g</td><td><span class="src-badge">diyetkolik</span></td></tr>
+        <tr><td><span class="tbl-num">11</span></td><td>Kaşar peyniri</td><td>30g</td><td class="kcal-val">109</td><td class="p-val">7g</td><td class="k-val">0.5g</td><td class="y-val">9g</td><td><span class="src-badge">medicalpark</span></td></tr>
+        <tr><td><span class="tbl-num">12</span></td><td>Beyaz peynir (az yağlı)</td><td>30g</td><td class="kcal-val">70</td><td class="p-val">5g</td><td class="k-val">0.5g</td><td class="y-val">5g</td><td><span class="src-badge">diyetkolik</span></td></tr>
+        <tr><td><span class="tbl-num">13</span></td><td>Laktoz-free yoğurt</td><td>100g</td><td class="kcal-val">62</td><td class="p-val">5g</td><td class="k-val">7g</td><td class="y-val">2g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">14</span></td><td>Laktoz-free süt</td><td>100ml</td><td class="kcal-val">46</td><td class="p-val">3g</td><td class="k-val">5g</td><td class="y-val">2g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">15</span></td><td>Tavuk göğsü (çiğ)</td><td>100g</td><td class="kcal-val">120</td><td class="p-val">23g</td><td class="k-val">0g</td><td class="y-val">3g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">16</span></td><td>Dana kıyması yağsız (çiğ)</td><td>100g</td><td class="kcal-val">155</td><td class="p-val">22g</td><td class="k-val">0g</td><td class="y-val">8g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">17</span></td><td>Somon fileto (çiğ)</td><td>100g</td><td class="kcal-val">208</td><td class="p-val">20g</td><td class="k-val">0g</td><td class="y-val">13g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">18</span></td><td>Ton balığı (suda, konserve)</td><td>1 kutu 80g</td><td class="kcal-val">88</td><td class="p-val">20g</td><td class="k-val">0g</td><td class="y-val">0.5g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">19</span></td><td>Kırmızı mercimek (çiğ)</td><td>80g</td><td class="kcal-val">272</td><td class="p-val">18g</td><td class="k-val">48g</td><td class="y-val">1g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">20</span></td><td>Kuru fasulye (çiğ)</td><td>80g</td><td class="kcal-val">269</td><td class="p-val">17g</td><td class="k-val">48g</td><td class="y-val">1g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">21</span></td><td>Badem (çiğ)</td><td>20g</td><td class="kcal-val">116</td><td class="p-val">4g</td><td class="k-val">4g</td><td class="y-val">10g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">22</span></td><td>Ceviz</td><td>20g (4 adet)</td><td class="kcal-val">130</td><td class="p-val">3g</td><td class="k-val">3g</td><td class="y-val">13g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">23</span></td><td>Fıstık ezmesi (şekersiz)</td><td>1 yemek kaşığı 16g</td><td class="kcal-val">94</td><td class="p-val">4g</td><td class="k-val">3g</td><td class="y-val">8g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">24</span></td><td>Bitter çikolata %70+</td><td>20g (2 kare)</td><td class="kcal-val">110</td><td class="p-val">2g</td><td class="k-val">8g</td><td class="y-val">8g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">25</span></td><td>Elma</td><td>½ orta 75g</td><td class="kcal-val">39</td><td class="p-val">0.2g</td><td class="k-val">10g</td><td class="y-val">0.1g</td><td><span class="src-badge">diyetkolik</span></td></tr>
+        <tr><td><span class="tbl-num">26</span></td><td>Çilek</td><td>100g</td><td class="kcal-val">32</td><td class="p-val">0.7g</td><td class="k-val">8g</td><td class="y-val">0.3g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">27</span></td><td>Muz (küçük)</td><td>½ adet 50g</td><td class="kcal-val">45</td><td class="p-val">0.5g</td><td class="k-val">11g</td><td class="y-val">0.2g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">28</span></td><td>Zeytinyağı</td><td>1 tatlı kaşığı 5ml</td><td class="kcal-val">44</td><td class="p-val">0g</td><td class="k-val">0g</td><td class="y-val">5g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">29</span></td><td>Pirinç nişastası</td><td>20g</td><td class="kcal-val">70</td><td class="p-val">0.1g</td><td class="k-val">17g</td><td class="y-val">0g</td><td><span class="src-badge">USDA</span></td></tr>
+        <tr><td><span class="tbl-num">30</span></td><td>Keçiboynuzu tozu</td><td>1 yemek kaşığı 8g</td><td class="kcal-val">17</td><td class="p-val">0.4g</td><td class="k-val">4g</td><td class="y-val">0.1g</td><td><span class="src-badge">USDA</span></td></tr>
+      </tbody>
+    </table>
   </div>
+</div>
+
+<!-- DİYABET UYARISI -->
+<div class="alert">
+  <strong>⚠️ Tip 2 Diyabet Uyarısı:</strong> Bu plan kan şekeri yönetimine yardımcı olmak için tasarlanmıştır ancak tıbbi tavsiye yerine geçmez. Kan şekerinizi düzenli ölçün, ilaç dozlarınızı diyetisyen ve doktorunuzla birlikte takip edin. Öğün atlamaktan kaçının.
+</div>
 
 </div><!-- /wrap -->
 
 <footer>
   My Good Life · Kişisel Beslenme Planı<br>
-  Gluten-free · FODMAP uyumlu · Tip 2 Diyabet Yönetimi<br>
+  Gluten kontrollü · FODMAP uyumlu · Tip 2 Diyabet Yönetimi<br>
   <span style="font-size:10px;">Kaynak: USDA FoodData · diyetkolik.com · medicalpark.com.tr · ADA 2024 · FODMAP Monash</span><br>
   <button class="print-btn" onclick="window.print()">🖨️ Yazdır / PDF</button>
 </footer>
 
 <script>
-function showTab(id) {
-  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('on'));
-  document.querySelectorAll('.mtab').forEach(t => t.classList.remove('on'));
-  document.getElementById(id).classList.add('on');
-  event.target.classList.add('on');
+function toggleAcc(el) {
+  const card = el.closest('.acc-card');
+  card.classList.toggle('open');
 }
 </script>
 </body>
